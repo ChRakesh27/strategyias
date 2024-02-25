@@ -1,0 +1,74 @@
+.footerWrapper{
+    position: relative;
+    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2em 0em;
+   
+}
+.footerMainContainer{
+    max-width: 80em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    min-width: 35em;
+    padding: 1em;
+}
+.strategyListContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.toppersList{
+    display: flex;
+    flex-wrap: wrap;
+    color: rgb(100, 100, 100);
+    
+}
+.toppers{
+    padding: 0.2em;
+}
+.toppers>h4{
+    font-weight: 400;
+}
+.footerHeading>h2{
+    font-size: 3em;
+    font-weight: 200;
+    color: var(--font-color);
+}
+.footerHeading>h2>span{
+    font-weight: 700;
+    color: var(--dark-font-color);
+}
+.strategyListContainer>h3{
+    font-size: 2em;
+    color: var(--main-color);
+}
+.AnswerCopiesList>h3{
+    font-size: 1.5em;
+}
+
+@media (max-width: 830px) {
+    .footerHeading>h2{
+        font-size: 2em;
+        color:gray;
+    }
+    .strategyListContainer>h3{
+        font-size: 1.5em;
+        color: var(--main-color);
+    }
+    .AnswerCopiesList>h4{
+        font-size: 1em;
+    }
+    .toppers>h4{
+        font-size: 1em;
+
+    }
+    .footerMainContainer{
+        width: 100%;
+        min-width: auto;
+    }
+    
+}

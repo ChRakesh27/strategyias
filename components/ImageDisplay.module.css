@@ -1,0 +1,76 @@
+
+.imageDivContainer{
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    border: 1px black solid;
+    background-color: rgba(0, 0, 0, 0.618);
+    
+    justify-content: center;
+}
+.wrapper{
+    width: 80%;
+
+}
+.imageDiv{
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: black;
+    
+}
+.image{
+    height: 100%;
+    width: 100%;
+    
+    
+    position: relative;
+    
+}
+.image2{
+    height: 100%;
+    width: 100%;
+    
+}
+.image>h1{
+    font-weight: 100;
+    color: white;
+}
+.crossDiv{
+    width: 3em;
+    height: 3em;
+    position: absolute;
+    right: 2%;
+    top: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+    background-color: rgba(255, 255, 255, 0.161);
+    border: 1px rgba(255, 255, 255, 0.687) solid;
+}
+.crossDiv:hover{
+    cursor: pointer;
+}
+.crossDiv:hover>.cross1{
+    background-color: rgba(255, 255, 255, 0.693);
+}
+.crossDiv:hover>.cross2{
+    background-color: rgba(255, 255, 255, 0.693);
+}
+.cross1{
+    width: 50%;
+    background-color: rgb(255, 255, 255);
+    transform: rotate(45deg) translate(6px,6px );
+    height: 2px;
+}
+.cross2{
+    width: 50%;
+    background-color: rgb(255, 255, 255);
+    transform: rotate(-45deg) translate(6px,-6px );
+    height: 2px;
+}

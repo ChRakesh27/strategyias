@@ -1,0 +1,35 @@
+.shareSocialDiv{
+    position: absolute;
+    z-index: 999;
+    top: 35px;
+    right: 0;
+    display: flex;
+    width: 15em;
+    flex-direction: column;
+    border-radius: 0.4em;
+    color: black;
+    background-color: white;
+    box-shadow: 0px 0px 5px 0px rgb(174, 174, 174);
+}
+.shareSocialDiv>div{
+ 
+    display: flex;
+    gap: 1em;
+    justify-content: flex-start;
+    align-items: center;
+}
+.shareSocialDiv>div button{
+    display: flex;
+    border: none;
+    padding: 1em;
+   
+    gap: 1em;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0);
+}
+.shareSocialDiv>div button:hover{
+    cursor: pointer;
+    background-color: var(--medium-color);
+}

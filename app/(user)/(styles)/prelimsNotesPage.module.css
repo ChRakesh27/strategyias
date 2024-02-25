@@ -1,0 +1,66 @@
+.mainContainer{
+    width: 100%;
+    display: flex;
+    
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--back-color);
+}
+.wrapper{
+    width: 60%;
+    min-width: 22em;
+    margin-top: 2em;
+    box-shadow: 0px 0px 4px 0px rgb(223, 223, 223);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    gap: 1em;
+}
+.breadCrumbContainer{
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    border: 1px solid gray;
+}
+.breadCrumbContainer>a:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.prelimsNotesTitle{
+    background-color: var(--main-color);
+    color: white;
+    padding: 0.6em;
+}
+
+/* faq section  */
+
+.faqHeading{
+    background-color: var(--main-color);
+    color: white;
+    padding: 0.6em;
+}
+.faqsDiv{
+    padding: 0.6em;
+    border: 1px solid rgb(205, 205, 205);
+    border-top: none;
+    display: flex;
+    justify-content: center;
+
+    flex-direction: column;
+    
+}
+.faqTitle{
+    display: flex;
+    justify-content: space-between;
+}
+.faqContent{
+    display: none;
+}
+.accordionOpen{
+    margin-top: 1em;
+    display: block;
+}
+

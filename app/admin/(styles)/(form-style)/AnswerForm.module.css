@@ -1,0 +1,306 @@
+
+.all{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.questionFormContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+    
+}
+.optionsContainer{
+    width: 100%;
+    position: absolute;
+  
+    border: 1px rgb(197, 197, 197) solid;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    min-height: 10em;
+}
+.showSelectedtopic{
+    width: 100%;
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+.showSelectedtopic>div{
+    padding: 0.3em;
+    background-color: white;
+    border-radius: 0.4em;
+
+}
+.option{
+    width: 100%;
+    font-size: 1.3em;
+    font-weight: 100;
+    z-index: 2;
+    padding: 0.5em 0.5em;
+    box-shadow: 0px 0px 4px 0px rgb(180, 180, 180);
+    background-color: rgb(255, 255, 255);
+}
+.inputDiv{
+    position: relative;
+    display: flex;
+    gap: 1em;
+}
+.inputDiv>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.2em 0.5em;
+    color: white;
+    font-weight: 600;
+    border-radius: 0.3em;
+    background-color: rgb(53, 167, 255);
+}
+.inputDiv>div:hover{
+cursor: pointer;
+    background-color: rgba(53, 167, 255, 0.567);
+}
+.inputDiv>input{
+    padding: 0.5em 0.4em;
+    
+    border: none;
+    background-color: rgba(240, 240, 240, 0.545);
+    font-size: 1.3em;
+    width: 100%;
+    border: 1px rgb(197, 197, 197) solid;
+}
+
+
+.formHeading span{
+    color: grey;
+    font-size: 1.1em;
+    font-size: 1em;
+    font-weight: 200;
+   
+}
+.clearBtn{
+    padding: 0.3em;
+ 
+}
+.formHeading>h1{
+    font-size: 3em;
+}
+.questionForm{
+    width: 70%;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    border: 1px rgb(197, 197, 197) solid;
+}
+
+.formInsideContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+}
+.firstHalf{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    width: 50%;
+}
+.separator{
+    background-color: rgb(174, 174, 174);
+    width: 0.02em;
+}
+.secondHalf{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    width: 50%;
+  
+}
+
+
+.inputDivInner{
+    width: 100%;
+    position: relative;
+}
+/* .inputDivInner>input{
+    padding: 0.2em;
+    border: none;
+    border-radius: 0.4em;
+    font-size: 1.1em;
+    width: 100%;
+} */
+
+.labels{
+    color: grey;
+    font-size: 1.2em;
+    width: 50%;
+}
+.btnHolder{
+    width: 100%;
+    display: flex;
+    
+    align-items: center;
+}
+.submitQuestionForm{
+    width: 100%;
+    height: 2em;
+    font-size: 1.3em;
+    border: none;
+    color: gray;
+    
+    border: 1px rgb(164, 164, 164) solid;
+    background-color: rgb(230, 230, 230);
+    transition: border 0.3s ease , color 0.3s ease;
+}   
+.submitQuestionForm:hover{
+    cursor: pointer;
+    border: 1px rgb(0, 0, 0) solid;
+    color: black;
+}
+
+
+
+/* image section  */
+.imageInputDiv{
+    display: flex;
+    height: 20em;
+    gap: 1em;
+    
+}
+.imageDivFirst{
+    width: 50%;
+   display: flex;
+   flex-direction: column;
+   gap: 0.5em;
+   overflow: auto;
+
+}
+.imageDivSecond{
+    width: 50%;
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+   
+}
+.imageUploadedDiv{
+    width: 90%;
+    margin: 0.3em;
+    display: flex;
+    justify-content: space-between;
+    border: 1px black solid;
+    gap: 1em;
+    padding: 0.4em;
+    white-space: normal;
+    position: relative;
+}
+.imageUploadedDiv>div{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1em;
+    height: 100%;
+    opacity: 0.5;
+}
+.imageUploadedDiv>div:hover{
+    opacity: 1;
+    cursor: pointer;
+    
+}
+.imageUploadedDiv>p{
+    overflow: hidden;
+    
+}
+
+.uploadImagBtn{
+    width: 100%;
+    display: inline-block;
+    padding: 0.4em;
+    background-color: rgb(64, 163, 255);
+    text-align: center;
+    color: white;
+
+
+    font-size: 1.3em;
+}
+.intputDivImage{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.imagePasteSec{
+    height: 80%;
+    border: 1px dashed #979797;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imagePasteSec>p{
+    font-size: 1.4em;
+    font-weight: 100;
+
+}
+.addImagePrompt{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    height: 100%;
+}
+.addImagePrompt>p{
+    font-size: 1.3em;
+    font-weight: 100;
+    
+    color: red;
+}
+.addImagePrompt>h3{
+    font-size: 1.2em;
+    color: gray;
+    font-weight: 100;
+}
+
+/* alert  */
+.alertBox{
+    position: absolute;
+    background-color: rgb(255, 255, 255) !important; 
+    box-shadow: 0px 0px 4px 0px rgb(255, 36, 36);
+    width: 8em;
+    height: 8em;
+    left: -30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -80%;
+  
+}
+
+.alertBox>p{
+    font-size: 1.3em;
+    font-weight: 100;
+    
+    color: red;
+}
+.alertBox::after{
+    content: "";
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+   
+    border-left: 20px solid rgb(255, 37, 37);
+    right: -25%;
+    width: 0em;
+    height: 0em;
+}

@@ -1,0 +1,37 @@
+User-Agent: *
+Allow: /
+Disallow: /private/
+
+#Bots
+User-agent: Linguee
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: dotbot
+Disallow: /
+
+User-agent: BLP_bbot
+Disallow: /
+
+User-agent: BLP_bbot/0.1
+Disallow: /
+
+User-agent: blp_bbot/0.1
+Disallow: /
+
+User-agent: ccbot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: CRMNLCrawlAgent
+Disallow: /
+
+User-agent: Cliqzbot
+Disallow: /
+
+User-agent: ZoominfoBot
+Disallow: /

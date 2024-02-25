@@ -1,0 +1,264 @@
+
+
+.TopperFirstDiv{
+    width: 100%;
+    
+    display: flex;
+    
+}
+.TopperCard{
+    box-shadow: 0px 0px 5px 0px rgb(218, 218, 218);
+    
+    width: 100%;
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+.TopperDetailsDiv{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.TopperMarksDiv{
+    width: 60%;
+   
+    display: flex;  
+    padding: 1em 0em;
+    gap: 1em;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.TopperMarksDiv>h3{
+    font-size: 1.2em;
+
+    font-weight: 600;
+}
+
+.TopperIconDiv{
+    
+    position: relative;
+    width: 100%;
+    border-radius: 50%;
+    height: 100%;
+}
+.TopperIconDiv::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.237);
+    top: 0;
+    z-index: 1;
+}
+.TopperName{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    bottom: 0;  z-index: 1;
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1em;
+}
+.TopperName>p{
+    font-size: 1.5em;
+    font-weight: 600;
+    color: white;
+
+}
+.TopperName>h1{
+    
+    font-size: 1.5em;
+    font-weight: 600;
+    color: white;
+}
+
+.TopperMarks{
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+    width: 100%;
+    padding: 0em 1em;
+}
+
+.TopperMarks>div{
+    display: flex;
+    font-size: 1em;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+
+}
+
+.TopperMarks>div>div{
+    display: flex;
+  
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.4em;
+    color:  rgb(0, 0, 0);
+    font-weight: 600;
+
+}
+
+
+
+
+
+.meterContainer {
+    
+    background-color: var(--back-color);
+    border-radius: 0.4em;
+   width: 100%;
+ 
+   position: relative;
+  
+}
+.meterValueDiv{
+    width: 80%;
+    position: relative;
+    display: flex;
+    
+    
+}
+.marksName{
+    position: relative;
+   z-index: 2;
+   padding: 0.1em 0.4em;
+   border-radius: 0.4em;
+}
+.meterValue{
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 0;
+    border-radius: 0.4em;
+    background-color: var(--medium-color);
+    position: absolute;
+}
+.marks{
+    background-color: var(--medium-color);
+    position: relative;
+   z-index: 2;
+   padding: 0.1em 0.4em;
+   font-size: 1em;
+   color: var(--main-color) !important;
+   border-radius: 0.4em;
+}
+.finalMarks>p{
+    color: black;
+    font-weight: bold;
+
+}
+.ShowAnswersBtn{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    font-size: 1.2em;
+    padding: 0.5em 1em;
+  
+    margin-bottom: 0.5em;
+    font-weight: 600;
+    width: 100%;
+}
+
+.ShowAnswersBtn:hover{
+    cursor: pointer;
+   
+  
+    
+}
+@media only screen and (min-width: 850px) and (max-width:1000px)  {
+    .TopperMarks>div{
+        display: flex;
+        font-size: 0.6em;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5em;
+        color:  gray;
+    }
+    .TopperName>p{
+        font-size: 1em;
+        color: var(--main-color);
+    
+    }
+    .TopperName>h3{
+        font-size: 1.2em;
+    }
+}
+@media (max-width:500px) {
+    .TopperMarks>div{
+        display: flex;
+        font-size: 0.45em;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5em;
+        color:  gray;
+    }
+    .TopperName>p{
+        font-size: 1em;
+        color: var(--main-color);
+    
+    }
+    .TopperName>h3{
+        font-size: 1em;
+    }
+    .TopperIconOuterDiv{
+        box-shadow: 0px 0px 10px 0px rgb(211, 211, 211);
+        width: 6em;
+        height: 6em;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+ 
+    .TopperMarks>div{
+        display: flex;
+        font-size: 0.5em;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1em;
+    
+    }
+    
+    
+ 
+}
+
+.linkStyle{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* different buttons classess  */
+
+.toppersAnswers{
+    display: flex;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--main-color);
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em 1.5em;
+    width: 12em;
+    background-color: white;
+    border: 1px solid rgb(196, 196, 196);
+   
+}

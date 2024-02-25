@@ -1,0 +1,99 @@
+.navbarMainContainer{
+    display: flex;
+    
+    position: fixed;
+    width: 15%;
+    padding: 0.5em;
+    height: 100vh;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    color: rgb(99, 99, 99);
+    background-color: #ffffff;
+    
+}
+.logo>h1{
+    color: rgb(99, 99, 99);
+    font-size: 1.5em;
+}
+.navbarContainer{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    height: 96%;
+    justify-content: space-between;
+}
+.loginBtn{
+    padding: 0.4em 1.4em;
+    font-size: 1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.7em;
+   
+    color: rgb(92, 92, 92);
+
+}
+.activeLink{
+    color: black !important;
+}
+.navBarHeading{
+    color: rgb(170, 170, 170);
+}
+.loginBtn:hover{
+    cursor: pointer;
+    background-color: rgba(173, 173, 173, 0.59);
+}
+.navEleDiv{
+    display: flex;
+    flex-direction: column;
+    color :rgb(170, 170, 170);
+    gap: 2em;
+    font-weight: 600;
+    font-size: 1.2em;
+    
+}
+.navbarHidden{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.816);
+    height: auto;
+    padding: 1em;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    display: flex;
+
+    justify-content: center;
+    flex-direction: column;
+    gap: 1em;
+    top: 4em;
+    color: white;
+}
+.hamburger{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    flex-direction: column;
+    width: 20px;
+    height: 20px;
+}
+.hamburgerLine1{
+    height: 1px;
+    width: 100%;
+    transition: transform 0.4s ease;
+    background-color: white;
+}
+.hamburgerLine2{
+    height: 1px;
+    width: 100%;
+    transition: transform 0.4s ease;
+  
+    background-color: white;
+}
+.hamburgerLine1Change{
+    transform:translateY(5px) rotate(45deg);
+   
+   
+}
+.hamburgerLine2Change{
+    transform: translateY(-5px) rotate(-45deg );
+}

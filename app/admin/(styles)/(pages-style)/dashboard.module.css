@@ -1,0 +1,86 @@
+.mainContainer{
+    display: flex;
+    width: 85%;
+    position: relative;
+    left: 15%;
+    background-color: rgb(249, 249, 249);
+    flex-direction: column;
+    min-height: 100vh;
+}
+.searchBarContainer{
+    width: 100%;
+   padding: 1em;
+   
+}
+.searchBar{
+    padding: 1em 0em;
+    border-bottom: 1px solid rgb(193, 193, 193);
+    
+}
+.searchBar>input{
+    width: 20em;
+    border: 1px gray solid;
+    border-radius: 0.4em;
+    padding: 0.3em;
+    font-size: 1.2em;
+}
+.headingSection{
+    width: 100%;
+    padding: 1em;
+   
+
+}
+.optionsContainer{
+    display: flex;
+    width: 100%;
+    
+    padding: 1em;
+    gap: 1em;
+}
+.optionsContainer>button{
+    font-size: 1em;
+    padding: 0.4em 0.8em;
+    border: 1px solid rgb(193, 193, 193);
+    border-radius: 0.5em;
+}
+.optionsContainer>button:hover{
+    cursor: pointer;
+}
+.listContainer{
+    display: flex;
+    flex-direction: column;
+   padding: 1em ;
+}
+.listHeadingDiv{
+    display: grid;
+    grid-template-columns: repeat(5 , 1fr);
+    
+    
+
+}
+.listHeading{
+    color: gray;
+    padding: 1em 0.4em;
+}
+.listItemsDiv{
+    display: grid;
+    grid-template-columns: repeat(5 , 1fr);
+    border-bottom: 1px solid rgb(212, 212, 212);
+}
+.listItems{
+    font-size: 1.1em;
+    padding: 0.8em 0.4em;
+}
+
+.activeBtn{
+    border: 1px solid rgb(49, 49, 49) !important;
+}
+
+/* pagination styling  */
+.paginationDiv{
+    width: 100%;
+   font-size: 1.2em;
+    padding: 0.2em 1em;
+    display: flex;
+    justify-content: space-between;
+}

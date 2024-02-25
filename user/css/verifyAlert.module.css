@@ -1,0 +1,58 @@
+.wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mainContainer{
+    display: flex;
+  gap: 1em;
+    align-items: center;
+    width: 90%;
+   background-color: rgba(255, 238, 142, 0.397);
+   padding: 0.5em 1em;
+   padding-top: 0.8em;
+   font-size: 1.2em;
+   border-radius: 0.4em;
+   font-weight: 600;
+  
+    
+   border: 1px rgb(255, 200, 0) solid;
+}
+.mainContainer>button{
+    padding: 0.2em 0.5em;
+    font-size: 1em;
+    border-radius: 0.4em;
+    background-color: rgb(44, 44, 44);
+    font-weight: 600;
+   position: relative;
+
+}
+.mainContainer>button::before{
+    content: "verify";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:absolute;
+    width: 100%;
+    background-color: rgb(110, 252, 78);
+    top: -15%;
+    transition: left 0.1s ease , top 0.1s ease;
+    left: -10%;
+    border-radius: 0.4em;
+
+    height: 100%;
+   
+}
+.mainContainer>button:hover::before{
+    cursor: pointer;
+    top: -10%;
+    
+    left: -5%;
+}
+.mainContainer>button:focus::before{
+    cursor: pointer;
+    top: -5%;
+    
+    left: -2%;
+}

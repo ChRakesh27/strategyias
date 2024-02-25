@@ -1,0 +1,125 @@
+.all{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.questionFormContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    
+}
+
+.formHeading span{
+    color: grey;
+    font-size: 1.1em;
+    font-size: 1em;
+    font-weight: 200;
+   
+}
+.questionForm{
+    border-radius: 0.4em;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    background-color: rgb(235, 235, 235);
+}
+.intputDiv{
+    display: flex;
+    gap: 1em;
+   
+}
+.formInsideContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+}
+.firstHalf{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+.separator{
+    background-color: rgb(174, 174, 174);
+    width: 0.02em;
+}
+.secondHalf{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+.intputDiv>textarea{
+    resize: none;
+    height: 5em;
+    width: 25em;
+    padding: 0.2em;
+    border: none;
+    border-radius: 0.4em;
+    font-size: 1.1em;
+}
+.intputDiv>input{
+    padding: 0.2em;
+    border: none;
+    border-radius: 0.4em;
+    font-size: 1.1em;
+    width: 20em;
+}
+.inputDivInner{
+    width: 70%;
+    position: relative;
+}
+.inputDivInner>input{
+    padding: 0.2em;
+    border: none;
+    border-radius: 0.4em;
+    font-size: 1.1em;
+    width: 100%;
+}
+@media (max-width: 600px) {
+    .intputDiv>textarea{
+       
+        width: 12em;
+        
+    }
+    .intputDiv>input{
+        
+        width:9em;
+    } 
+    .questionFormContainer{
+        width: 80%;
+    }
+}
+.labels{
+    color: grey;
+    font-size: 1.2em;
+    width: 50%;
+}
+.btnHolder{
+    width: 100%;
+    display: flex;
+    
+    align-items: center;
+}
+.submitQuestionForm{
+    width: 30%;
+    height: 2em;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 0.4em;
+    background-color: rgb(202, 202, 202);
+}   
+
+@media (max-width: 1170px) {
+    .formInsideContainer{
+        flex-direction: column;
+    }
+}

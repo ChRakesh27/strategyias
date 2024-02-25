@@ -1,0 +1,405 @@
+
+.navBarMainContainer{
+    
+    width: 100%;
+    display: flex;
+    align-items: center;
+    
+    box-shadow: 0px 0px 4px 0px rgb(181, 181, 181);
+    justify-content: center;
+}
+.NavbarContainer{
+    align-items: center;
+    padding: 0.5em;
+    display: flex;
+    width: 100%;
+   justify-content: space-between;
+   
+}
+
+.NavbarDiv{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.Navbar{
+    display: flex;
+    
+    width: 100%;
+    justify-content:flex-start;
+    gap: 2em;
+
+}
+.navbarWrapper{
+    width: 90%;
+}
+.NavbarElements{
+    padding: 0.2em 0em;
+    font-size: 1.5em;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.NavbarElements>div{
+    display: flex;
+    justify-content: center;
+    
+    gap: 0.2em;
+}
+.icon{
+    padding: 0.2em 0em;
+    font-size: 1.8em;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.NavbarElements:hover::before{
+    width: 100%;
+
+    
+}
+.NavbarElements::before{
+    content: "";
+    width: 0%;
+    transition: width 0.5s ease;
+
+    height: 0.1em;
+    position: absolute;
+    background-color: var(--main-color);
+    bottom: 10%;
+    left: 0%;
+}
+
+
+.profileDiv{
+    display: flex;
+    position: relative;
+   
+}
+
+.LoginDiv{
+    z-index: 1;
+    position: relative;
+    width: 3em;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px 0px rgb(174, 174, 174);
+    height: 3em;
+}
+.LoginDiv:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 0px rgb(95, 95, 95);
+}
+
+
+.profileImage{
+    border-radius: 50%;
+}
+.navEle{
+    position: relative;
+}
+.navEleDiv{
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    font-weight: 600;
+    font-size: 1.2em;
+    
+}
+.mobileViewDropDownDiv{
+    display: flex;
+   
+    align-items: center;
+}
+@keyframes slideIn {
+    0%{
+        left: -100%;
+    }100%{
+        left: 0%;
+    }
+    
+}
+
+
+
+.navbarHidden{
+    width: 100%;
+    background-color: white;
+    height: auto;
+    padding: 1em;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    display: flex;
+    border-bottom-left-radius: 0.8em;
+    border-bottom-right-radius: 0.8em;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1em;
+    top: 3.2em;
+    color: black;
+    box-shadow: 0px 8px 15px 0px rgb(203, 203, 203);
+    animation: slideIn 0.4s ease forwards;
+}
+.hamburger{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    flex-direction: column;
+    width: 20px;
+    height: 20px;
+}
+.hamburgerLine1{
+    height: 1px;
+    width: 100%;
+    transition: transform 0.4s ease;
+    background-color: var(--main-color);
+}
+.hamburgerLine2{
+    height: 1px;
+    width: 100%;
+    transition: transform 0.4s ease;
+  
+    background-color: var(--main-color);
+}
+.hamburgerLine1Change{
+    transform:translateY(5px) rotate(45deg);
+   
+   
+}
+.hamburgerLine2Change{
+    transform: translateY(-5px) rotate(-45deg );
+}
+
+
+/* buttons  */
+.logBtnsDiv{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1em;
+    width: 40%;
+}
+.loginBtn{
+    padding: 0.2em 0.8em;
+    font-size: 1.4em;
+    font-weight: 600;
+    border-radius: 0.4em;
+    border: none;
+    
+    color: var(--main-color);
+    background-color: white;
+    transition: background-color 0.3s ease , color 0.3s ease;
+}
+.loginBtn:hover{
+    cursor: pointer;
+    background-color: rgb(238, 238, 238);
+    color:var(--main-color);
+
+}
+.signupBtn{
+    padding: 0.2em 0.8em;
+    font-size: 1.4em;
+    font-weight: 600;
+    border-radius: 0.4em;
+    background-color: var(--main-color);
+    
+    border: none;
+    color: white;
+   
+}
+.signupBtn:hover{
+    cursor: pointer;
+  
+
+}
+
+/* currently in div  */
+.currentlyInDiv{
+  
+    display: flex;
+    justify-content: flex-start;
+    gap: 1em;
+    align-items: center;
+    
+    border-radius: 0.4em;
+    background-color: rgb(218, 218, 218);
+}
+.currentlyInImage{
+
+    border-radius: 50%;
+
+}
+.currentlyInImageDiv{
+    position: relative;
+    width: 4em;
+    height: 4em;
+    margin: 0.3em 1em;
+}
+.currentlyInName{
+    padding-right: 1.5em;
+}
+.profileOptionsDiv{
+    top: 3.5em;
+    right:0%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5em;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 0px 10px 0px rgb(187, 187, 187);
+    border-radius: 0.4em;
+    padding: 1em;
+    
+    
+}
+.profileOptions{
+    padding: 0.5em 0.5em;
+    display: flex;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: gray;
+    align-items: center;
+    transition: back;
+}
+.profileOptions:hover{
+    background-color: rgb(213, 213, 213);
+    border-radius: 0.4em;
+}
+
+@media (max-width:1105px) {
+    .NavbarElements{
+
+        font-size: 1.2em;
+     
+    }
+    .icon{
+     
+        font-size: 1.5em;
+     
+    }
+    .loginBtn{
+     
+        font-size: 1.2em;
+        font-weight: 600;
+    
+    }
+   
+    .signupBtn{
+   
+        font-size: 1.2em;
+        font-weight: 600;
+       
+       
+    }
+}
+
+@media (max-width:955px) {
+    .NavbarElements{
+
+        font-size: 1em;
+     
+    }
+    .icon{
+     
+        font-size: 1.1em;
+     
+    }
+    .loginBtn{
+     
+        font-size: 1em;
+        font-weight: 600;
+    
+    }
+   
+    .signupBtn{
+   
+        font-size: 1em;
+        font-weight: 600;
+       
+       
+    }
+}
+
+
+/* Navbar drop down */
+.SubNavbarDropDown{
+    position: absolute;
+    font-size: 0.6em;
+    width: 100%;
+    font-weight: 700;
+    
+
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+   
+    top: 100%;
+    left: 0;
+    z-index: 4;
+    border-radius: 0.2em;
+    box-shadow: 0px 0px 10px 0px rgb(152, 152, 152);
+}
+.SubNavbarDropDown p{
+    display: flex;
+    
+    align-items: center;
+    padding: 0.5em;
+}
+.SubNavbarDropDown p:hover{
+    background-color: rgb(245, 245, 245);
+
+  
+}
+.downArrowIcon{
+    
+    width: 1.3em;
+    height: 1.3em;
+  
+    border-radius: 50%;
+    padding: 0.2em;
+}
+.downArrowIcon:hover{
+    cursor: pointer;
+    background-color: rgb(212, 212, 212);
+}
+
+/* mobile sub navbar down drop  */
+.MobileSubNavbarDropDown{
+   
+    font-size: 1em;
+    width: 100%;
+    font-weight: 500;
+    
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: white;
+   
+   
+    z-index: 4;
+    border-radius: 0.2em;
+    
+}
+.MobileSubNavbarDropDown p{
+    display: flex;
+    
+    
+    padding: 0.5em;
+}
+.MobileSubNavbarDropDown p:hover{
+    background-color: rgb(245, 245, 245);
+
+  
+}
+
+.activeLink{
+    color: var(--main-color);
+}
