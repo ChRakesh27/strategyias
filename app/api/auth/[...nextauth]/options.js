@@ -34,7 +34,8 @@ const options = {
         if (
           profile?.email === "pratham27900@gmail.com" ||
           profile?.email === "skptrulyweb@gmail.com" ||
-          profile?.email === "harshitsikka4@gmail.com"
+          profile?.email === "harshitsikka4@gmail.com" ||
+          profile?.email === "chipparakesh01@gmail.com"
         ) {
           userRole = "admin";
         }

@@ -32,10 +32,10 @@ export async function POST(req) {
 
     let newNotes;
     if (subjectId) {
-      let subjectExists = await subject.findOne({ subjectId });
+      let subjectExists = await subject.findById(subjectId);
 
       if (topicId) {
-        let topicExists = await topic.findOne({ topicId });
+        let topicExists = await topic.findById(topicId);
         newNotes = new prelimsNotes({
           title: title,
           slug: slug,
@@ -51,6 +51,8 @@ export async function POST(req) {
           name: topicName,
         });
         await newTopic.save();
+        subjectExists.topic.push(newTopic._id);
+        await subject.findByIdAndUpdate(subjectId, subjectExists)
         newNotes = new prelimsNotes({
           title: title,
           slug: slug,

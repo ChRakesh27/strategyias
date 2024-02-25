@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export default async function middleware(req, event) {
   const token = await getToken({ req });
   const isAuthenticated = !!token;
-  
+
   if (req.nextUrl.pathname.startsWith("/signIn") && isAuthenticated) {
     return NextResponse.redirect(new URL("/", req.url));
   }
