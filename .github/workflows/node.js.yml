@@ -30,4 +30,4 @@ jobs:
     - run: touch .env
     - run: echo '${{ secrets.PROD }}' > .env
     - run: cat .env
-    - run: npm run dev
+    - run: pm2 restart Backend
