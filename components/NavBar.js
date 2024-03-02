@@ -84,9 +84,8 @@ const NavBar = () => {
               <>
                 <div className={styles.navBarHeading}>ADMIN TOOLS</div>
                 <div
-                  className={`${styles.navEle} ${
-                    pathname === "/all-toppers" ? styles.activeLink : ""
-                  }`}
+                  className={`${styles.navEle} ${pathname === "/all-toppers" ? styles.activeLink : ""
+                    }`}
                 >
                   <Link href={"/"}>Home</Link>
                 </div>
@@ -94,64 +93,68 @@ const NavBar = () => {
                   <Link href={`/admin-page`}>Admin Page</Link>
                 </div> */}
                 <div
-                  className={`${styles.navEle} ${
-                    pathname === "/admin/toppers-page" ? styles.activeLink : ""
-                  }`}
+                  className={`${styles.navEle} ${pathname === "/admin/toppers-page" ? styles.activeLink : ""
+                    }`}
                 >
                   <Link href={"/admin/toppers-page"}>Add Topper</Link>
                 </div>
                 <div
-                  className={`${styles.navEle} ${
-                    pathname === "/admin/add-answers" ? styles.activeLink : ""
-                  }`}
+                  className={`${styles.navEle} ${pathname === "/admin/add-answers" ? styles.activeLink : ""
+                    }`}
                 >
                   <Link href={"/admin/add-answers"}>Add Answers</Link>
                 </div>
                 <div
-                  className={`${styles.navEle} ${
-                    pathname === "/admin/add-pyqs" ? styles.activeLink : ""
-                  }`}
+                  className={`${styles.navEle} ${pathname === "/admin/add-pyqs" ? styles.activeLink : ""
+                    }`}
                 >
                   <Link href={"/admin/add-pyqs"}>Add Pyqs </Link>
                 </div>
 
                 <div
-                  className={`${styles.navEle} ${
-                    pathname === "/admin/add-current-affairs"
-                      ? styles.activeLink
-                      : ""
-                  }`}
+                  className={`${styles.navEle} ${pathname === "/admin/add-current-affairs"
+                    ? styles.activeLink
+                    : ""
+                    }`}
                 >
                   <Link href={"/admin/add-current-affairs"}>
                     Add CurrentAffairs{" "}
                   </Link>
                 </div>
                 <div
-                  className={`${styles.navEle} ${
-                    pathname === "/admin/add-links" ? styles.activeLink : ""
-                  }`}
+                  className={`${styles.navEle} ${pathname === "/admin/add-links" ? styles.activeLink : ""
+                    }`}
                 >
                   <Link href={"/admin/add-links"}>Add Links </Link>
                 </div>
                 <div
-                  className={`${styles.navEle} ${
-                    pathname === "/admin/add-prelims-notes"
-                      ? styles.activeLink
-                      : ""
-                  }`}
+                  className={`${styles.navEle} ${pathname === "/admin/add-prelims-notes"
+                    ? styles.activeLink
+                    : ""
+                    }`}
                 >
                   <Link href={"/admin/add-prelims-notes"}>
                     Add prelims notes{" "}
                   </Link>
                 </div>
                 <div
-                  className={`${styles.navEle} ${
-                    pathname === "/admin/dashboard" ? styles.activeLink : ""
-                  }`}
+                  className={`${styles.navEle} ${pathname === "/admin/dashboard" ? styles.activeLink : ""
+                    }`}
                 >
                   <Link href={"/admin/dashboard"}>Dashboard</Link>
                 </div>
+                <div
+                  className={`${styles.navEle} ${pathname === "/admin/delete-prelims-notes"
+                    ? styles.activeLink
+                    : ""
+                    }`}
+                >
+                  <Link href={"/admin/delete-prelims-notes"}>
+                    Delete prelims notes{" "}
+                  </Link>
+                </div>
               </>
+
             )}
           </div>
 
@@ -164,14 +167,12 @@ const NavBar = () => {
           {showHamburger && (
             <div onClick={handleMenu} className={styles.hamburger}>
               <div
-                className={`${styles.hamburgerLine1} ${
-                  hiddenNav ? styles.hamburgerLine1Change : ""
-                }`}
+                className={`${styles.hamburgerLine1} ${hiddenNav ? styles.hamburgerLine1Change : ""
+                  }`}
               ></div>
               <div
-                className={`${styles.hamburgerLine2} ${
-                  hiddenNav ? styles.hamburgerLine2Change : ""
-                }`}
+                className={`${styles.hamburgerLine2} ${hiddenNav ? styles.hamburgerLine2Change : ""
+                  }`}
               ></div>
             </div>
           )}

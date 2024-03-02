@@ -19,8 +19,10 @@ const page = async ({ params }) => {
 
   if (params.slug.length > 2 || note.length === 0) {
     return (
-      <div>
-        <h1>This page is not available</h1>
+      <div className={styles.mainContainer}>
+        <div className={styles.wrapper}>
+          <h1>This page is not available</h1>
+        </div>
       </div>
     );
   }

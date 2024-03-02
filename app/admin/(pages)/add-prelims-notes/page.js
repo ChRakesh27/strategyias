@@ -145,7 +145,7 @@ const CurrentAffairsForm = () => {
 
       const topics = await response.data.topics;
       setTopics(topics);
-      
+
     } catch (err) {
       console.log(err);
     }
@@ -155,7 +155,7 @@ const CurrentAffairsForm = () => {
     e.preventDefault();
 
     setIsLoading(true);
-   
+
     const prelimsNotes = {
       title: formData.title,
       faqs: formData.faqs,
@@ -243,10 +243,10 @@ const CurrentAffairsForm = () => {
   };
   const handleTopicSelect = async (data) => {
     setShowtopicOptions(false);
-   
-    const body = { subject: formData.subjectName, topic: data.name };
+
+    const body = { subject: formData.subjectId, topic: data._id };
     const response = await axios.post("/api/admin/get-prelims-notes", body);
- 
+
     if (editor.current) {
       editor.current.value = response.data.note[0].content;
     }
@@ -382,6 +382,7 @@ const CurrentAffairsForm = () => {
                   name="title"
                   value={formData.title}
                   onChange={handleInputChange}
+                  required
                 />
                 {/* {errorAlerts.option1 && (
                   <div className={styles.alertBox}>
@@ -406,7 +407,7 @@ const CurrentAffairsForm = () => {
                   onBlur={(newContent) =>
                     handleTextEditor("content", newContent)
                   }
-                  onChange={(newContent) => {}}
+                  onChange={(newContent) => { }}
                 />
               </div>
 
@@ -432,6 +433,7 @@ const CurrentAffairsForm = () => {
                   placeholder="subject *"
                   value={formData.subjectName}
                   onChange={handleInputChange}
+                  required
                 />
 
                 {showSubOptions && formData.subjectName && (
@@ -475,6 +477,7 @@ const CurrentAffairsForm = () => {
                   placeholder="topic *"
                   value={formData.topicName}
                   onChange={handleInputChange}
+                  required
                 />
 
                 {showtopicOptions && formData.topicName && (
@@ -584,7 +587,7 @@ const CurrentAffairsForm = () => {
                     onBlur={(newContent) =>
                       handleTextEditor("faqContent", newContent)
                     }
-                    onChange={(newContent) => {}}
+                    onChange={(newContent) => { }}
                   />
                 </div>
               </div>
@@ -596,15 +599,12 @@ const CurrentAffairsForm = () => {
 
           <div className={styles.btnHolder}>
             {isLoading && <span>Adding...</span>}
-            {!isLoading && !editMode ? (
-              <button
-                type="submit"
-                disabled={isLoading}
-                className={styles.submitQuestionForm}
-              >
+            {!isLoading && !editMode &&
+              <button button type="submit" disabled={isLoading} className={styles.submitQuestionForm}>
                 Add Notes
               </button>
-            ) : (
+            }
+            {!isLoading && editMode &&
               <>
                 <div onClick={handleCancleBtn} className={styles.cancleBtn}>
                   Cancle
@@ -616,11 +616,11 @@ const CurrentAffairsForm = () => {
                   Save
                 </div>
               </>
-            )}
+            }
           </div>
         </form>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 

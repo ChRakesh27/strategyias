@@ -9,11 +9,18 @@ export async function POST(req) {
   try {
     const data = await req.json();
     const { subject, topic } = data;
-    
+
     await mongoose.connect(process.env.MONGO_URI);
-    let slug = `${subject}/${topic}`;
-    const note = await prelimsNotes.find({ slug: slug });
-   
+    let note = []
+    if (topic) {
+      // let slug = `${subject}/${topic}`;
+      note = await prelimsNotes.find({ subject }, { topic });
+    } else {
+      note = await prelimsNotes.find({ subject });
+    }
+    console.log("🚀 ~ note:", note)
+
+
     return NextResponse.json({ note }, { status: 200 });
   } catch (err) {
     console.log(err);
