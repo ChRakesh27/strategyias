@@ -350,3 +350,142 @@ p>img {
   padding: 50px 0px;
   text-align: center;
 }
+
+.quiz {
+  display: flex;
+  justify-content: center;
+}
+
+.quiz .cart {
+  width: 70%;
+  margin: 3vw;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 10px lightblue;
+}
+
+.quiz .cart .cart-header,
+.quiz .cart .cart-body,
+.quiz .cart .cart-footer {
+  padding: 10px;
+  border: 2px solid black;
+  margin: 20px 20px 10px 20px;
+  border-radius: 5px;
+  font-size: larger;
+}
+
+.quiz .cart .cart-header {
+  border: none;
+  font-size: large;
+}
+
+.quiz .cart .note {
+  padding: 10px;
+  border: 2px solid black;
+  margin: 20px 0px 10px 0px;
+  border-radius: 5px;
+  background: rgba(251, 251, 169, 0.166);
+}
+
+.quiz .cart .own-note-text-input {
+  padding: 10px;
+  resize: vertical;
+  width: 100%;
+  border: 2px solid;
+  border-radius: 5px;
+  font-size: larger;
+}
+
+.quiz .cart .cart-body {
+  border: none;
+  padding: 0px;
+}
+
+
+.quiz .cart .cart-footer {
+  border: none;
+  display: flex;
+  justify-content: space-around;
+  margin: 0px;
+}
+
+.quiz .cart .option-list .option {
+  background: aliceblue;
+  border: 1px solid #84c5fe;
+  border-radius: 5px;
+  padding: 8px 15px;
+  font-size: 17px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quiz .cart .option-list .option:hover {
+  color: #004085;
+  background: #cce5ff;
+  border: 1px solid #b8daff;
+}
+
+.quiz .cart .btn {
+  padding: 10px 20px;
+  border-color: gray;
+  cursor: pointer;
+  border-radius: 10px;
+  background: transparent;
+}
+
+.quiz .cart .btn-outline-primary {
+  border: 2px solid rgb(0, 157, 255);
+  color: rgb(0, 157, 255);
+}
+
+.quiz .cart .btn-outline-primary:hover {
+  background: rgb(0, 157, 255);
+  color: #fff;
+}
+
+.quiz .cart .btn-outline-success {
+  border: 2px solid rgb(8, 146, 38);
+  color: rgb(8, 146, 38);
+}
+
+.quiz .cart .btn-outline-success:hover {
+  background: rgb(8, 146, 38);
+  color: #fff;
+}
+
+.quiz .cart .btn-outline-orange {
+  border: 2px solid #FF5F1F;
+  color: #FF5F1F;
+}
+
+.quiz .cart .btn-outline-orange:hover {
+  background: #FF5F1F;
+  color: #fff;
+}
+
+.option-select {
+  color: #004085 !important;
+  background: #cce5ff !important;
+  border: 1px solid #b8daff !important;
+}
+
+.option-correct {
+  color: #155724 !important;
+  background: #d4edda !important;
+  border: 1px solid #c3e6cb !important;
+}
+
+.option-incorrect {
+  color: #721c24 !important;
+  background: #f8d7da !important;
+  border: 1px solid #f5c6cb !important;
+}
+
+@media only screen and (max-width:600px) {
+  .quiz .cart {
+    width: 100%;
+  }
+}
