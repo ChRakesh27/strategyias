@@ -8,6 +8,7 @@ import Providers from "./Providers";
 import { getServerSession } from "next-auth";
 import options from "./api/auth/[...nextauth]/options";
 import { Roboto } from 'next/font/google'
+import Modal from "./(components)/modal";
  
 const roboto = Roboto({
   weight: '400',
@@ -45,6 +46,10 @@ export default async function RootLayout({ children }) {
       gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');`}
       </Script>
       <body>
+        <Modal/>
+        <div className="">
+              <marquee className="marAdv"><a href="https://t.me/strategy_ias" target="_blank">Get GS Wise Toppers answer copy compilation of UPSC 2023 Toppers at Rs. 199/GS Paper. Join at @strategy_ias</a></marquee>
+            </div>
         <div className={session?.user.role === "admin" ? "mainContainer" : ""}>
           <Toaster position="top-center" />
           <AuthProvider>

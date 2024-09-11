@@ -24,6 +24,7 @@ const Toppers = () => {
   const handleDeleteClick = () => {
     setClickedDelete(false);
   };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -35,8 +36,16 @@ const Toppers = () => {
           cache: "no-store",
         });
         const data = await res.json();
-      
-        setToppers(data.toppers);
+
+        const sort_data = data.toppers.sort((a, b) => {
+          if (a.year !== b.year) {
+            return b.year - a.year; // Sort by year in descending order
+          } else {
+            return a.rank - b.rank; // Sort by rank in ascending order
+          }
+        });
+        setToppers(sort_data);
+        // setToppers(data.toppers);
         // ...
       } catch (error) {
         console.error(error);

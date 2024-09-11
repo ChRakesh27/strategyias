@@ -14,7 +14,7 @@ export async function POST(req) {
     let note = []
     if (topic) {
       // let slug = `${subject}/${topic}`;
-      note = await prelimsNotes.find({ subject }, { topic });
+      note = await prelimsNotes.find({ subject, topic });
     } else {
       note = await prelimsNotes.find({ subject });
     }

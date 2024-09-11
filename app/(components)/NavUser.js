@@ -54,7 +54,8 @@ const Navbar = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  //1 return <NavBar></NavBar>
+  // 1
+  // return <NavBar></NavBar>
   return status !== "loading" ? (
     session?.user?.role === "admin" ? (
       <NavBar></NavBar>

@@ -11,15 +11,14 @@ import IconProvider from "@/lib/context/IconContext";
 import styles from "../../../user/css/search-topper.module.css";
 import ServerSearchparams from "@/user/components/server-search-params";
 async function getTopper({ query, page, limit }) {
-
-
-  
-
-  
   await mongoose.connect(process.env.MONGO_URI);
 
   const skip = (page - 1) * limit;
-  const pipeline = [{ $skip: skip }, { $limit: limit }];
+  const pipeline = [
+    { $sort: { year: -1, rank: 1 } },
+    { $skip: skip },
+    { $limit: limit },
+  ];
   if (query) {
     pipeline.unshift({
       $search: {
@@ -47,20 +46,19 @@ async function getTopper({ query, page, limit }) {
   try {
     let toppers;
     let totalCount;
-
     if (pipeline.length > 0) {
       const [results, count] = await Promise.all([
         topper.aggregate(pipeline),
         topper.countDocuments(),
       ]);
-     
       toppers = results;
       totalCount = count;
     } else {
       // If the pipeline is empty, return all documents or handle as needed
-      toppers = await topper.find();
+      toppers = await topper.find().sort({ year: -1 });
       totalCount = toppers.length;
     }
+
     return { toppers, totalCount };
   } catch (error) {
     console.error("Error during search:", error);
@@ -101,9 +99,8 @@ export default async function Home({ searchParams }) {
       <div className={styles.Wrapper}>
         <div className={styles.PageHeadingContainer}>
           <div className={styles.PageHeading}>
-           
             <h1>
-              UPSC 2022 TOPPERS <span>RANK WISE</span>
+              UPSC TOPPERS <span>RANK WISE</span>
             </h1>
           </div>
         </div>

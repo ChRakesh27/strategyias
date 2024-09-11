@@ -1,6 +1,6 @@
-.navbarMainContainer{
+.navbarMainContainer {
     display: flex;
-    
+
     position: fixed;
     width: 15%;
     padding: 0.5em;
@@ -9,49 +9,57 @@
     padding-right: 1.5em;
     color: rgb(99, 99, 99);
     background-color: #ffffff;
-    
+
 }
-.logo>h1{
+
+.logo>h1 {
     color: rgb(99, 99, 99);
     font-size: 1.5em;
 }
-.navbarContainer{
+
+.navbarContainer {
     display: flex;
     width: 100%;
     flex-direction: column;
     height: 96%;
     justify-content: space-between;
 }
-.loginBtn{
+
+.loginBtn {
     padding: 0.4em 1.4em;
     font-size: 1em;
     font-weight: 600;
     border: none;
     border-radius: 0.7em;
-   
+
     color: rgb(92, 92, 92);
 
 }
-.activeLink{
+
+.activeLink {
     color: black !important;
 }
-.navBarHeading{
+
+.navBarHeading {
     color: rgb(170, 170, 170);
 }
-.loginBtn:hover{
+
+.loginBtn:hover {
     cursor: pointer;
     background-color: rgba(173, 173, 173, 0.59);
 }
-.navEleDiv{
+
+.navEleDiv {
     display: flex;
     flex-direction: column;
-    color :rgb(170, 170, 170);
+    color: rgb(170, 170, 170);
     gap: 2em;
     font-weight: 600;
     font-size: 1.2em;
-    
+
 }
-.navbarHidden{
+
+.navbarHidden {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.816);
     height: auto;
@@ -67,7 +75,8 @@
     top: 4em;
     color: white;
 }
-.hamburger{
+
+.hamburger {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,24 +85,28 @@
     width: 20px;
     height: 20px;
 }
-.hamburgerLine1{
+
+.hamburgerLine1 {
     height: 1px;
     width: 100%;
     transition: transform 0.4s ease;
     background-color: white;
 }
-.hamburgerLine2{
+
+.hamburgerLine2 {
     height: 1px;
     width: 100%;
     transition: transform 0.4s ease;
-  
+
     background-color: white;
 }
-.hamburgerLine1Change{
-    transform:translateY(5px) rotate(45deg);
-   
-   
+
+.hamburgerLine1Change {
+    transform: translateY(5px) rotate(45deg);
+
+
 }
-.hamburgerLine2Change{
-    transform: translateY(-5px) rotate(-45deg );
+
+.hamburgerLine2Change {
+    transform: translateY(-5px) rotate(-45deg);
 }
