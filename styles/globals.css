@@ -400,12 +400,16 @@ p>img {
   padding: 0px;
 }
 
-
 .quiz .cart .cart-footer {
   border: none;
-  display: flex;
-  justify-content: space-around;
   margin: 0px;
+  text-align: center;
+}
+
+.btn-nex-pre {
+  display: flex;
+  justify-content: space-between;
+
 }
 
 .quiz .cart .option-list .option {
@@ -434,6 +438,9 @@ p>img {
   cursor: pointer;
   border-radius: 10px;
   background: transparent;
+  font-family: cursive;
+  font-style: italic;
+  font-size: medium;
 }
 
 .quiz .cart .btn-outline-primary {
