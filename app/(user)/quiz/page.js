@@ -4,30 +4,29 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Quiz() {
-  const [topic, setTopic] = useState({
+  const [dataSet, setDataSet] = useState({
     _id: "",
+    title: "",
+    link: "",
     questions: [
       {
-        _id: "",
+        id: "",
         text: "",
         options: [],
-        link: "",
         correctOption: "",
         solutionTextmain: "",
       },
     ],
-    link: "",
   });
 
-  const [isAnswered, setIsAnswered] = useState(false);
+  const [isAnswered, setIsAnswered] = useState([]);
   const [quesNo, setQuesNo] = useState(0);
-  const [valueInd, setValueIndex] = useState();
   const [offset, setOffset] = useState(0);
   const fetchData = async () => {
     try {
       const response = await axios.get("/api/getQuiz?offset=" + offset);
-      console.log("🚀 ~ fetchData ~ response:", response);
-      setTopic(response.data.res);
+      // const response = await axios.get("/api/getQuestions");
+      setDataSet(response.data.res);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -35,6 +34,7 @@ export default function Quiz() {
   useEffect(() => {
     fetchData();
   }, []);
+
   const inCorrectIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -62,108 +62,157 @@ export default function Quiz() {
       <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
     </svg>
   );
+  function CheckIsAnswered() {
+    return isAnswered.find(
+      (ele) => ele.QuestionId == dataSet.questions[quesNo].id
+    );
+  }
   function selectHandler(e) {
-    if (isAnswered) {
+    if (!!CheckIsAnswered()) {
       return;
     }
 
     const value = e.target.textContent;
-    const valueIndex = topic?.questions[quesNo].options.findIndex(
+    const valueIndex = dataSet.questions[quesNo].options.findIndex(
       (ele) => ele == value
     );
-    setValueIndex(valueIndex);
-    const correctOptionIndex = letterToNumber(
-      topic?.questions[quesNo].correctOption
-    );
-    if (valueIndex == correctOptionIndex) {
-      e.currentTarget.classList.add("option-correct");
-    } else {
-      e.currentTarget.classList.add("option-incorrect");
-      let correctDomEle =
-        document.querySelectorAll(".option")[correctOptionIndex];
-      correctDomEle.classList.add("option-correct");
-    }
-    setIsAnswered(true);
-  }
 
-  function letterToNumber(letter) {
-    letter = letter.toLowerCase();
-    return letter.charCodeAt(0) - 97;
+    const correctOptionIndex = dataSet.questions[quesNo].correctOption;
+    setIsAnswered((oldData) => [
+      ...oldData,
+      {
+        topicId: dataSet._id,
+        QuestionId: dataSet.questions[quesNo].id,
+        selectedOption: +valueIndex,
+        correctOption: +correctOptionIndex,
+        note: "",
+      },
+    ]);
   }
 
   function onNext() {
-    setIsAnswered(false);
-    let correctDomEle = document.querySelectorAll(".option-correct")[0];
-    let IncorrectDomEle = document.querySelectorAll(".option-incorrect")[0];
-    if (correctDomEle) {
-      correctDomEle.classList.remove("option-correct");
-    }
-    if (IncorrectDomEle) {
-      IncorrectDomEle.classList.remove("option-incorrect");
-    }
-    setQuesNo((val) => ++val);
-    if (quesNo >= topic.questions.length - 1) {
+    setQuesNo((val) => val + 1);
+    if (quesNo >= dataSet.questions.length - 1) {
       setQuesNo(0);
-      setOffset((val) => ++val);
-      // fetchData();
+      setOffset((val) => val + 1);
+      fetchData();
     }
   }
   function onPrevious() {
-    if (quesNo > 0) {
-      setQuesNo((val) => --val);
-    } else {
-      // if (offset > 0) setOffset((val) => --val);
+    if (quesNo <= 0) {
+      return;
     }
+    setQuesNo((val) => val - 1);
+  }
+
+  function onSelectQuestion(index) {
+    setQuesNo(index);
+  }
+
+  function setbg(index) {
+    const data = CheckIsAnswered();
+    if (!data) {
+      return;
+    }
+    if (data.correctOption == index) {
+      return "option-correct";
+    }
+    if (data.selectedOption == index) {
+      return "option-incorrect";
+    }
+  }
+
+  function noteInputHandular(e) {
+    isAnswered.map((ele) => {
+      if (ele.QuestionId == dataSet.questions[quesNo].id) {
+        ele.note = e.target.value;
+      }
+      return ele;
+    });
+    setIsAnswered(isAnswered);
   }
   return (
     <>
       <div className="quiz">
+        <div className="questionList">
+          <ol className="que-ol">
+            {dataSet?.questions.map((ele, index) => (
+              <li
+                className={"que-li " + (quesNo == index ? "que-select" : "")}
+                key={index}
+                onClick={() => {
+                  onSelectQuestion(index);
+                }}
+                dangerouslySetInnerHTML={{
+                  __html: ele.text.replace(/\n/g, ""),
+                }}
+              ></li>
+            ))}
+          </ol>
+        </div>
         <div className="cart">
           <div className="cart-header">
             <p>Question:</p>
-            {topic?.questions[quesNo].text}
+            <p
+              dangerouslySetInnerHTML={{
+                __html: dataSet?.questions[quesNo]?.text.replace(/\n/g, ""),
+              }}
+            ></p>
           </div>
           <div className="cart-body">
             <div className="option-list">
-              {topic?.questions[quesNo].options.map((ele, index) => {
+              {dataSet?.questions[quesNo].options.map((ele, index) => {
                 return (
                   <div
-                    className="option"
+                    className={"option " + setbg(index)}
                     key={index}
                     onClick={(event) => selectHandler(event)}
                   >
                     <span>{ele}</span>
-                    {isAnswered && (
+                    {CheckIsAnswered() && (
                       <>
-                        {letterToNumber(
-                          topic?.questions[quesNo].correctOption
-                        ) == index
-                          ? correctIcon
-                          : index == valueInd
-                          ? inCorrectIcon
-                          : ""}
+                        {dataSet.questions[quesNo].correctOption == index &&
+                          correctIcon}
+                        {CheckIsAnswered().selectedOption == index &&
+                          CheckIsAnswered().correctOption != index &&
+                          inCorrectIcon}
                       </>
                     )}
                   </div>
                 );
               })}
             </div>
-            {isAnswered && (
+            {CheckIsAnswered() && (
               <div>
                 <div className="note">
-                  {topic?.questions[quesNo].solutionTextmain}
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: dataSet.questions[
+                        quesNo
+                      ]?.solutionTextmain.replace(/\n/g, ""),
+                    }}
+                  ></p>
                 </div>
                 <div className="own-note">
-                  <textarea
-                    className="own-note-text-input"
-                    placeholder={"Add-Note"}
-                  ></textarea>
+                  {!CheckIsAnswered().note && (
+                    <textarea
+                      className="own-note-text-input"
+                      placeholder={"Add-Note"}
+                      name="text-area"
+                      onBlur={noteInputHandular}
+                    ></textarea>
+                  )}
+                  {!!CheckIsAnswered().note && (
+                    <div className="note">
+                      <p>{CheckIsAnswered().note}</p>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
           </div>
-          <hr />
           <div className="cart-footer">
+            <hr />
             <div className="btn-nex-pre">
               <button className="btn btn-outline-primary" onClick={onPrevious}>
                 Previous
