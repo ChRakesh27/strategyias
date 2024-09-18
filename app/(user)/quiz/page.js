@@ -1,232 +1,277 @@
 "use client";
+import React, { useState } from "react";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
+function DashBoard() {
+  //   const { data: session } = useSession();
+  //   console.log("user", session);
 
-import { useState, useEffect } from "react";
-import axios from "axios";
+  const [accordion, setAccordion] = useState([false, false, false]);
+  const test_series = [
+    { id: "TS_BWMP", validity: "1 Year", title: "Book wise MCQ Practice" },
+    { id: "TS_SWMP", validity: "1 Year", title: "Subject wise MCQ Practice" },
+    { id: "TS_TWMP", validity: "1 Year", title: "Topic wise MCQ Practice" },
+    { id: "TS_10QD", validity: "1 Year", title: "10 Questions / day" },
+    {
+      id: "TS_50QD",
+      validity: "1 Year",
+      title: "50 Questions / Day",
+      subtitle: "MCQ Practice 1 Year",
+    },
+    {
+      id: "TS_100QD",
+      validity: "1 Year",
+      title: "100 Questions / Day",
+      subtitle: "50 Tests",
+    },
+  ];
 
-export default function Quiz() {
-  const [dataSet, setDataSet] = useState({
-    _id: "",
-    title: "",
-    link: "",
-    questions: [
-      {
-        id: "",
-        text: "",
-        options: [],
-        correctOption: "",
-        solutionTextmain: "",
-      },
-    ],
-  });
+  const current_affairs = [
+    {
+      id: "CA_DCA",
+      validity: "1 Year",
+      title: "Daily Current Affairs",
+      subtitle: "10 Questions / Day",
+    },
+    {
+      id: "CA_10QD",
+      validity: "1 Year",
+      title: "10 Questions / Day",
+      subtitle: "5 Tests",
+    },
+  ];
+  const toppers_copies = [
+    { title: "GS 1 Topper Copy", subtitle: "RS 199/-" },
+    { title: "GS 2 Topper Copy", subtitle: "RS 199/-" },
+    { title: "GS 3 Topper Copy", subtitle: "RS 199/-" },
+    { title: "GS 4 Topper Copy", subtitle: "RS 199/-" },
+    { title: "Essay Topper Copy", subtitle: "RS 199/-" },
+    { title: "All Copies", subtitle: "RS 499/-" },
+  ];
 
-  const [isAnswered, setIsAnswered] = useState([]);
-  const [quesNo, setQuesNo] = useState(0);
-  const [offset, setOffset] = useState(0);
-  const fetchData = async () => {
-    try {
-      const response = await axios.get("/api/getQuiz?offset=" + offset);
-      // const response = await axios.get("/api/getQuestions");
-      setDataSet(response.data.res);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const inCorrectIcon = (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="currentColor"
-      className="bi bi-x-circle"
-      viewBox="0 0 16 16"
-    >
-      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-      <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
-    </svg>
-  );
-
-  const correctIcon = (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="currentColor"
-      className="bi bi-check2-circle"
-      viewBox="0 0 16 16"
-    >
-      <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0" />
-      <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
-    </svg>
-  );
-  function CheckIsAnswered() {
-    return isAnswered.find(
-      (ele) => ele.QuestionId == dataSet.questions[quesNo].id
-    );
-  }
-  function selectHandler(e) {
-    if (!!CheckIsAnswered()) {
-      return;
-    }
-
-    const value = e.target.textContent;
-    const valueIndex = dataSet.questions[quesNo].options.findIndex(
-      (ele) => ele == value
-    );
-
-    const correctOptionIndex = dataSet.questions[quesNo].correctOption;
-    setIsAnswered((oldData) => [
-      ...oldData,
-      {
-        topicId: dataSet._id,
-        QuestionId: dataSet.questions[quesNo].id,
-        selectedOption: +valueIndex,
-        correctOption: +correctOptionIndex,
-        note: "",
-      },
-    ]);
-  }
-
-  function onNext() {
-    setQuesNo((val) => val + 1);
-    if (quesNo >= dataSet.questions.length - 1) {
-      setQuesNo(0);
-      setOffset((val) => val + 1);
-      fetchData();
-    }
-  }
-  function onPrevious() {
-    if (quesNo <= 0) {
-      return;
-    }
-    setQuesNo((val) => val - 1);
-  }
-
-  function onSelectQuestion(index) {
-    setQuesNo(index);
-  }
-
-  function setbg(index) {
-    const data = CheckIsAnswered();
-    if (!data) {
-      return;
-    }
-    if (data.correctOption == index) {
-      return "option-correct";
-    }
-    if (data.selectedOption == index) {
-      return "option-incorrect";
-    }
-  }
-
-  function noteInputHandular(e) {
-    isAnswered.map((ele) => {
-      if (ele.QuestionId == dataSet.questions[quesNo].id) {
-        ele.note = e.target.value;
-      }
-      return ele;
-    });
-    setIsAnswered(isAnswered);
-  }
   return (
     <>
-      <div className="quiz">
-        <div className="questionList">
-          <ol className="que-ol">
-            {dataSet?.questions.map((ele, index) => (
-              <li
-                className={"que-li " + (quesNo == index ? "que-select" : "")}
-                key={index}
-                onClick={() => {
-                  onSelectQuestion(index);
-                }}
-                dangerouslySetInnerHTML={{
-                  __html: ele.text.replace(/\n/g, ""),
-                }}
-              ></li>
-            ))}
-          </ol>
-        </div>
-        <div className="cart">
-          <div className="cart-header">
-            <p>Question:</p>
-            <p
-              dangerouslySetInnerHTML={{
-                __html: dataSet?.questions[quesNo]?.text.replace(/\n/g, ""),
-              }}
-            ></p>
-          </div>
-          <div className="cart-body">
-            <div className="option-list">
-              {dataSet?.questions[quesNo].options.map((ele, index) => {
-                return (
-                  <div
-                    className={"option " + setbg(index)}
-                    key={index}
-                    onClick={(event) => selectHandler(event)}
-                  >
-                    <span>{ele}</span>
-                    {CheckIsAnswered() && (
-                      <>
-                        {dataSet.questions[quesNo].correctOption == index &&
-                          correctIcon}
-                        {CheckIsAnswered().selectedOption == index &&
-                          CheckIsAnswered().correctOption != index &&
-                          inCorrectIcon}
-                      </>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-            {CheckIsAnswered() && (
-              <div>
-                <div className="note">
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: dataSet.questions[
-                        quesNo
-                      ]?.solutionTextmain.replace(/\n/g, ""),
-                    }}
-                  ></p>
-                </div>
-                <div className="own-note">
-                  {!CheckIsAnswered().note && (
-                    <textarea
-                      className="own-note-text-input"
-                      placeholder={"Add-Note"}
-                      name="text-area"
-                      onBlur={noteInputHandular}
-                    ></textarea>
-                  )}
-                  {!!CheckIsAnswered().note && (
-                    <div className="note">
-                      <p>{CheckIsAnswered().note}</p>
-                    </div>
-                  )}
-                </div>
-              </div>
+      <div className="dashboard">
+        <div className="test-series">
+          <div
+            className="accordion"
+            onClick={() => {
+              setAccordion([!accordion[0], accordion[1], accordion[2]]);
+            }}
+          >
+            <h2>Test Series</h2>
+            {accordion[0] && (
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g opacity="0.8">
+                  <path d="M24 20L16 12L8 20H24Z" fill="black" />
+                </g>
+              </svg>
+            )}
+            {!accordion[0] && (
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M8 12L16 20L24 12H8Z" fill="black" />
+              </svg>
             )}
           </div>
-          <div className="cart-footer">
-            <hr />
-            <div className="btn-nex-pre">
-              <button className="btn btn-outline-primary" onClick={onPrevious}>
-                Previous
-              </button>
-              <button className="btn btn-outline-success" onClick={onNext}>
-                Next
-              </button>
+          {accordion[0] && (
+            <div className="card-list">
+              {test_series.map((ele, index) => (
+                <div className="cart" key={index}>
+                  <div className="validity-tag">
+                    <svg
+                      width="131"
+                      height="40"
+                      viewBox="0 0 131 53"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M108.766 53H0V0H108.766L131 24.0156L108.766 53Z"
+                        fill="url(#paint0_linear_12_377)"
+                      />
+                      <defs>
+                        <linearGradient
+                          id="paint0_linear_12_377"
+                          x1="0"
+                          y1="26.5"
+                          x2="131"
+                          y2="26.5"
+                          gradientUnits="userSpaceOnUse"
+                        >
+                          <stop stopColor="#FF4E17" />
+                          <stop offset="1" stopColor="#FF910F" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+
+                    <span>
+                      <b>{ele.validity}</b> <br /> <p>validity</p>
+                    </span>
+                  </div>
+                  <div className="cart-body">
+                    <div>
+                      <b>{ele.title}</b>
+                    </div>
+                    <p>{ele.subtitle}</p>
+                  </div>
+                  <div className="cart-footer">
+                    <Link href={"/quiz/" + ele.id} className="btn btn-red">
+                      Start
+                    </Link>
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className="btn-Submit">
-              <button className="btn btn-outline-orange">Submit</button>
-            </div>
+          )}
+        </div>
+        <div className="current-affairs">
+          <div
+            className="accordion"
+            onClick={() => {
+              setAccordion([accordion[0], !accordion[1], accordion[2]]);
+            }}
+          >
+            <h2>Current affairs</h2>
+            {accordion[1] && (
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g opacity="0.8">
+                  <path d="M24 20L16 12L8 20H24Z" fill="black" />
+                </g>
+              </svg>
+            )}
+            {!accordion[1] && (
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M8 12L16 20L24 12H8Z" fill="black" />
+              </svg>
+            )}
           </div>
+          {accordion[1] && (
+            <div className="card-list">
+              {current_affairs.map((ele, index) => (
+                <div className="cart" key={index}>
+                  <div className="validity-tag">
+                    <svg
+                      width="131"
+                      height="40"
+                      viewBox="0 0 131 53"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M108.766 53H0V0H108.766L131 24.0156L108.766 53Z"
+                        fill="url(#paint0_linear_12_377)"
+                      />
+                      <defs>
+                        <linearGradient
+                          id="paint0_linear_12_377"
+                          x1="0"
+                          y1="26.5"
+                          x2="131"
+                          y2="26.5"
+                          gradientUnits="userSpaceOnUse"
+                        ></linearGradient>
+                      </defs>
+                    </svg>
+                    <span>
+                      <b> 1 Year</b> <br /> <p>validity</p>
+                    </span>
+                  </div>
+                  <div className="cart-body">
+                    <div>
+                      <b>{ele.title}</b>
+                    </div>
+                    <p>{ele.subtitle}</p>
+                  </div>
+                  <div className="cart-footer">
+                    <Link href={"/quiz/" + ele.id} className="btn btn-red">
+                      Start
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className="toppers-copies">
+          <div
+            className="accordion"
+            onClick={() => {
+              setAccordion([accordion[0], accordion[1], !accordion[2]]);
+            }}
+          >
+            <h2>Topper’s COPIES</h2>
+            {accordion[2] && (
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g opacity="0.8">
+                  <path d="M24 20L16 12L8 20H24Z" fill="black" />
+                </g>
+              </svg>
+            )}
+            {!accordion[2] && (
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M8 12L16 20L24 12H8Z" fill="black" />
+              </svg>
+            )}
+          </div>
+          {accordion[2] && (
+            <div className="card-list">
+              {toppers_copies.map((ele, index) => (
+                <div className="cart" key={index}>
+                  <div className="cart-body">
+                    <div>
+                      <b>{ele.title} </b>
+                    </div>
+                    <p>{ele.subtitle}</p>
+                  </div>
+                  <div className="cart-footer">
+                    <Link href={"/quiz"} className="btn btn-red">
+                      Buy Now
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </>
   );
 }
+
+export default DashBoard;
