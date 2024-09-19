@@ -4,20 +4,15 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Quiz({ params }) {
-  const [dataSet, setDataSet] = useState({
-    _id: "",
-    title: "",
-    link: "",
-    questions: [
-      {
-        id: "",
-        text: "",
-        options: [],
-        correctOption: "",
-        solutionTextmain: "",
-      },
-    ],
-  });
+  const [dataSet, setDataSet] = useState([
+    {
+      _id: "",
+      text: "",
+      options: [],
+      correctOption: "",
+      solutionTextmain: "",
+    },
+  ]);
 
   const [isAnswered, setIsAnswered] = useState([]);
   const [quesNo, setQuesNo] = useState(0);
@@ -26,19 +21,9 @@ export default function Quiz({ params }) {
     try {
       let response = {};
 
-      if (
-        ["TS_10QD", "TS_50QD", "TS_100QD", "CA_DCA", "CA_10QD"].includes(
-          params.quiztype[0]
-        )
-      ) {
-        response = await axios.get(
-          "/api/getQuiz?quizType=" + params.quiztype[0]
-        );
-        setDataSet({ questions: response.data.res });
-      } else {
-        response = await axios.get("/api/getQuiz");
-        setDataSet(response.data.res);
-      }
+      response = await axios.get("/api/getQuiz?quizType=" + params.quiztype[0]);
+      setDataSet(response.data.res);
+
       console.log("🚀 ~ fetchData ~ response.data.res:", response.data.res);
       // const response = await axios.get("/api/getQuestions");
     } catch (error) {
@@ -77,9 +62,7 @@ export default function Quiz({ params }) {
     </svg>
   );
   function CheckIsAnswered() {
-    return isAnswered.find(
-      (ele) => ele.QuestionId == dataSet.questions[quesNo].id
-    );
+    return isAnswered.find((ele) => ele._id == dataSet[quesNo]._id);
   }
   function selectHandler(e) {
     if (!!CheckIsAnswered()) {
@@ -87,16 +70,15 @@ export default function Quiz({ params }) {
     }
 
     const value = e.target.textContent;
-    const valueIndex = dataSet.questions[quesNo].options.findIndex(
-      (ele) => ele == value
-    );
+    const valueIndex = dataSet[quesNo].options.findIndex((ele) => ele == value);
 
-    const correctOptionIndex = dataSet.questions[quesNo].correctOption;
+    const correctOptionIndex = dataSet[quesNo].correctOption;
     setIsAnswered((oldData) => [
       ...oldData,
       {
-        topicId: dataSet._id,
-        QuestionId: dataSet.questions[quesNo].id,
+        userId: "",
+        _id: dataSet[quesNo]._id,
+        topicId: dataSet[quesNo]._id,
         selectedOption: +valueIndex,
         correctOption: +correctOptionIndex,
         note: "",
@@ -105,15 +87,11 @@ export default function Quiz({ params }) {
   }
 
   function onNext() {
-    if (quesNo < dataSet.questions.length - 1) {
+    if (quesNo < dataSet.length - 1) {
       setQuesNo((val) => val + 1);
     }
-    // if (quesNo >= dataSet.questions.length - 1) {
-    //   setQuesNo(0);
-    //   // setOffset((val) => val + 1);
-    //   // fetchData();
-    // }
   }
+
   function onPrevious() {
     if (quesNo <= 0) {
       return;
@@ -140,7 +118,7 @@ export default function Quiz({ params }) {
 
   function noteInputHandular(e) {
     isAnswered.map((ele) => {
-      if (ele.QuestionId == dataSet.questions[quesNo].id) {
+      if (ele._id == dataSet[quesNo]._id) {
         ele.note = e.target.value;
       }
       return ele;
@@ -157,7 +135,7 @@ export default function Quiz({ params }) {
       <div className="quiz">
         <div className="questionList">
           <ol className="que-ol">
-            {dataSet?.questions.map((ele, index) => (
+            {dataSet.map((ele, index) => (
               <li
                 className={"que-li " + (quesNo == index ? "que-select" : "")}
                 key={index}
@@ -176,13 +154,13 @@ export default function Quiz({ params }) {
             <p>Question:</p>
             <p
               dangerouslySetInnerHTML={{
-                __html: dataSet?.questions[quesNo]?.text.replace(/\n/g, ""),
+                __html: dataSet[quesNo]?.text.replace(/\n/g, ""),
               }}
             ></p>
           </div>
           <div className="cart-body">
             <div className="option-list">
-              {dataSet?.questions[quesNo].options.map((ele, index) => {
+              {dataSet[quesNo]?.options?.map((ele, index) => {
                 return (
                   <div
                     className={"option " + setbg(index)}
@@ -192,8 +170,7 @@ export default function Quiz({ params }) {
                     <span>{ele}</span>
                     {CheckIsAnswered() && (
                       <>
-                        {dataSet.questions[quesNo].correctOption == index &&
-                          correctIcon}
+                        {dataSet[quesNo].correctOption == index && correctIcon}
                         {CheckIsAnswered().selectedOption == index &&
                           CheckIsAnswered().correctOption != index &&
                           inCorrectIcon}
@@ -208,9 +185,10 @@ export default function Quiz({ params }) {
                 <div className="note">
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: dataSet.questions[
-                        quesNo
-                      ]?.solutionTextmain.replace(/\n/g, ""),
+                      __html: dataSet[quesNo]?.solutionTextmain.replace(
+                        /\n/g,
+                        ""
+                      ),
                     }}
                   ></p>
                 </div>

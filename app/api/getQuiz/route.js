@@ -1,4 +1,5 @@
-import quiz from "@/models/quiz";
+import Static from "@/models/static";
+import Current from "@/models/current";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
@@ -19,27 +20,12 @@ export async function GET(req, context) {
     };
     let res = [];
     if (quizzes[quizType]) {
-      res = await quiz.aggregate([
-        { $unwind: "$questions" },
-        { $match: { "questions.id": { $nin: ["77705", "77706", "59161"] } } },
+      res = await Static.aggregate([
+        { $match: { _id: { $nin: [] } } },
         { $sample: { size: quizzes[quizType] } },
-        {
-          $project: {
-            _id: 1,
-            title: 1,
-            text: "$questions.text",
-            options: "$questions.options",
-            correctOption: "$questions.correctOption",
-            solutionTextmain: "$questions.solutionTextmain",
-            questionId: "$questions.id",
-          },
-        },
       ]);
     } else {
-      // const res = await quiz.findOne({}, null, {
-      //   skip: +offset,
-      // });
-      res = await quiz.findOne({});
+      res = await Static.findOne({});
     }
 
     return NextResponse.json({ res }, { status: 200 });

@@ -1,4 +1,4 @@
-.all{
+.all {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -9,9 +9,10 @@
     background-color: var(--darker-color);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-.adminMainContainer{
+
+.adminMainContainer {
     display: flex;
-    align-items:  center;
+    align-items: center;
     width: 50%;
     padding-top: 2em;
     min-width: 22em;
@@ -21,44 +22,54 @@
     border-right: 1px rgba(0, 0, 0, 0.338) solid;
     flex-direction: column;
 }
-.questionsContainter{
+
+
+
+.questionsContainter {
     width: 100%;
 
 }
-.horizontalLine{
+
+.horizontalLine {
     height: 1px;
     background-color: rgba(255, 255, 255, 0.201);
     width: 100%;
 }
-.adminTopContainter{
-    
+
+.adminTopContainter {
+
     display: flex;
     align-items: center;
     width: 100%;
     color: rgb(0, 0, 0);
-    
+
     justify-content: space-between;
 }
-.questionContainer{
+
+.questionContainer {
     width: 100%;
     padding: 1em;
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: rgb(0, 0, 0);
-    
-    background-color:var(--dark-color);
+
+    background-color: var(--dark-color);
 }
-.even{
-    background-color:  var(--darker-color);
+
+.even {
+    background-color: var(--darker-color);
 }
-.questionContainer:hover h2{
+
+.questionContainer:hover h2 {
     color: rgb(39, 104, 255);
 }
-.questionContainer:hover p{
+
+.questionContainer:hover p {
     color: rgb(39, 104, 255);
 }
-.questionHead{
+
+.questionHead {
     color: rgb(0, 0, 0);
     display: flex;
     width: 100%;
@@ -67,20 +78,23 @@
     justify-content: space-between;
 
 }
-.adminQuestions{
+
+.adminQuestions {
     display: flex;
     width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.questionsMainContainer{
+
+.questionsMainContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.addQuestionBtn{
+
+.addQuestionBtn {
     width: 100%;
     height: 2em;
     padding: 1em;
@@ -94,7 +108,34 @@
     color: rgb(0, 0, 0);
     font-size: 1.1em;
 }
-.addQuestionBtn:hover{
+
+.addQuestionBtn:hover {
     color: grey;
     cursor: pointer;
+}
+
+.AdminQuizMainContainer {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 85%;
+    left: 15%;
+    min-height: 93.6vh;
+    padding-top: 2em;
+    border: 2px solid;
+}
+
+.quizQuestion {
+    border: 2px solid;
+    width: 50vw;
+    height: 30vh;
+    overflow: scroll;
+}
+
+.quizSubjectGroup {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 5px;
+    row-gap: 5px;
+    margin-top: 15px;
 }
