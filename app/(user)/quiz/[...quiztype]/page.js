@@ -21,11 +21,12 @@ export default function Quiz({ params }) {
     try {
       let response = {};
 
-      response = await axios.get("/api/getQuiz?quizType=" + params.quiztype[0]);
+      response = await axios.get(
+        "/api/quiz/getQuiz?quizType=" + params.quiztype[0]
+      );
       setDataSet(response.data.res);
 
-      console.log("🚀 ~ fetchData ~ response.data.res:", response.data.res);
-      // const response = await axios.get("/api/getQuestions");
+      // const response = await axios.get("/api/quiz/getQuestions");
     } catch (error) {
       console.error("Error fetching data:", error);
     }

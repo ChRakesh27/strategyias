@@ -1,5 +1,4 @@
 import Static from "@/models/static";
-import Current from "@/models/current";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
@@ -10,6 +9,12 @@ export async function GET(req, context) {
 
     const fields = req.nextUrl.searchParams;
     const quizType = fields.get("quizType");
+    const admin = fields.get("admin");
+    let res = [];
+    if (admin == "true") {
+      res = await Static.findOne({ subject: "" });
+      return NextResponse.json({ res }, { status: 200 });
+    }
 
     const quizzes = {
       TS_10QD: 10,
@@ -18,14 +23,13 @@ export async function GET(req, context) {
       CA_DCA: 10,
       CA_10QD: 10,
     };
-    let res = [];
     if (quizzes[quizType]) {
       res = await Static.aggregate([
         { $match: { _id: { $nin: [] } } },
         { $sample: { size: quizzes[quizType] } },
       ]);
     } else {
-      res = await Static.findOne({});
+      res = await Static.find({}, null, { limit: 1 });
     }
 
     return NextResponse.json({ res }, { status: 200 });

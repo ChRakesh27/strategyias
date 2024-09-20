@@ -7,6 +7,7 @@ const staticSchema = new mongoose.Schema(
     options: { type: [String], default: [] },
     correctOption: { type: String },
     solutionTextmain: { type: String },
+    subject: { type: String },
   },
   {
     timestamps: true,

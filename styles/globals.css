@@ -627,14 +627,13 @@ p>img {
   background-color: #ff4b4b;
 }
 
-*/ .dashboard .cart .cart-header {
+.dashboard .cart .cart-header {
   background: linear-gradient(90deg, #FF4E17 0%, #FF910F 100%);
 
 }
 
 .dashboard .cart .cart-footer {
-  /* position: absolute;
-  bottom: 10px; */
+
   margin-top: 20px;
 }
 
@@ -651,6 +650,7 @@ p>img {
   background: rgb(0, 157, 255);
   color: #fff;
 }
+
 
 
 @media only screen and (max-width:600px) {

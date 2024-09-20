@@ -23,8 +23,6 @@
     flex-direction: column;
 }
 
-
-
 .questionsContainter {
     width: 100%;
 
@@ -122,20 +120,38 @@
     left: 15%;
     min-height: 93.6vh;
     padding-top: 2em;
-    border: 2px solid;
 }
 
 .quizQuestion {
     border: 2px solid;
-    width: 50vw;
-    height: 30vh;
-    overflow: scroll;
+    border-radius: 10px;
+    width: 60vw;
+    height: 40vh;
+    overflow-y: scroll;
+    font-size: larger;
+    padding: 10px;
 }
 
 .quizSubjectGroup {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     column-gap: 5px;
     row-gap: 5px;
     margin-top: 15px;
+}
+
+.btnOutlinePrimary {
+    color: rgb(0, 157, 255);
+    padding: 10px 20px;
+    border-color: gray;
+    cursor: pointer;
+    border-radius: 10px;
+    background: transparent;
+    font-size: medium;
+    border: 2px solid rgb(0, 157, 255);
+}
+
+.btnOutlinePrimary:hover {
+    background: rgb(0, 157, 255);
+    color: #fff;
 }
