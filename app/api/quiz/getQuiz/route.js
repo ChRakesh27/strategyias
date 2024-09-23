@@ -10,7 +10,22 @@ export async function GET(req, context) {
     const fields = req.nextUrl.searchParams;
     const quizType = fields.get("quizType");
     const admin = fields.get("admin");
+    const undo = fields.get("undo");
     let res = [];
+    if (undo == "true") {
+      const lastedUpdatedQuestion = await Static.findOne().sort({
+        updatedAt: -1,
+      });
+      res = await Static.findByIdAndUpdate(
+        lastedUpdatedQuestion._id,
+        {
+          subject: "",
+        },
+        { new: true }
+      );
+      return NextResponse.json({ res }, { status: 200 });
+    }
+
     if (admin == "true") {
       res = await Static.findOne({ subject: "" });
       return NextResponse.json({ res }, { status: 200 });

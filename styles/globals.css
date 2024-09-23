@@ -120,7 +120,6 @@ body {
 .mainContainer {
   display: flex;
   width: 100%;
-
 }
 
 .childrenMainContainer {
@@ -451,7 +450,6 @@ p>img {
   /* border: none; */
   margin: 0px;
   text-align: center;
-
 }
 
 .btn-nex-pre {
@@ -573,7 +571,6 @@ p>img {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
 }
 
 .dashboard .cart {
@@ -586,7 +583,7 @@ p>img {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   padding: 20px;
   text-align: center;
   font-size: x-large;
@@ -633,8 +630,10 @@ p>img {
 }
 
 .dashboard .cart .cart-footer {
-
   margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+
 }
 
 .dashboard .cart:hover {

@@ -1,0 +1,296 @@
+/* .adminLandingPage {
+    position: relative;
+    left: 20%;
+    min-height: 93.6vh;
+    padding-top: 2em;
+    font-size: 26px;
+}
+ */
+
+.userLandingPage {
+    width: 100%;
+    font-size: 26px;
+    display: flex;
+    justify-content: center;
+    background: #fff;
+}
+
+/* .landingPage {
+    width: 100%;
+    font-size: 26px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    background: #fff;
+} */
+
+/* .adminLandingPageBody {
+    width: 1140px;
+}
+
+ */
+.landingPageIcon {
+    padding: 0.2em 0em;
+    font-size: 1.8em;
+
+}
+
+.userLandingPageBody {
+    width: 1450px;
+}
+
+/* .landingPageBody {
+    width: 1450px;
+} */
+
+.home {
+    width: 100%;
+    text-align: center;
+    margin: 30px 0px;
+}
+
+.heading {
+    margin: 10px 0px;
+    font-size: 60px;
+    font-weight: 700;
+}
+
+.subTitleGroup {
+    margin: 10px 0px;
+    font-size: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.subTitle {
+    margin: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.subTitle span {
+    margin-left: 10px;
+}
+
+.textRed {
+    color: #E32626;
+}
+
+
+.subTitle2 {
+    border: 2px solid;
+    color: #FF8B1F;
+    width: 500px;
+    font-size: 18px;
+    background: #FFEEDA;
+    padding: 2px 10px;
+    border-radius: 5px;
+}
+
+.disFJusC {
+    display: flex;
+    justify-content: center;
+}
+
+.btnEnroll {
+    margin: 20px 0px;
+    background: linear-gradient(180deg, #F7851C 0%, #CC3404 100%);
+    border-radius: 10px;
+    padding: 10px 50px;
+    color: #fff;
+    font-size: large;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+}
+
+.btnEnroll:hover {
+    background: linear-gradient(0deg, #F7851C 0%, #CC3404 100%);
+}
+
+.cots {
+    background: linear-gradient(110.54deg, #FFF1EA 16.96%, #ECB7FF 86.7%);
+    text-align: center;
+    padding: 30px;
+}
+
+.cart {
+    border-radius: 10px;
+    padding: 10px;
+    background: #fff;
+    height: 312px;
+    border: 1px solid #E5E5E5
+}
+
+.cartGroup {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.cartTitle {
+    color: #FF8B1F;
+    font-size: 28px;
+}
+
+.cartDes {
+    font-size: 18px;
+    font-weight: 300;
+    color: #5B5B5B;
+}
+
+.wotsso {
+    margin: 30px 10px;
+    text-align: center;
+}
+
+.cotsImage {
+    margin-top: 30px;
+}
+
+.wgImage {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.wotssoGroup {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    padding: 10px 0px;
+}
+
+.wotssoBody {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+
+.wotssoBody:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.wotssolineStyle {
+    height: 8px;
+    border: 3px solid #FF8B1F;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+.wotssoBodyLeft {
+    text-align: left;
+}
+
+.wblTitle {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.wotssoBodyLeft,
+.wotssoBodyRight {
+    width: 500px;
+}
+
+.wbldes {
+    font-size: 26px;
+}
+
+
+
+@media only screen and (max-width:600px) {
+
+    .heading {
+        font-size: 25px;
+    }
+
+    .adminLandingPage,
+    .userLandingPage {
+        font-size: 16px;
+    }
+
+    .CirclePoints {
+        width: 25px;
+        height: 25px;
+    }
+
+    .subTitleGroup {
+        font-size: 18px;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .subTitle2 {
+        font-size: 14px;
+    }
+
+    .cart {
+        height: 212px;
+    }
+
+    .cartGroup {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .cartTitle {
+        font-size: 14px;
+    }
+
+    .cartDes {
+        font-size: 12px;
+    }
+
+    .cotsImage {
+        width: 60px;
+        margin-top: 0px;
+    }
+
+    .mdi_tick {
+        width: 20px;
+    }
+
+    .wotssoBodyImage {
+        width: 250px;
+        height: 250px;
+    }
+
+    .adminLandingPageBody {
+        width: 350px;
+    }
+
+    .userLandingPageBody {
+        width: 100%;
+    }
+
+    .landingPageBody {
+        width: 100%;
+    }
+
+    .wotssoBody {
+        gap: 0px;
+    }
+
+    .wotssoBodyLeft,
+    .wotssoBodyRight {
+        width: 300px;
+    }
+
+    .wblTitle {
+        font-size: 16px;
+    }
+
+    .wbldes {
+        font-size: 16px;
+    }
+
+    .wgImage {
+        padding-right: 5px;
+    }
+
+    .wotssoGroup {
+        padding: 2px 0px;
+    }
+
+}

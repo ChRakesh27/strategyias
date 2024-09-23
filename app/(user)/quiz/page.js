@@ -127,9 +127,19 @@ function DashBoard() {
                     <p>{ele.subtitle}</p>
                   </div>
                   <div className="cart-footer">
-                    <Link href={"/quiz/" + ele.id} className="btn btn-red">
+                    {/* <Link href={"/quiz/" + ele.id} className="btn btn-red">
                       Start
-                    </Link>
+                    </Link> */}
+                    <div>
+                      <Link href={"/quiz/view-details"} className="btn btn-red">
+                        View Details
+                      </Link>
+                    </div>
+                    <div>
+                      <Link href={"/quiz/" + ele.id} className="btn btn-red">
+                        Buy Now
+                      </Link>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -207,9 +217,19 @@ function DashBoard() {
                     <p>{ele.subtitle}</p>
                   </div>
                   <div className="cart-footer">
-                    <Link href={"/quiz/" + ele.id} className="btn btn-red">
+                    {/* <Link href={"/quiz/" + ele.id} className="btn btn-red">
                       Start
-                    </Link>
+                    </Link> */}
+                    <div>
+                      <Link href={"/quiz/view-details"} className="btn btn-red">
+                        View Details
+                      </Link>
+                    </div>
+                    <div>
+                      <Link href={"/quiz/" + ele.id} className="btn btn-red">
+                        Buy Now
+                      </Link>
+                    </div>
                   </div>
                 </div>
               ))}

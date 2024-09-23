@@ -122,6 +122,28 @@
     padding-top: 2em;
 }
 
+.quizDeleteUndo {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.btnOutlineDanger {
+    color: rgb(255, 0, 0);
+    padding: 10px 20px;
+    border-color: gray;
+    cursor: pointer;
+    border-radius: 10px;
+    background: transparent;
+    font-size: medium;
+    border: 2px solid rgb(255, 0, 0);
+}
+
+.btnOutlineDanger:hover {
+    background: rgb(255, 0, 0);
+    color: #fff;
+}
+
 .quizQuestion {
     border: 2px solid;
     border-radius: 10px;

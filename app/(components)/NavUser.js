@@ -10,7 +10,6 @@ import { IconContext } from "react-icons";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import NavBar from "@/components/NavBar";
-
 const Navbar = () => {
   const pathname = usePathname();
   const [hiddenNav, sethiddenNav] = useState(false);
@@ -55,7 +54,18 @@ const Navbar = () => {
     };
   }, []);
   // 1
-  // return <NavBar></NavBar>
+  // return <NavBar></NavBar>;
+  if (pathname == "/quiz/view-details") {
+    return (
+      <></>
+      // <div className={styles.landingPageIcon}>
+      //   <Link href={"/"}>
+      //     <h3>STRATEGY IAS</h3>
+      //   </Link>
+      // </div>
+    );
+  }
+
   return status !== "loading" ? (
     session?.user?.role === "admin" ? (
       <NavBar></NavBar>
@@ -67,8 +77,9 @@ const Navbar = () => {
               <div className={styles.navEle}>
                 <Link
                   href={"/"}
-                  className={`${styles.navEle} ${pathname === "/all-toppers" ? styles.activeLink : ""
-                    }`}
+                  className={`${styles.navEle} ${
+                    pathname === "/all-toppers" ? styles.activeLink : ""
+                  }`}
                 >
                   Home
                 </Link>
@@ -84,14 +95,15 @@ const Navbar = () => {
                 >
                   <Link
                     href={""}
-                    className={`${styles.navEle} ${pathname === "/toppers-essaywise" ||
+                    className={`${styles.navEle} ${
+                      pathname === "/toppers-essaywise" ||
                       pathname === "/toppers-gs1wise" ||
                       pathname === "/toppers-gs2wise" ||
                       pathname === "/toppers-gs3wise" ||
                       pathname === "/toppers-gs4wise"
-                      ? styles.activeLink
-                      : ""
-                      }`}
+                        ? styles.activeLink
+                        : ""
+                    }`}
                   >
                     {" "}
                     Subject Topper
@@ -115,38 +127,43 @@ const Navbar = () => {
                   <div className={styles.MobileSubNavbarDropDown}>
                     <Link
                       href={"/toppers-essaywise"}
-                      className={`${styles.navEle} ${pathname === "/toppers-essaywise"
-                        ? styles.activeLink
-                        : ""
-                        }`}
+                      className={`${styles.navEle} ${
+                        pathname === "/toppers-essaywise"
+                          ? styles.activeLink
+                          : ""
+                      }`}
                     >
                       <p>Essay</p>
                     </Link>
                     <Link
                       href={"/toppers-gs1wise"}
-                      className={`${styles.navEle} ${pathname === "/toppers-gs1wise" ? styles.activeLink : ""
-                        }`}
+                      className={`${styles.navEle} ${
+                        pathname === "/toppers-gs1wise" ? styles.activeLink : ""
+                      }`}
                     >
                       <p>General Studies 1</p>{" "}
                     </Link>
                     <Link
                       href={"/toppers-gs2wise"}
-                      className={`${styles.navEle} ${pathname === "/toppers-gs2wise" ? styles.activeLink : ""
-                        }`}
+                      className={`${styles.navEle} ${
+                        pathname === "/toppers-gs2wise" ? styles.activeLink : ""
+                      }`}
                     >
                       <p>General Studies 2</p>
                     </Link>
                     <Link
                       href={"/toppers-gs3wise"}
-                      className={`${styles.navEle} ${pathname === "/toppers-gs3wise" ? styles.activeLink : ""
-                        }`}
+                      className={`${styles.navEle} ${
+                        pathname === "/toppers-gs3wise" ? styles.activeLink : ""
+                      }`}
                     >
                       <p>General Studies 3</p>
                     </Link>
                     <Link
                       href={"/toppers-gs4wise"}
-                      className={`${styles.navEle} ${pathname === "/toppers-gs4wise" ? styles.activeLink : ""
-                        }`}
+                      className={`${styles.navEle} ${
+                        pathname === "/toppers-gs4wise" ? styles.activeLink : ""
+                      }`}
                     >
                       <p>General Studies 4</p>
                     </Link>
@@ -198,8 +215,9 @@ const Navbar = () => {
                   >
                     <Link
                       href={"/"}
-                      className={`${styles.navEle} ${pathname === "/all-toppers" ? styles.activeLink : ""
-                        }`}
+                      className={`${styles.navEle} ${
+                        pathname === "/all-toppers" ? styles.activeLink : ""
+                      }`}
                     >
                       {" "}
                       Home
@@ -212,14 +230,15 @@ const Navbar = () => {
                         onClick={() => {
                           setSubjectTopperDropShow(!subjectTopperDropShow);
                         }}
-                        className={`${styles.navEle} ${pathname === "/toppers-essaywise" ||
+                        className={`${styles.navEle} ${
+                          pathname === "/toppers-essaywise" ||
                           pathname === "/toppers-gs1wise" ||
                           pathname === "/toppers-gs2wise" ||
                           pathname === "/toppers-gs3wise" ||
                           pathname === "/toppers-gs4wise"
-                          ? styles.activeLink
-                          : ""
-                          }`}
+                            ? styles.activeLink
+                            : ""
+                        }`}
                       >
                         {" "}
                         Subject Topper
@@ -244,46 +263,51 @@ const Navbar = () => {
                       >
                         <Link
                           href={"/toppers-essaywise"}
-                          className={`${styles.navEle} ${pathname === "/toppers-essaywise"
-                            ? styles.activeLink
-                            : ""
-                            }`}
+                          className={`${styles.navEle} ${
+                            pathname === "/toppers-essaywise"
+                              ? styles.activeLink
+                              : ""
+                          }`}
                         >
                           <p>Essay</p>
                         </Link>
                         <Link
                           href={"/toppers-gs1wise"}
-                          className={`${styles.navEle} ${pathname === "/toppers-gs1wise"
-                            ? styles.activeLink
-                            : ""
-                            }`}
+                          className={`${styles.navEle} ${
+                            pathname === "/toppers-gs1wise"
+                              ? styles.activeLink
+                              : ""
+                          }`}
                         >
                           <p>General Studies 1</p>{" "}
                         </Link>
                         <Link
                           href={"/toppers-gs2wise"}
-                          className={`${styles.navEle} ${pathname === "/toppers-gs2wise"
-                            ? styles.activeLink
-                            : ""
-                            }`}
+                          className={`${styles.navEle} ${
+                            pathname === "/toppers-gs2wise"
+                              ? styles.activeLink
+                              : ""
+                          }`}
                         >
                           <p>General Studies 2</p>
                         </Link>
                         <Link
                           href={"/toppers-gs3wise"}
-                          className={`${styles.navEle} ${pathname === "/toppers-gs3wise"
-                            ? styles.activeLink
-                            : ""
-                            }`}
+                          className={`${styles.navEle} ${
+                            pathname === "/toppers-gs3wise"
+                              ? styles.activeLink
+                              : ""
+                          }`}
                         >
                           <p>General Studies 3</p>
                         </Link>
                         <Link
                           href={"/toppers-gs4wise"}
-                          className={`${styles.navEle} ${pathname === "/toppers-gs4wise"
-                            ? styles.activeLink
-                            : ""
-                            }`}
+                          className={`${styles.navEle} ${
+                            pathname === "/toppers-gs4wise"
+                              ? styles.activeLink
+                              : ""
+                          }`}
                         >
                           <p>General Studies 4</p>
                         </Link>
@@ -385,12 +409,14 @@ const Navbar = () => {
                 </div>
                 <div onClick={handleMenu} className={styles.hamburger}>
                   <div
-                    className={`${styles.hamburgerLine1} ${hiddenNav ? styles.hamburgerLine1Change : ""
-                      }`}
+                    className={`${styles.hamburgerLine1} ${
+                      hiddenNav ? styles.hamburgerLine1Change : ""
+                    }`}
                   ></div>
                   <div
-                    className={`${styles.hamburgerLine2} ${hiddenNav ? styles.hamburgerLine2Change : ""
-                      }`}
+                    className={`${styles.hamburgerLine2} ${
+                      hiddenNav ? styles.hamburgerLine2Change : ""
+                    }`}
                   ></div>
                 </div>
               </>

@@ -14,7 +14,8 @@ function AddSubjectQuiz() {
     "geography",
     "science",
     "environment",
-    "current affairs",
+    "Art and Culture",
+    "new current affairs",
   ];
   async function fetchData() {
     const response = await axios.get("/api/quiz/getQuiz?admin=true");
@@ -27,13 +28,26 @@ function AddSubjectQuiz() {
     fetchData();
   }, []);
 
-  async function onClickHandler(subject) {
+  async function onDeleteQuestion() {
+    setisLoading(true);
+    const response = await axios.get("/api/quiz/deleteQuiz?id=" + question._id);
+    setisLoading(false);
+    fetchData();
+  }
+  async function onUndoQuestion() {
+    setisLoading(true);
+    const response = await axios.get("/api/quiz/getQuiz?undo=true");
+    setQusetion(response.data.res);
+    setisLoading(false);
+  }
+
+  async function onClickSubHandler(subject) {
+    setisLoading(true);
     const response = await axios.post("/api/quiz/updateQuiz", {
       _id: question._id,
       subject: subject,
     });
-    setisLoading(true);
-    console.log("🚀 ~ onClickHandler ~ response:", response.data.res);
+    setisLoading(false);
     fetchData();
   }
 
@@ -69,16 +83,32 @@ function AddSubjectQuiz() {
             <div className={styles.quizQuestion}>No Question Found</div>
           )}
           {question.text && (
-            <div className={styles.quizSubjectGroup}>
-              {SubjectList.map((ele, index) => (
+            <div>
+              <div className={styles.quizSubjectGroup}>
+                {SubjectList.map((ele, index) => (
+                  <button
+                    key={index}
+                    className={styles.btnOutlinePrimary}
+                    onClick={() => onClickSubHandler(ele)}
+                  >
+                    {ele.toUpperCase()}
+                  </button>
+                ))}
+              </div>
+              <div className={styles.quizDeleteUndo}>
                 <button
-                  key={index}
-                  className={styles.btnOutlinePrimary}
-                  onClick={() => onClickHandler(ele)}
+                  className={styles.btnOutlineDanger}
+                  onClick={onUndoQuestion}
                 >
-                  {ele.toUpperCase()}
+                  UNDO
                 </button>
-              ))}
+                <button
+                  className={styles.btnOutlineDanger}
+                  onClick={onDeleteQuestion}
+                >
+                  DELETE
+                </button>
+              </div>
             </div>
           )}
         </div>
