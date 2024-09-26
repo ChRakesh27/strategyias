@@ -55,7 +55,7 @@ const Navbar = () => {
   }, []);
   // 1
   // return <NavBar></NavBar>;
-  if (pathname == "/quiz/view-details") {
+  if (pathname == "/quiz/view-details" || pathname == "/quiz/register") {
     return (
       <></>
       // <div className={styles.landingPageIcon}>

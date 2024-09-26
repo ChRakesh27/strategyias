@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 function DashBoard() {
-  //   const { data: session } = useSession();
-  //   console.log("user", session);
+  const { data: session } = useSession();
+  console.log("user", session?.user);
 
   const [accordion, setAccordion] = useState([false, false, false]);
   const test_series = [
@@ -25,7 +25,6 @@ function DashBoard() {
       subtitle: "50 Tests",
     },
   ];
-
   const current_affairs = [
     {
       id: "CA_DCA",
@@ -136,7 +135,7 @@ function DashBoard() {
                       </Link>
                     </div>
                     <div>
-                      <Link href={"/quiz/" + ele.id} className="btn btn-red">
+                      <Link href={"/quiz/register"} className="btn btn-red">
                         Buy Now
                       </Link>
                     </div>

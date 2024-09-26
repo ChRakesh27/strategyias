@@ -10,8 +10,8 @@ export async function POST(req, context) {
 
     await mongoose.connect(process.env.MONGO_URI);
 
-    const res = await QuizUsers.create(reqBody);
-    // return NextResponse.json({ res }, { status: 200 });
+    const res = await QuizUsers.findByIdAndDelete(reqBody.id);
+    return NextResponse.json({ res }, { status: 200 });
 
     const transport = nodemailer.createTransport({
       service: "Gmail",

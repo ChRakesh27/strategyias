@@ -8,10 +8,13 @@ export async function POST(req, context) {
   try {
     const reqBody = await req.json();
 
+    console.log("🚀 ~ POST ~ id :", reqBody);
     await mongoose.connect(process.env.MONGO_URI);
 
-    const res = await QuizUsers.create(reqBody);
-    // return NextResponse.json({ res }, { status: 200 });
+    const res = await QuizUsers.findByIdAndUpdate(reqBody.id, reqBody.data, {
+      new: true,
+    });
+    return NextResponse.json({ res }, { status: 200 });
 
     const transport = nodemailer.createTransport({
       service: "Gmail",
@@ -22,20 +25,9 @@ export async function POST(req, context) {
     });
     const mailOptions = {
       from: "skptrulyweb@gmail.com",
-      to: "chipparakesh01@gmail.com",
+      to: res.email,
       subject: "Register for the Course",
-      text: "Here is the payment for register course.",
-      html: `<p>
-      Name: <b>${reqBody.userName}</b><br>
-      Email Id: <b>${reqBody.email}</b><br>
-      Phone: <b>${reqBody.phone}</b><br>
-      Target Year: <b>${reqBody.course.targetYear}</b><br>
-      Course Name: <b>${reqBody.course.name}</b><br>
-      <br>
-      <br>
-      Give Permission : <a href="https://strategyias.com/admin/user-permission">Click Here</a>
-      </p>`,
-      attachments: [{ path: reqBody.paymentImg }],
+      text: "Enjoy Your course",
     };
 
     const mailresponse = await transport.sendMail(mailOptions);

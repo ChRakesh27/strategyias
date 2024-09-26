@@ -1,102 +1,209 @@
 "use client";
 import React, { useState } from "react";
-
+import styles from "../../(styles)/quizRegister.module.css";
+import Link from "next/link";
+import axios from "axios";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 function Register() {
-  const [formData, setFormData] = useState({});
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    date: "",
+    permissionDate: "",
+    expireAt: "",
+    email: "",
+    userName: "",
+    phone: "",
+    paymentImg: "",
+    course: {},
+    // status: "pending",
+    // questions: [],
+  });
 
-  function onSubmitHandler(e) {
+  const targetYearsList = [2024, 2023];
+  const coursesList = [
+    "Book wise MCQ Practice",
+    "Subject wise MCQ Practice",
+    "Topic wise MCQ Practice",
+    "10 Questions / day",
+    "50 Questions / Day",
+    "100 Questions / Day",
+  ];
+
+  function uploadedImage(e) {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (evt) => {
+      setFormData((val) => {
+        return { ...val, paymentImg: evt.target.result };
+      });
+    };
+    reader.onerror = (evt) => {
+      alert("error file loading");
+    };
+  }
+
+  async function onSubmitHandler(e) {
     e.preventDefault();
-    console.log("🚀 ~ Register ~ formData:", formData);
+    setIsLoading(true);
+    const date = new Date();
+    const oneYearLater = new Date(date);
+    oneYearLater.setFullYear(oneYearLater.getFullYear() + 1);
+    const payload = {
+      ...formData,
+      registerAt: date.toISOString(),
+      expireAt: oneYearLater.toISOString(),
+    };
+    const response = await axios.post("/api/quiz/registerCourse", payload);
+    setIsLoading(false);
+    if (response.status === 200) {
+      router.push("/quiz");
+    }
   }
 
   return (
-    <div>
-      <h1>Register for the Course</h1>
-      <form onSubmit={onSubmitHandler}>
+    <>
+      <div className={styles.mainContainer}>
+        {isLoading && (
+          <div className={styles.loading}>
+            <svg viewBox="25 25 50 50" className={styles.loaderContainer}>
+              <circle cx="50" cy="50" r="20" className={styles.loader}></circle>
+            </svg>
+          </div>
+        )}
         <div>
-          <div>Name</div>
-          <input
-            type="text"
-            onChange={(e) =>
-              setFormData((val) => {
-                return { ...val, name: e.target.value };
-              })
-            }
-          />
+          <div className={styles.landingPageIcon}>
+            <Link href={"/"}>
+              <h3>STRATEGY IAS</h3>
+            </Link>
+          </div>
+          <div className={styles.quizRegisterForm}>
+            <div className={styles.heading}>Register for the Course</div>
+            <form onSubmit={onSubmitHandler}>
+              <div>
+                <div className={styles.label}>Name</div>
+                <input
+                  className={styles.formControlInput}
+                  type="text"
+                  onChange={(e) =>
+                    setFormData((val) => {
+                      return { ...val, userName: e.target.value };
+                    })
+                  }
+                  required
+                />
+              </div>
+              <div>
+                <div className={styles.label}>Email</div>
+                <input
+                  className={styles.formControlInput}
+                  type="email"
+                  onChange={(e) =>
+                    setFormData((val) => {
+                      return { ...val, email: e.target.value };
+                    })
+                  }
+                  required
+                ></input>
+              </div>
+              <div>
+                <div className={styles.label}>Phone Number</div>
+                <input
+                  className={styles.formControlInput}
+                  type="number"
+                  onChange={(e) =>
+                    setFormData((val) => {
+                      return { ...val, phone: e.target.value };
+                    })
+                  }
+                  required
+                ></input>
+              </div>
+              <div>
+                <div className={styles.label}>Target Year</div>
+                <select
+                  className={styles.formControlInput}
+                  onChange={(e) =>
+                    setFormData((val) => {
+                      return {
+                        ...val,
+                        course: { ...val.course, targetYear: e.target.value },
+                      };
+                    })
+                  }
+                  defaultValue={""}
+                  required
+                >
+                  <option disabled value={""}>
+                    Select Target Year
+                  </option>
+                  {targetYearsList.map((ele, index) => {
+                    return (
+                      <option value={ele} key={index}>
+                        {ele}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+              <div>
+                <div className={styles.label}>Course interested</div>
+                <select
+                  className={styles.formControlInput}
+                  onChange={(e) =>
+                    setFormData((val) => {
+                      return {
+                        ...val,
+                        course: { ...val.course, id: "", name: e.target.value },
+                      };
+                    })
+                  }
+                  defaultValue={""}
+                  required
+                >
+                  <option disabled value={""}>
+                    Select Course
+                  </option>
+                  {coursesList.map((ele, index) => {
+                    return (
+                      <option value={ele} key={index}>
+                        {ele}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+              <div>
+                <div className={styles.label}>UPI</div>
+                <Image
+                  src="/UPI-QR.jpg"
+                  width={300}
+                  height={320}
+                  className={styles.wotssoBodyImage}
+                  alt="Picture of the author"
+                />
+              </div>
+              <div>
+                <div className={styles.label}>Upload Payment Screenshot</div>
+                <input
+                  type="file"
+                  accept="image/*"
+                  className={styles.formControlFile}
+                  onChange={uploadedImage}
+                  required
+                ></input>
+              </div>
+
+              <button type="submit" className={styles.submitButton}>
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
-        <div>
-          <div>Email</div>
-          <input
-            type="email"
-            onChange={(e) =>
-              setFormData((val) => {
-                return { ...val, email: e.target.value };
-              })
-            }
-          ></input>
-        </div>
-        <div>
-          <div>Phone Number</div>
-          <input
-            type="number"
-            onChange={(e) =>
-              setFormData((val) => {
-                return { ...val, phone: e.target.value };
-              })
-            }
-          ></input>
-        </div>
-        <div>
-          <div>Target Year</div>
-          <select
-            onChange={(e) =>
-              setFormData((val) => {
-                return { ...val, targetYear: e.target.value };
-              })
-            }
-            defaultValue={""}
-          >
-            <option disabled value={""}>
-              Select Target Year
-            </option>
-            <option value={2024}>2024</option>
-            <option value={2023}>2023</option>
-          </select>
-        </div>
-        <div>
-          <div>Issues that you are facing currently</div>
-          <textarea
-            onChange={(e) =>
-              setFormData((val) => {
-                return { ...val, issues: e.target.value };
-              })
-            }
-          ></textarea>
-        </div>
-        <div>
-          <div>Course interested</div>
-          <select
-            onChange={(e) =>
-              setFormData((val) => {
-                return { ...val, course: e.target.value };
-              })
-            }
-            defaultValue={""}
-          >
-            <option disabled value={""}>
-              Select Course
-            </option>
-            <option value={"c1"}>c1</option>
-            <option value={"c2"}>c2</option>
-          </select>
-        </div>
-        <div>
-          <div>Upload Payment Screenshot</div>
-          <input type="file"></input>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+      </div>
+    </>
   );
 }
 

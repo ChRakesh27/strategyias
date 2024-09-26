@@ -1,7 +1,7 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 
 export default function Quiz({ params }) {
   const [dataSet, setDataSet] = useState([
@@ -13,10 +13,10 @@ export default function Quiz({ params }) {
       solutionTextmain: "",
     },
   ]);
+  const { data: session } = useSession();
 
   const [isAnswered, setIsAnswered] = useState([]);
   const [quesNo, setQuesNo] = useState(0);
-  const [offset, setOffset] = useState(0);
   const fetchData = async () => {
     try {
       let response = {};
@@ -33,6 +33,7 @@ export default function Quiz({ params }) {
   };
   useEffect(() => {
     fetchData();
+    console.log("🚀 ~ Quiz ~ session:", session?.user);
   }, []);
 
   const inCorrectIcon = (

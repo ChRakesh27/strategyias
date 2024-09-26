@@ -1,0 +1,152 @@
+.mainContainer {
+    display: flex;
+    width: 85%;
+    position: relative;
+    left: 15%;
+    background-color: rgb(249, 249, 249);
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.filter {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    font-size: larger;
+    position: fixed;
+    background: #0002;
+    width: 85%;
+    height: 50px;
+}
+
+.filter div span {
+    padding-left: 10px;
+}
+
+.dateFilter {
+    height: 30px;
+    width: 150px;
+    font-size: larger;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid;
+}
+
+.resetBtn {
+    padding: 5px 20px;
+    border-radius: 10px;
+    background: rgb(51, 51, 200);
+    color: #fff;
+    cursor: pointer;
+}
+
+.PerBody {
+    margin: 60px 10px;
+}
+
+.deletebtn {
+    border-radius: 10px;
+    border: none;
+    color: red;
+    cursor: pointer;
+}
+
+.table {}
+
+.tableHead {
+    background: rgb(90, 90, 250);
+    color: #fff;
+}
+
+.tableHead tr th,
+.tableBody tr td {
+    text-align: center;
+    border: none;
+}
+
+.status {
+    width: 100%;
+    padding: 2px;
+    font-size: larger;
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid;
+}
+
+.Model {
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background: #0009;
+}
+
+.ModelBody {
+    text-align: center;
+}
+
+.ModelImage {
+    border: 2px solid;
+}
+
+.closeModel {
+    margin: 10px;
+    padding: 5px 20px;
+    border-radius: 10px;
+    background: rgb(51, 51, 200);
+    color: #fff;
+    cursor: pointer;
+}
+
+.loading {
+    z-index: 2;
+    position: absolute;
+    background: #0009;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loaderContainer {
+    position: fixed;
+    width: 3.25em;
+    transform-origin: center;
+    animation: rotate4 2s linear infinite;
+}
+
+.loader {
+    fill: none;
+    stroke: #106ee8;
+    stroke-width: 10;
+    stroke-dasharray: 2, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash4 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate4 {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dash4 {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        stroke-dasharray: 90, 200;
+        stroke-dashoffset: -35px;
+    }
+
+    100% {
+        stroke-dashoffset: -125px;
+    }
+}
