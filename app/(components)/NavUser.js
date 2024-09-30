@@ -56,14 +56,7 @@ const Navbar = () => {
   // 1
   // return <NavBar></NavBar>;
   if (pathname == "/quiz/view-details" || pathname == "/quiz/register") {
-    return (
-      <></>
-      // <div className={styles.landingPageIcon}>
-      //   <Link href={"/"}>
-      //     <h3>STRATEGY IAS</h3>
-      //   </Link>
-      // </div>
-    );
+    return <></>;
   }
 
   return status !== "loading" ? (

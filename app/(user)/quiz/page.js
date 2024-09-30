@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 function DashBoard() {
   const { data: session } = useSession();
-  console.log("user", session?.user);
+  // console.log("user", session?.user);
 
   const [accordion, setAccordion] = useState([false, false, false]);
   const test_series = [
@@ -47,10 +47,11 @@ function DashBoard() {
     { title: "Essay Topper Copy", subtitle: "RS 199/-" },
     { title: "All Copies", subtitle: "RS 499/-" },
   ];
-
+  const containerClassName =
+    session?.user.role === "admin" ? "adminDashboard" : "";
   return (
     <>
-      <div className="dashboard">
+      <div className={"dashboard " + containerClassName}>
         <div className="test-series">
           <div
             className="accordion"

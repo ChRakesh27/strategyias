@@ -21,7 +21,6 @@ function AddSubjectQuiz() {
     const response = await axios.get("/api/quiz/getQuiz?admin=true");
     setQusetion(response.data.res);
     setisLoading(false);
-    console.log("🚀 ~ fetchData ~ response.data.res:", response.data.res);
   }
 
   useEffect(() => {

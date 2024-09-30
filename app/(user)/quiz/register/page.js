@@ -5,20 +5,21 @@ import Link from "next/link";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+
 function Register() {
+  const { data: session } = useSession();
+
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    date: "",
-    permissionDate: "",
+    registerAt: "",
     expireAt: "",
-    email: "",
-    userName: "",
+    email: session?.user.email,
+    userName: session?.user.name,
     phone: "",
     paymentImg: "",
     course: {},
-    // status: "pending",
-    // questions: [],
   });
 
   const targetYearsList = [2024, 2023];
@@ -56,6 +57,7 @@ function Register() {
       registerAt: date.toISOString(),
       expireAt: oneYearLater.toISOString(),
     };
+
     const response = await axios.post("/api/quiz/registerCourse", payload);
     setIsLoading(false);
     if (response.status === 200) {
@@ -87,6 +89,7 @@ function Register() {
                 <input
                   className={styles.formControlInput}
                   type="text"
+                  defaultValue={session?.user.name}
                   onChange={(e) =>
                     setFormData((val) => {
                       return { ...val, userName: e.target.value };
@@ -100,6 +103,7 @@ function Register() {
                 <input
                   className={styles.formControlInput}
                   type="email"
+                  defaultValue={session?.user.email}
                   onChange={(e) =>
                     setFormData((val) => {
                       return { ...val, email: e.target.value };

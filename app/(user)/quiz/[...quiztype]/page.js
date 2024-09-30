@@ -33,7 +33,6 @@ export default function Quiz({ params }) {
   };
   useEffect(() => {
     fetchData();
-    console.log("🚀 ~ Quiz ~ session:", session?.user);
   }, []);
 
   const inCorrectIcon = (
@@ -131,10 +130,10 @@ export default function Quiz({ params }) {
   function onSubmit() {
     console.log("🚀 ~ onSubmit:", params.quiztype[0], isAnswered);
   }
-
+  const containerClassName = session?.user.role === "admin" ? "adminQuiz" : "";
   return (
     <>
-      <div className="quiz">
+      <div className={"quiz " + containerClassName}>
         <div className="questionList">
           <ol className="que-ol">
             {dataSet.map((ele, index) => (

@@ -1,22 +1,19 @@
-
 /* Navbar  */
-.UserMainContainer{
+.UserMainContainer {
     display: flex;
     justify-content: center;
-    
-    
+
+
     position: relative;
-   
+
     min-height: 93.6vh;
     padding-top: 2em;
     background-color: var(--back-color);
 }
 
-.AdminMainContainer{
+.AdminMainContainer {
     display: flex;
     justify-content: center;
-    
-    
     position: relative;
     width: 85%;
     left: 15%;
@@ -24,74 +21,90 @@
     padding-top: 2em;
     background-color: var(--back-color);
 }
-.Wrapper{
+
+@media only screen and (max-width:600px) {
+    .AdminMainContainer {
+        position: relative;
+        width: 100%;
+        left: 0%;
+    }
+}
+
+.Wrapper {
     width: 90%;
-   
+
 }
 
 
-.PageHeadingContainer{
+.PageHeadingContainer {
     display: flex;
-    
-   
-   
+
+
+
 }
-.PageHeading{
+
+.PageHeading {
     padding: 1em 0em;
     font-size: 1.8em;
     color: gray;
-   
-    
+
+
 }
-.PageHeading>h1{
+
+.PageHeading>h1 {
     font-weight: 400;
 }
-.PageHeading>h1>span{
+
+.PageHeading>h1>span {
     color: var(--main-color);
 }
 
 /* second section  */
-.FilterOptionsContainer{
+.FilterOptionsContainer {
     width: 100%;
     border-bottom: 1px solid rgb(204, 204, 204);
     display: flex;
     padding-bottom: 1em;
 }
-.SearchBar{
+
+.SearchBar {
     display: flex;
     align-items: center;
     gap: 0.5em;
     width: 60%;
-    
-   
+
+
 }
 
-.SearchBar>p{
+.SearchBar>p {
     font-size: 1.8em;
     color: gray;
 
-    
+
 }
 
-.Search{
+.Search {
     width: 100%;
     font-size: 1.8em;
     padding: 0.5em;
     background-color: var(--back-color);
     border: none !important;
 }
-.Search:focus{
+
+.Search:focus {
     outline: none;
 }
-.SearchIconDiv{
+
+.SearchIconDiv {
     width: 2em;
     opacity: 0.3;
     height: 2em;
     padding: 1em;
     position: relative;
 }
-.FilterDiv{
-   
+
+.FilterDiv {
+
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -99,10 +112,12 @@
     width: 40%;
     font-size: 1.5em;
 }
-.FilterDiv>p{
-    color:  gray;
+
+.FilterDiv>p {
+    color: gray;
 }
-.Filter{
+
+.Filter {
     font-size: 1em;
     box-shadow: 0px 0px 4px 0px gray;
     border: none !important;
@@ -110,91 +125,105 @@
 }
 
 /* topper galary section  */
-.TopperGalaryDiv{
+.TopperGalaryDiv {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(3 ,1fr );
+    grid-template-columns: repeat(3, 1fr);
     gap: 2em;
     padding: 1em 0em;
 }
+
 @media (max-width:1500px) {
-    .TopperGalaryDiv{
-        grid-template-columns: repeat(2 ,1fr );
+    .TopperGalaryDiv {
+        grid-template-columns: repeat(2, 1fr);
     }
 
 }
+
 @media (max-width:850px) {
-    .TopperGalaryDiv{
-        grid-template-columns: repeat(1 ,1fr );
+    .TopperGalaryDiv {
+        grid-template-columns: repeat(1, 1fr);
     }
 
 }
+
 @media (max-width:1000px) {
-    .Search{
+    .Search {
         font-size: 1.3em;
     }
-    .FilterDiv{
+
+    .FilterDiv {
         font-size: 1.3em;
     }
 }
+
 @media (max-width:740px) {
-    .Search{
+    .Search {
         font-size: 1em;
     }
-    .FilterDiv{
+
+    .FilterDiv {
         font-size: 1em;
     }
 }
+
 @media (max-width:840px) {
-    
-    .PageHeading>h1{
+
+    .PageHeading>h1 {
         font-weight: 400;
         font-size: 1.5em;
     }
 }
+
 @media (max-width:590px) {
-    .FilterOptionsContainer{
-      
-     
+    .FilterOptionsContainer {
+
+
         display: flex;
         flex-direction: column;
         gap: 1em;
     }
-   .SearchBar{
-    width: 100%;
-    border-bottom: 1px rgb(199, 199, 199) solid;
-   }
-   .FilterDiv{
-    width: 100%;
-   }
+
+    .SearchBar {
+        width: 100%;
+        border-bottom: 1px rgb(199, 199, 199) solid;
+    }
+
+    .FilterDiv {
+        width: 100%;
+    }
 }
 
 /* pagination styling  */
 
-.paginationButtons{
+.paginationButtons {
     display: flex;
     align-items: center;
-    
+
     gap: 1em;
 
 }
-.paginationEle{
+
+.paginationEle {
     padding: 0.5em 0.8em;
     font-size: 1.1em;
     margin-top: 1em;
     border: 1px solid rgb(172, 172, 172);
 }
-.paginationEle:hover{
+
+.paginationEle:hover {
     cursor: pointer;
-    
+
 
 }
-.selectedPage{
+
+.selectedPage {
     border: none;
     background-color: var(--main-color);
 }
-.paginationDiv{
-    
+
+.paginationDiv {
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -202,11 +231,13 @@
     border-top: 1px solid rgb(197, 197, 197);
     margin-bottom: 2em;
 }
-.totalDataShown{
+
+.totalDataShown {
     display: flex;
     gap: 0.2em;
 }
-.prevButton{
+
+.prevButton {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -215,10 +246,12 @@
     border: 1px rgba(0, 0, 0, 0.371) solid;
     border-radius: 0.4em;
 }
-.prevButton:hover{
+
+.prevButton:hover {
     background-color: rgba(0, 0, 0, 0.342);
 }
-.nextButton{
+
+.nextButton {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -227,10 +260,12 @@
     border: 1px rgba(0, 0, 0, 0.371) solid;
     border-radius: 0.4em;
 }
-.nextButton:hover{
+
+.nextButton:hover {
     background-color: rgba(0, 0, 0, 0.342);
 }
-.totalDataShown{
+
+.totalDataShown {
     padding: 0.3em 1em;
     border: 1px rgba(0, 0, 0, 0.371) solid;
     border-radius: 0.4em;

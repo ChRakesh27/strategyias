@@ -7,45 +7,32 @@ import axios from "axios";
 function UserPermission() {
   const [isModelOpen, setIsModelOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [filterUser, setFilterUser] = useState({
+    date: {
+      from: "",
+      to: "",
+    },
+    status: { pending: true, accept: true, reject: true, expire: true },
+  });
   const [image, setImage] = useState();
-  const [users, setUsers] = useState([
-    {
-      _id: "",
-      name: "Rakesh",
-      email: "rakesh@gmail.com",
-      course: "xyz",
-      date: "11/12/2024",
-    },
-    {
-      _id: "",
-      name: "Rakesh",
-      email: "rakesh@gmail.com",
-      course: "xyz",
-      date: "11/12/2024",
-    },
-    {
-      _id: "",
-      createdAt: "",
-      permissionDate: "",
-      expireDate: "",
-      userName: "",
-      email: "",
-      phone: "",
-      payment: "",
-      course: "",
-    },
-  ]);
+  const [users, setUsers] = useState();
+  const [dataSet, setDataSet] = useState();
 
   async function fetchUsers() {
     setIsLoading(true);
     const response = await axios.get("/api/admin/quizUsers/getUsers");
     setUsers(response.data.res);
+    setDataSet(response.data.res);
     setIsLoading(false);
   }
 
   useEffect(() => {
     fetchUsers();
   }, []);
+
+  useEffect(() => {
+    addFilterToData();
+  }, [filterUser]);
 
   function dateFormate(isoString) {
     if (isoString) {
@@ -67,6 +54,7 @@ function UserPermission() {
     setIsModelOpen(false);
     setImage("");
   }
+
   async function onChangeStatus(status, userData) {
     setIsLoading(true);
     const response = await axios.post("/api/admin/quizUsers/updateUser", {
@@ -95,6 +83,58 @@ function UserPermission() {
     setIsLoading(false);
   }
 
+  function onDateFilter(e) {
+    setFilterUser((val) => ({
+      ...val,
+      date: {
+        ...val.date,
+        [e.target.name]: e.target.value,
+      },
+    }));
+  }
+
+  function onCheckFilterHandular(e) {
+    setFilterUser((val) => ({
+      ...val,
+      status: {
+        ...val.status,
+        [e.target.value]: e.target.checked,
+      },
+    }));
+  }
+
+  function addFilterToData() {
+    const from = filterUser.date.from ? filterUser.date.from : "";
+    const to = filterUser.date.to ? filterUser.date.to : "";
+
+    const modifiedData = dataSet?.filter((ele) => {
+      const itemDate = ele.registerAt.split("T")[0];
+      if (
+        filterUser.status[ele.status] &&
+        (itemDate >= from || from == "") &&
+        (itemDate <= to || to == "")
+      ) {
+        return ele;
+      }
+    });
+    setUsers(modifiedData);
+  }
+
+  function onRefresh() {
+    onReset();
+    fetchUsers();
+  }
+
+  function onReset() {
+    setFilterUser({
+      date: {
+        from: "",
+        to: "",
+      },
+      status: { pending: true, accept: true, reject: true, expire: true },
+    });
+  }
+
   return (
     <div className={styles.mainContainer}>
       {isLoading && (
@@ -107,32 +147,73 @@ function UserPermission() {
       <div className={styles.filter}>
         <div>
           <span>
-            From: <input type="date" className={styles.dateFilter} />
+            From:{" "}
+            <input
+              type="date"
+              name="from"
+              className={styles.dateFilter}
+              onChange={onDateFilter}
+            />
           </span>
           <span>
-            To: <input type="date" className={styles.dateFilter} />
+            To:{" "}
+            <input
+              type="date"
+              name="to"
+              defaultValue={new Date().toISOString().split("T")[0]}
+              className={styles.dateFilter}
+              onChange={onDateFilter}
+            />
           </span>
         </div>
         <div>
           <span>
-            <input type="checkbox" defaultChecked /> Pending
+            <input
+              type="checkbox"
+              value="pending"
+              checked={filterUser.status.pending}
+              onChange={onCheckFilterHandular}
+            />
+            Pending
           </span>
           <span>
-            <input type="checkbox" defaultChecked /> Accept
+            <input
+              type="checkbox"
+              value="accept"
+              checked={filterUser.status.accept}
+              onChange={onCheckFilterHandular}
+            />{" "}
+            Accept
           </span>
           <span>
-            <input type="checkbox" defaultChecked /> Reject
+            <input
+              type="checkbox"
+              value="reject"
+              checked={filterUser.status.reject}
+              onChange={onCheckFilterHandular}
+            />
+            Reject
           </span>
           <span>
-            <input type="checkbox" defaultChecked /> Expire
+            <input
+              type="checkbox"
+              value="expire"
+              checked={filterUser.status.expire}
+              onChange={onCheckFilterHandular}
+            />
+            Expire
           </span>
         </div>
         <div>
           <span>
-            <button className={styles.resetBtn}>Reset</button>
+            <button className={styles.resetBtn} onClick={onReset}>
+              Reset
+            </button>
           </span>
           <span>
-            <button className={styles.resetBtn}>Refresh</button>
+            <button className={styles.resetBtn} onClick={onRefresh}>
+              Refresh
+            </button>
           </span>
         </div>
       </div>
@@ -154,63 +235,64 @@ function UserPermission() {
             </tr>
           </thead>
           <tbody className={styles.tableBody}>
-            {users.map((ele, index) => {
-              return (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td>{dateFormate(ele.registerAt)}</td>
-                  <td>{ele.userName}</td>
-                  <td>{ele.email}</td>
-                  <td>{ele.phone}</td>
-                  <td>{ele.course.targetYear}</td>
-                  <td>{ele.course.name}</td>
-                  <td
-                    onClick={() => {
-                      showPaymentImg(ele.paymentImg);
-                    }}
-                  >
-                    {ele.paymentImg && (
-                      <Image
-                        src={ele.paymentImg}
-                        width={30}
-                        height={30}
-                        alt="payment Image"
-                      />
-                    )}
-                  </td>
-                  <td>{dateFormate(ele.expireAt)}</td>
-                  <td>
-                    <select
-                      className={styles.status}
-                      value={ele.status}
-                      onChange={(e) => onChangeStatus(e.target.value, ele)}
+            {users &&
+              users.map((ele, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{dateFormate(ele.registerAt)}</td>
+                    <td>{ele.userName}</td>
+                    <td>{ele.email}</td>
+                    <td>{ele.phone}</td>
+                    <td>{ele.course.targetYear}</td>
+                    <td>{ele.course.name}</td>
+                    <td
+                      onClick={() => {
+                        showPaymentImg(ele.paymentImg);
+                      }}
                     >
-                      <option value={"pending"}>Pending</option>
-                      <option value={"accept"}>accept</option>
-                      <option value={"reject"}>Reject</option>
-                      <option value={"expire"}>Expire</option>
-                    </select>
-                  </td>
-                  <td>
-                    <button
-                      className={styles.deletebtn}
-                      onClick={() => onDeleteUser(ele)}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        className="bi bi-trash3"
-                        viewBox="0 0 16 16"
+                      {ele.paymentImg && (
+                        <Image
+                          src={ele.paymentImg}
+                          width={30}
+                          height={30}
+                          alt="payment Image"
+                        />
+                      )}
+                    </td>
+                    <td>{dateFormate(ele.expireAt)}</td>
+                    <td>
+                      <select
+                        className={styles.status}
+                        value={ele.status}
+                        onChange={(e) => onChangeStatus(e.target.value, ele)}
                       >
-                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
-                      </svg>
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
+                        <option value={"pending"}>Pending</option>
+                        <option value={"accept"}>accept</option>
+                        <option value={"reject"}>Reject</option>
+                        <option value={"expire"}>Expire</option>
+                      </select>
+                    </td>
+                    <td>
+                      <button
+                        className={styles.deletebtn}
+                        onClick={() => onDeleteUser(ele)}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          className="bi bi-trash3"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>

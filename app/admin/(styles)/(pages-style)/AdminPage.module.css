@@ -113,8 +113,8 @@
 }
 
 .AdminQuizMainContainer {
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
     position: relative;
     width: 85%;
     left: 15%;
@@ -122,10 +122,12 @@
     padding-top: 2em;
 }
 
+
+
 .quizDeleteUndo {
     display: flex;
     justify-content: space-between;
-    margin-top: 15px;
+    margin: 25px 10px;
 }
 
 .btnOutlineDanger {
@@ -147,7 +149,7 @@
 .quizQuestion {
     border: 2px solid;
     border-radius: 10px;
-    width: 60vw;
+    width: 99%;
     height: 40vh;
     overflow-y: scroll;
     font-size: larger;
@@ -155,11 +157,12 @@
 }
 
 .quizSubjectGroup {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    column-gap: 5px;
-    row-gap: 5px;
     margin-top: 15px;
+    gap: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .btnOutlinePrimary {
@@ -176,4 +179,16 @@
 .btnOutlinePrimary:hover {
     background: rgb(0, 157, 255);
     color: #fff;
+}
+
+@media only screen and (max-width:600px) {
+    .AdminQuizMainContainer {
+        position: relative;
+        width: 100vw;
+        left: 0%;
+        right: 0;
+        padding-top: 2em;
+        border: 2px solid;
+    }
+
 }
