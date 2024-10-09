@@ -23,13 +23,14 @@ function Register() {
   });
 
   const targetYearsList = [2024, 2023];
+
   const coursesList = [
-    "Book wise MCQ Practice",
-    "Subject wise MCQ Practice",
-    "Topic wise MCQ Practice",
-    "10 Questions / day",
-    "50 Questions / Day",
-    "100 Questions / Day",
+    { id: "TS_BWMP", name: "Book wise MCQ Practice" },
+    { id: "TS_SWMP", name: "Subject wise MCQ Practice" },
+    { id: "TS_TWMP", name: "Topic wise MCQ Practice" },
+    { id: "TS_10QD", name: "10 Questions / day" },
+    { id: "TS_50QD", name: "50 Questions / Day" },
+    { id: "TS_100QD", name: "100 Questions / Day" },
   ];
 
   function uploadedImage(e) {
@@ -156,14 +157,20 @@ function Register() {
                 <div className={styles.label}>Course interested</div>
                 <select
                   className={styles.formControlInput}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     setFormData((val) => {
                       return {
                         ...val,
-                        course: { ...val.course, id: "", name: e.target.value },
+                        course: {
+                          ...val.course,
+                          id: e.target.value,
+                          name: coursesList.find(
+                            (ele) => ele.id == e.target.value
+                          ).name,
+                        },
                       };
-                    })
-                  }
+                    });
+                  }}
                   defaultValue={""}
                   required
                 >
@@ -172,8 +179,8 @@ function Register() {
                   </option>
                   {coursesList.map((ele, index) => {
                     return (
-                      <option value={ele} key={index}>
-                        {ele}
+                      <option value={ele.id} key={index}>
+                        {ele.name}
                       </option>
                     );
                   })}

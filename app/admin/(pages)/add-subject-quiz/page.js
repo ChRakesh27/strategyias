@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "../../(styles)/(pages-style)/AdminPage.module.css";
 import axios from "axios";
+
 function AddSubjectQuiz() {
   const [question, setQusetion] = useState({});
   const [isLoading, setisLoading] = useState(true);
@@ -17,8 +18,9 @@ function AddSubjectQuiz() {
     "Art and Culture",
     "new current affairs",
   ];
+
   async function fetchData() {
-    const response = await axios.get("/api/quiz/getQuiz?admin=true");
+    const response = await axios.get("/api/admin/quiz/getQuiz");
     setQusetion(response.data.res);
     setisLoading(false);
   }
@@ -29,20 +31,22 @@ function AddSubjectQuiz() {
 
   async function onDeleteQuestion() {
     setisLoading(true);
-    const response = await axios.get("/api/quiz/deleteQuiz?id=" + question._id);
+    const response = await axios.get(
+      "/api/admin/quiz/deleteQuiz?id=" + question._id
+    );
     setisLoading(false);
     fetchData();
   }
   async function onUndoQuestion() {
     setisLoading(true);
-    const response = await axios.get("/api/quiz/getQuiz?undo=true");
+    const response = await axios.get("/api/admin/quiz/getQuiz?undo=true");
     setQusetion(response.data.res);
     setisLoading(false);
   }
 
   async function onClickSubHandler(subject) {
     setisLoading(true);
-    const response = await axios.post("/api/quiz/updateQuiz", {
+    const response = await axios.post("/api/admin/quiz/updateQuiz", {
       _id: question._id,
       subject: subject,
     });

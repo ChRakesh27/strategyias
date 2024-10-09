@@ -6,12 +6,26 @@ export const revalidate = 0;
 export async function GET(req, context) {
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    const fields = req.nextUrl.searchParams;
-    const id = fields.get("id");
-    console.log("🚀 ~ GET ~ id :", id);
-    const res = await Static.findByIdAndDelete(id, { new: true });
-    console.log("🚀 ~ POST ~ res:", res);
 
+    const fields = req.nextUrl.searchParams;
+    const undo = fields.get("undo");
+    let res = [];
+
+    if (undo == "true") {
+      const lastedUpdatedQuestion = await Static.findOne().sort({
+        updatedAt: -1,
+      });
+      res = await Static.findByIdAndUpdate(
+        lastedUpdatedQuestion._id,
+        {
+          subject: "",
+        },
+        { new: true }
+      );
+      return NextResponse.json({ res }, { status: 200 });
+    }
+
+    res = await Static.findOne({ subject: "" });
     return NextResponse.json({ res }, { status: 200 });
   } catch (error) {
     console.error("Error:", error);

@@ -35,11 +35,9 @@ const quizUserSchema = new mongoose.Schema(
       default: "pending",
     },
     questions: {
-      type: [String],
+      type: [Object],
       default: [],
     },
-    // course:{targetYear:"",id:"",name:""}
-    // Questions:[{questionid:"",selected:"", correct:""}]
   },
   { timestamps: true }
 );

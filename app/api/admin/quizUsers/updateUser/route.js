@@ -8,7 +8,6 @@ export async function POST(req, context) {
   try {
     const reqBody = await req.json();
 
-    console.log("🚀 ~ POST ~ id :", reqBody);
     await mongoose.connect(process.env.MONGO_URI);
 
     const res = await QuizUsers.findByIdAndUpdate(reqBody.id, reqBody.data, {

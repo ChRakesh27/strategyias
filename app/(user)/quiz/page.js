@@ -1,54 +1,42 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { test_series, current_affairs, toppers_copies } from "./courses";
+import axios from "axios";
 function DashBoard() {
   const { data: session } = useSession();
-  // console.log("user", session?.user);
-
+  const [registeredCourses, setRegisteredCourses] = useState([]);
   const [accordion, setAccordion] = useState([false, false, false]);
-  const test_series = [
-    { id: "TS_BWMP", validity: "1 Year", title: "Book wise MCQ Practice" },
-    { id: "TS_SWMP", validity: "1 Year", title: "Subject wise MCQ Practice" },
-    { id: "TS_TWMP", validity: "1 Year", title: "Topic wise MCQ Practice" },
-    { id: "TS_10QD", validity: "1 Year", title: "10 Questions / day" },
-    {
-      id: "TS_50QD",
-      validity: "1 Year",
-      title: "50 Questions / Day",
-      subtitle: "MCQ Practice 1 Year",
-    },
-    {
-      id: "TS_100QD",
-      validity: "1 Year",
-      title: "100 Questions / Day",
-      subtitle: "50 Tests",
-    },
-  ];
-  const current_affairs = [
-    {
-      id: "CA_DCA",
-      validity: "1 Year",
-      title: "Daily Current Affairs",
-      subtitle: "10 Questions / Day",
-    },
-    {
-      id: "CA_10QD",
-      validity: "1 Year",
-      title: "10 Questions / Day",
-      subtitle: "5 Tests",
-    },
-  ];
-  const toppers_copies = [
-    { title: "GS 1 Topper Copy", subtitle: "RS 199/-" },
-    { title: "GS 2 Topper Copy", subtitle: "RS 199/-" },
-    { title: "GS 3 Topper Copy", subtitle: "RS 199/-" },
-    { title: "GS 4 Topper Copy", subtitle: "RS 199/-" },
-    { title: "Essay Topper Copy", subtitle: "RS 199/-" },
-    { title: "All Copies", subtitle: "RS 499/-" },
-  ];
+
+  useEffect(() => {
+    async function fetchDate() {
+      //   const response = await axios.get(
+      //     "/api/quiz/getQuizUser?email=chipparakesh01@gmail.com"
+      //   );
+      //   setRegisteredCourses(response.data.res);
+      if (session?.user) {
+        const response = await axios.get(
+          "api/quiz/getQuizUser?email=" + session?.user.email
+        );
+        setRegisteredCourses(response.data.res);
+      }
+    }
+    fetchDate();
+  }, [session?.user]);
+
+  function isCourseRegister(id) {
+    for (let data of registeredCourses) {
+      if (data.course.id == id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   const containerClassName =
     session?.user.role === "admin" ? "adminDashboard" : "";
+
   return (
     <>
       <div className={"dashboard " + containerClassName}>
@@ -125,21 +113,32 @@ function DashBoard() {
                       <b>{ele.title}</b>
                     </div>
                     <p>{ele.subtitle}</p>
+                    <p>Rs {ele.price}/-</p>
                   </div>
                   <div className="cart-footer">
-                    {/* <Link href={"/quiz/" + ele.id} className="btn btn-red">
-                      Start
-                    </Link> */}
-                    <div>
-                      <Link href={"/quiz/view-details"} className="btn btn-red">
-                        View Details
-                      </Link>
-                    </div>
-                    <div>
-                      <Link href={"/quiz/register"} className="btn btn-red">
-                        Buy Now
-                      </Link>
-                    </div>
+                    {isCourseRegister(ele.id) ? (
+                      <div className="cart-footer-start-btn">
+                        <Link href={"/quiz/" + ele.id} className="btn btn-red">
+                          Start
+                        </Link>
+                      </div>
+                    ) : (
+                      <div className="cart-footer-btns">
+                        <div>
+                          <Link
+                            href={"/quiz/view-details"}
+                            className="btn btn-red"
+                          >
+                            View Details
+                          </Link>
+                        </div>
+                        <div>
+                          <Link href={"/quiz/register"} className="btn btn-red">
+                            Buy Now
+                          </Link>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -215,21 +214,32 @@ function DashBoard() {
                       <b>{ele.title}</b>
                     </div>
                     <p>{ele.subtitle}</p>
+                    <p>Rs {ele.price}/-</p>
                   </div>
                   <div className="cart-footer">
-                    {/* <Link href={"/quiz/" + ele.id} className="btn btn-red">
-                      Start
-                    </Link> */}
-                    <div>
-                      <Link href={"/quiz/view-details"} className="btn btn-red">
-                        View Details
-                      </Link>
-                    </div>
-                    <div>
-                      <Link href={"/quiz/" + ele.id} className="btn btn-red">
-                        Buy Now
-                      </Link>
-                    </div>
+                    {isCourseRegister(ele.id) ? (
+                      <div className="cart-footer-start-btn">
+                        <Link href={"/quiz/" + ele.id} className="btn btn-red">
+                          Start
+                        </Link>
+                      </div>
+                    ) : (
+                      <div className="cart-footer-btns">
+                        <div>
+                          <Link
+                            href={"/quiz/view-details"}
+                            className="btn btn-red"
+                          >
+                            View Details
+                          </Link>
+                        </div>
+                        <div>
+                          <Link href={"/quiz/register"} className="btn btn-red">
+                            Buy Now
+                          </Link>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -277,9 +287,9 @@ function DashBoard() {
                     <div>
                       <b>{ele.title} </b>
                     </div>
-                    <p>{ele.subtitle}</p>
+                    <p>RS {ele.price}/-</p>
                   </div>
-                  <div className="cart-footer">
+                  <div className="cart-footer topper-copy">
                     <Link href={"/quiz"} className="btn btn-red">
                       Buy Now
                     </Link>

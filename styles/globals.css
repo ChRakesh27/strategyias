@@ -359,16 +359,12 @@ p>img {
 
 .quiz .questionList {
   border-right: 1px solid gray;
-  width: 20vw;
+  width: 20%;
   height: 84vh;
   padding-top: 10px;
   overflow-y: scroll;
 }
 
-.quiz .questionList .que-ol {
-  /* padding: 20px; */
-
-}
 
 .quiz .questionList .que-ol .que-li {
   height: 10vh;
@@ -379,7 +375,6 @@ p>img {
   text-overflow: ellipsis;
   display: flex;
   margin: 5px;
-
 }
 
 .quiz .questionList .que-ol .que-li:hover {
@@ -394,8 +389,18 @@ p>img {
   box-shadow: 0px 0px 10px 10px lightblue;
 }
 
-.quiz .cart {
-  width: 70%;
+.quiz .quizBody {
+  width: 80%;
+  height: 74vh;
+  /* margin: 2vw; */
+}
+
+.quiz .quizBody .quizTime {
+  text-align: center;
+}
+
+.quiz .quizBody .cart {
+  width: 90%;
   height: 74vh;
   margin: 3vw;
   border-radius: 5px;
@@ -404,6 +409,17 @@ p>img {
   font-size: 14px !important;
   display: grid;
   grid-template-rows: auto auto 15vh;
+}
+
+
+.quiz .question .bi-star-fill {
+  color: green;
+}
+
+.quiz .question {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
 }
 
 .quiz .cart .cart-header,
@@ -524,6 +540,110 @@ p>img {
   color: #fff;
 }
 
+.quiz .loading {
+  color: #fff;
+  margin-top: 45vh;
+  font-size: larger;
+
+}
+
+.quiz .subConfirmationBox .ques-a {
+  color: rgb(0, 191, 255);
+}
+
+.quiz .subConfirmationBox .ques-ua {
+  color: gray;
+}
+
+.quiz .subConfirmationBox .ques-mra {
+  color: rgb(255, 208, 0);
+}
+
+.quiz .subConfirmationBox .ques-mrua {
+  color: red;
+}
+
+.quiz .subConfirmationBox .res-footer {
+  text-align: center;
+  font-size: larger;
+  font-weight: 700;
+}
+
+.quiz .subConfirmationBox .testEnd {
+  text-align: center;
+  font-size: larger;
+  font-weight: 700;
+  padding: 30px;
+}
+
+.quiz .subConfirmationBox .sub-test {
+  padding: 15px 30px;
+  margin: 30px 10px 10px;
+  background: red;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.quiz .res-test {
+  font-weight: 700;
+  padding: 15px 30px;
+  margin: 30px 10px 10px;
+  background: blue;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.quiz .subConfirmationBox .sub-details {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.quiz .subConfirmationBox {
+  width: 40vw;
+  box-shadow: 0px 0px 10px 30px #000;
+  color: #fff;
+  padding: 50px 30px;
+  font-size: larger;
+  border-radius: 10px;
+  background: #000;
+  text-align: left;
+}
+
+.quiz .isSubmit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quiz .isStart,
+.quiz .isSubmit {
+  z-index: 9;
+  background: rgba(0, 0, 0, 0.927);
+  width: 100%;
+  height: 91.7vh;
+  position: absolute;
+  text-align: center;
+}
+
+.quiz .isStart .startBtn {
+  margin-top: 45vh;
+  padding: 10px 40px;
+  font-size: larger;
+  color: #fff;
+  background: blue;
+  border-radius: 10px;
+}
+
+.quiz .questionList .que-ol .marQues {
+  border: 4px solid red;
+}
+
+.quiz .questionList .que-ol .marQuesAns {
+  border: 4px solid rgb(255, 208, 0);
+}
+
 .option-select {
   color: #004085 !important;
   background: #cce5ff !important;
@@ -541,6 +661,7 @@ p>img {
   background: #f8d7da !important;
   border: 1px solid #f5c6cb !important;
 }
+
 
 .adminDashboard {
   position: relative;
@@ -646,8 +767,6 @@ p>img {
   position: absolute;
 }
 
-
-
 .dashboard .cart .btn-red {
   background-color: #ff6b6b;
   border: none;
@@ -665,14 +784,27 @@ p>img {
 
 .dashboard .cart .cart-header {
   background: linear-gradient(90deg, #FF4E17 0%, #FF910F 100%);
-
 }
 
 .dashboard .cart .cart-footer {
+  /* margin-top: 20px;
+  display: flex;
+  justify-content: space-between; */
+}
+
+.dashboard .cart .cart-footer .cart-footer-btns {
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
+}
 
+.dashboard .cart .cart-footer .cart-footer-start-btn {
+  margin-top: 20px;
+}
+
+.dashboard .cart .topper-copy {
+  margin-top: 20px;
+  display: block;
 }
 
 .dashboard .cart:hover {
@@ -692,8 +824,15 @@ p>img {
 
 
 @media only screen and (max-width:600px) {
+  .quiz .quizBody {
+    width: 100%;
+    height: 100%;
+    border: 2px solid;
+    margin-top: 2vw;
+  }
+
   .quiz .cart {
-    width: 100vh;
+    width: 94% !important;
     height: 80vh;
   }
 
@@ -715,7 +854,6 @@ p>img {
 
   .dashboard .cart {
     padding: 20px;
-    font-size: medium;
   }
 
   .dashboard .test-series .card-list,
@@ -725,4 +863,7 @@ p>img {
 
   }
 
+  .quiz .subConfirmationBox {
+    width: 100vw;
+  }
 }
