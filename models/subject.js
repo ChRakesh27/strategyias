@@ -10,6 +10,9 @@ const subjectSchema = new mongoose.Schema({
       ref: "Topic",
     },
   ],
+  from: {
+    type: String,
+  },
 });
 
 mongoose.models = {};

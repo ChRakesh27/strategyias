@@ -12,7 +12,7 @@ import Image from "next/image";
 import toast from "react-hot-toast";
 import Link from "next/link";
 
-const DeletePrelimsNotePage = () => {
+const DeleteArticlePage = () => {
   const [viewTab, setViewTab] = useState("");
   const [subjectList, setSubjectList] = useState();
   const [topicList, setTopicList] = useState([]);
@@ -23,7 +23,7 @@ const DeletePrelimsNotePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/api/admin/getSubjects");
+        const response = await axios.get("/api/admin/getSubjects?from=article");
         setSubjectList(response.data.subjects);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -53,7 +53,7 @@ const DeletePrelimsNotePage = () => {
 
   const selectNote = async (e) => {
     try {
-      const response = await axios.post("/api/admin/get-prelims-notes", {
+      const response = await axios.post("/api/admin/get-article", {
         subject: e.target.value,
       });
       setNoteList(response.data.note);
@@ -66,7 +66,7 @@ const DeletePrelimsNotePage = () => {
       try {
         const body = subjectList.find((item) => item._id == subjectId);
         const response = await axios.post(
-          "/api/admin/delete-prelims-notes-subject",
+          "/api/admin/delete-article-subject",
           body
         );
         setSubjectId("");
@@ -80,10 +80,10 @@ const DeletePrelimsNotePage = () => {
     if (subjectId && topicId) {
       try {
         const delSub = subjectList.find((item) => item._id == subjectId);
-        const response = await axios.post(
-          "/api/admin/delete-prelims-notes-topic",
-          { delSub, topicId }
-        );
+        const response = await axios.post("/api/admin/delete-article-topic", {
+          delSub,
+          topicId,
+        });
         setTopicId("");
         toast.success("deleted Successfully");
       } catch (error) {
@@ -93,10 +93,7 @@ const DeletePrelimsNotePage = () => {
   };
   const deleteNote = async (data) => {
     try {
-      const response = await axios.post(
-        "/api/admin/delete-prelims-notes",
-        data
-      );
+      const response = await axios.post("/api/admin/delete-article", data);
       setTopicId("");
       toast.success("deleted Successfully");
     } catch (error) {
@@ -293,4 +290,4 @@ const DeletePrelimsNotePage = () => {
   );
 };
 
-export default DeletePrelimsNotePage;
+export default DeleteArticlePage;

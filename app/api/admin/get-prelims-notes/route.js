@@ -1,8 +1,5 @@
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
-import userActivity from "@/models/userActivity";
-import subject from "@/models/subject";
-import topic from "@/models/topic";
 import prelimsNotes from "@/models/prelimsNotes";
 export const revalidate = 0;
 export async function POST(req) {
@@ -11,15 +8,13 @@ export async function POST(req) {
     const { subject, topic } = data;
 
     await mongoose.connect(process.env.MONGO_URI);
-    let note = []
+    let note = [];
     if (topic) {
       // let slug = `${subject}/${topic}`;
       note = await prelimsNotes.find({ subject, topic });
     } else {
       note = await prelimsNotes.find({ subject });
     }
-    console.log("🚀 ~ note:", note)
-
 
     return NextResponse.json({ note }, { status: 200 });
   } catch (err) {

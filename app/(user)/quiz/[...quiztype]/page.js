@@ -42,7 +42,7 @@ export default function Quiz({ params }) {
       );
 
       // let registerDetails = await axios.get(
-      //   "/api/quiz/getQuizUser?email=person1@gmail.com&courseId=" +
+      //   "/api/quiz/getQuizUser?email=chipparakesh01@gmail.com&courseId=" +
       //     params.quiztype[0]
       // );
 

@@ -21,10 +21,8 @@ export async function GET(req, context) {
       //     "&categories=238403627"
       // );
 
-      console.log("🚀 ~ GET c:", c);
       // let quesIndex = 0;
       for (let quesIndex = 0; quesIndex < 100; quesIndex++) {
-        console.log("🚀 ~ GET ~ quesIndex:", quesIndex);
         const dom = new JSDOM(dataSet.data[quesIndex].content.rendered);
         const document = dom.window.document;
 

@@ -12,7 +12,6 @@ export async function POST(req) {
   try {
     const body = await req.json();
     const { subjectId } = body;
-    console.log("🚀 ~ body:", body)
     await mongoose.connect(process.env.MONGO_URI);
     const sub = await subject.findById(subjectId).populate("topic");
     if (!sub) {

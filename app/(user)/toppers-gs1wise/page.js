@@ -14,7 +14,11 @@ async function getTopper({ query, page, limit }) {
   await mongoose.connect(process.env.MONGO_URI);
 
   const skip = (page - 1) * limit;
-  const pipeline = [{ $skip: skip }, { $limit: limit },{ $sort: { gs1marks: -1 } }];
+  const pipeline = [
+    { $skip: skip },
+    { $limit: limit },
+    { $sort: { gs1marks: -1 } },
+  ];
   if (query) {
     pipeline.unshift({
       $search: {
@@ -50,7 +54,6 @@ async function getTopper({ query, page, limit }) {
       toppers = results;
       totalCount = count;
     } else {
- 
       toppers = await topper.find();
       totalCount = toppers.length;
     }
@@ -86,7 +89,6 @@ export default async function Home({ searchParams }) {
     limit,
   });
   const totalPages = Math.ceil(totalCount / limit);
-  // console.log("toppers->",mainToppers)
   const pageNumbers = Array.from({ length: 5 }, (_, index) => page - 2 + index);
   mainToppers = toppers;
   return (
@@ -152,7 +154,10 @@ export default async function Home({ searchParams }) {
               (totalPages - pageNumber < 2 || pageNumber - page < 2);
 
             return isPageValid ? (
-              <Link key={pageNumber} href={`/toppers-gs1wise?page=${pageNumber}`}>
+              <Link
+                key={pageNumber}
+                href={`/toppers-gs1wise?page=${pageNumber}`}
+              >
                 <div
                   className={`${styles.paginationEle} ${
                     pageNumber === page ? styles.selectedPage : ""

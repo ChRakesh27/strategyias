@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
-import prelimsNotes from "@/models/prelimsNotes";
+import article from "@/models/article";
 export const revalidate = 0;
 export async function POST(req) {
   try {
@@ -20,7 +20,7 @@ export async function POST(req) {
 
     await mongoose.connect(process.env.MONGO_URI);
 
-    const note = await prelimsNotes.findOne({ slug: slug });
+    const note = await article.findOne({ slug: slug });
 
     if (!note) {
       return NextResponse.json(

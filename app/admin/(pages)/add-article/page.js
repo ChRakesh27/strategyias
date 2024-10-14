@@ -12,7 +12,7 @@ import Image from "next/image";
 import toast from "react-hot-toast";
 
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
-const CurrentAffairsForm = () => {
+const ArticleForm = () => {
   const router = useRouter();
   const editor = useRef(null);
   const editor2 = useRef(null);
@@ -34,7 +34,7 @@ const CurrentAffairsForm = () => {
     faqContent: "",
     tags: "",
     faqs: [],
-    from: "prelims-notes",
+    from: "article",
   });
   useEffect(() => {
     if (editor.current) {
@@ -51,7 +51,7 @@ const CurrentAffairsForm = () => {
     content: "",
     subTopics: "",
     tags: "",
-    from: "prelims-notes",
+    from: "article",
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -124,9 +124,7 @@ const CurrentAffairsForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "/api/admin/getSubjects?from=prelims-notes"
-        );
+        const response = await axios.get("/api/admin/getSubjects?from=article");
         setSubjects(response.data.subjects);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -159,7 +157,7 @@ const CurrentAffairsForm = () => {
 
     setIsLoading(true);
 
-    const prelimsNotes = {
+    const article = {
       title: formData.title,
       faqs: formData.faqs,
       slug: formData.slug,
@@ -170,22 +168,22 @@ const CurrentAffairsForm = () => {
       content: formData.content,
       subTopics: formData.subTopics,
       tags: formData.tags,
-      from: "prelims-notes",
+      from: "article",
     };
 
     try {
-      const res = await fetch("/api/admin/update-prelims-notes", {
+      const res = await fetch("/api/admin/update-article", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(prelimsNotes),
+        body: JSON.stringify(article),
       });
 
       if (res.status === 200) {
         setIsLoading(false);
         setEditMode(false);
-        toast.success("updated prelims notes");
+        toast.success("updated article");
         setFormData((prevData) => ({
           ...prevData,
           title: "",
@@ -200,10 +198,10 @@ const CurrentAffairsForm = () => {
           faqContent: "",
           tags: "",
           faqs: [],
-          from: "prelims-notes",
+          from: "article",
         }));
 
-        router.push("/admin/add-prelims-notes");
+        router.push("/admin/add-article");
       } else {
         setIsLoading(false);
       }
@@ -229,7 +227,7 @@ const CurrentAffairsForm = () => {
       faqContent: "",
       tags: "",
       faqs: [],
-      from: "prelims-notes",
+      from: "article",
     }));
   };
 
@@ -251,7 +249,7 @@ const CurrentAffairsForm = () => {
     setShowtopicOptions(false);
 
     const body = { subject: formData.subjectId, topic: data._id };
-    const response = await axios.post("/api/admin/get-prelims-notes", body);
+    const response = await axios.post("/api/admin/get-article", body);
 
     if (editor.current) {
       editor.current.value = response.data.note[0].content;
@@ -273,53 +271,9 @@ const CurrentAffairsForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // if (!formData.question) {
-    //   setErrorAlerts((prevData) => ({
-    //     ...prevData,
-    //     question: "question is required",
-    //   }));
-    //   return;
-    // } else if (!formData.option1) {
-    //   setErrorAlerts((prevData) => ({
-    //     ...prevData,
-    //     option1: "option 1 is required",
-    //   }));
-    //   return;
-    // } else if (!formData.option2) {
-    //   setErrorAlerts((prevData) => ({
-    //     ...prevData,
-    //     option2: "option 2 is required",
-    //   }));
-    //   return;
-    // } else if (!formData.option3) {
-    //   setErrorAlerts((prevData) => ({
-    //     ...prevData,
-    //     option3: "option 3 is required",
-    //   }));
-    //   return;
-    // } else if (!formData.option4) {
-    //   setErrorAlerts((prevData) => ({
-    //     ...prevData,
-    //     option4: "option 4 is required",
-    //   }));
-    //   return;
-    // } else if (!formData.solution) {
-    //   setErrorAlerts((prevData) => ({
-    //     ...prevData,
-    //     solution: "solution  is required",
-    //   }));
-    //   return;
-    // } else if (!formData.correctOption) {
-    //   setErrorAlerts((prevData) => ({
-    //     ...prevData,
-    //     correctOption: "correct Option  is required",
-    //   }));
-    //   return;
-    // }
-
     setIsLoading(true);
 
-    const prelimsNotes = {
+    const article = {
       title: formData.title,
       faq: formData.faqs,
       slug: formData.slug,
@@ -330,21 +284,21 @@ const CurrentAffairsForm = () => {
       content: formData.content,
       subTopics: formData.subTopics,
       tags: formData.tags,
-      from: "prelims-notes",
+      from: "article",
     };
 
     try {
-      const res = await fetch("/api/admin/add-prelims-notes", {
+      const res = await fetch("/api/admin/add-article", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(prelimsNotes),
+        body: JSON.stringify(article),
       });
 
       if (res.status === 200) {
         setIsLoading(false);
-        toast.success("saved prelims notes");
+        toast.success("saved article");
         setFormData((prevData) => ({
           ...prevData,
           title: "",
@@ -359,9 +313,10 @@ const CurrentAffairsForm = () => {
           faqContent: "",
           tags: "",
           faqs: [],
+          from: "article",
         }));
 
-        router.push("/admin/add-prelims-notes");
+        router.push("/admin/add-article");
       } else {
         setIsLoading(false);
       }
@@ -376,7 +331,7 @@ const CurrentAffairsForm = () => {
         <form onSubmit={handleSubmit} className={styles.questionForm} action="">
           <div className={styles.formHeading}>
             <h1>
-              Add <span>Prelims notes</span>{" "}
+              Add <span>Article</span>{" "}
             </h1>
           </div>
 
@@ -391,24 +346,12 @@ const CurrentAffairsForm = () => {
                   onChange={handleInputChange}
                   required
                 />
-                {/* {errorAlerts.option1 && (
-                  <div className={styles.alertBox}>
-                    {" "}
-                    <p>{errorAlerts.option1}</p>
-                  </div>
-                )} */}
               </div>
               <div className={styles.inputDiv}>
                 <h2>Content:</h2>
-                {/* {errorAlerts.question && (
-                  <div className={styles.alertBox}>
-                    {" "}
-                    <p>{errorAlerts.question}</p>
-                  </div>
-                )} */}
 
                 <JoditEditor
-                  ref={editor}
+                  innerRef={editor}
                   value={formData.content}
                   tabIndex={1}
                   onBlur={(newContent) =>
@@ -426,12 +369,6 @@ const CurrentAffairsForm = () => {
                   value={formData.slug}
                   onChange={handleInputChange}
                 />
-                {/* {errorAlerts.option2 && (
-                  <div className={styles.alertBox}>
-                    {" "}
-                    <p>{errorAlerts.option2}</p>
-                  </div>
-                )} */}
               </div>
               <div className={styles.inputDivSubject}>
                 <input
@@ -445,7 +382,7 @@ const CurrentAffairsForm = () => {
 
                 {showSubOptions && formData.subjectName && (
                   <div
-                    ref={subjectInputRef}
+                    innerRef={subjectInputRef}
                     className={styles.subjectOptionsDiv}
                   >
                     {subjects
@@ -469,13 +406,6 @@ const CurrentAffairsForm = () => {
                       })}
                   </div>
                 )}
-
-                {/* {errorAlerts.option3 && (
-                  <div className={styles.alertBox}>
-                    {" "}
-                    <p>{errorAlerts.option3}</p>
-                  </div>
-                )} */}
               </div>
               <div className={styles.inputDivSubject}>
                 <input
@@ -488,7 +418,10 @@ const CurrentAffairsForm = () => {
                 />
 
                 {showtopicOptions && formData.topicName && (
-                  <div ref={topicInputRef} className={styles.subjectOptionsDiv}>
+                  <div
+                    innerRef={topicInputRef}
+                    className={styles.subjectOptionsDiv}
+                  >
                     {topics
                       .filter((data) =>
                         data.name
@@ -510,13 +443,6 @@ const CurrentAffairsForm = () => {
                       })}
                   </div>
                 )}
-
-                {/* {errorAlerts.option3 && (
-                  <div className={styles.alertBox}>
-                    {" "}
-                    <p>{errorAlerts.option3}</p>
-                  </div>
-                )} */}
               </div>
 
               <div className={styles.inputDiv}>
@@ -527,12 +453,6 @@ const CurrentAffairsForm = () => {
                   value={formData.subTopics}
                   onChange={handleInputChange}
                 />
-                {/* {errorAlerts.option4 && (
-                  <div className={styles.alertBox}>
-                    {" "}
-                    <p>{errorAlerts.option4}</p>
-                  </div>
-                )} */}
               </div>
               <div className={styles.inputDiv}>
                 <input
@@ -542,15 +462,7 @@ const CurrentAffairsForm = () => {
                   value={formData.tags}
                   onChange={handleInputChange}
                 />
-                {/* {errorAlerts.option4 && (
-                  <div className={styles.alertBox}>
-                    {" "}
-                    <p>{errorAlerts.option4}</p>
-                  </div>
-                )} */}
               </div>
-
-              {/* faq questions  */}
 
               <h1>Add FAQ </h1>
 
@@ -563,9 +475,6 @@ const CurrentAffairsForm = () => {
                       </div>
 
                       <div
-                        // onClick={() =>
-                        //   handleLinkRemove("optional1Links", index)
-                        // }
                         onClick={() => removeFaq(index)}
                         className={styles.closeBtnDiv}
                       >
@@ -588,7 +497,7 @@ const CurrentAffairsForm = () => {
                   <h2>Solution:</h2>
 
                   <JoditEditor
-                    ref={editor2}
+                    innerRef={editor2}
                     //   value={content}
                     tabIndex={1}
                     onBlur={(newContent) =>
@@ -635,4 +544,4 @@ const CurrentAffairsForm = () => {
   );
 };
 
-export default CurrentAffairsForm;
+export default ArticleForm;

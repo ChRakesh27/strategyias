@@ -3,22 +3,22 @@ import { NextResponse } from "next/server";
 import userActivity from "@/models/userActivity";
 import subject from "@/models/subject";
 import topic from "@/models/topic";
-import prelimsNotes from "@/models/prelimsNotes";
+import article from "@/models/article";
 export const revalidate = 0;
 export async function POST(req) {
   try {
-    const { delSub, topicId } = await req.json();
+    const delSub = await req.json();
     await mongoose.connect(process.env.MONGO_URI);
-
-    await subject.findByIdAndUpdate(delSub._id, delSub);
-
-    const res = await prelimsNotes.find({ topic: topicId });
-    for (let item of res) {
-      await prelimsNotes.findByIdAndDelete(item._id);
+    for (let topicId of delSub.topic) {
+      await topic.findByIdAndDelete(topicId);
     }
-    await topic.findByIdAndDelete(topicId);
+    const res = await article.find({ subject: delSub._id });
+    for (let item of res) {
+      await article.findByIdAndDelete(item._id);
+    }
+    await subject.findByIdAndDelete(delSub._id);
     return NextResponse.json(
-      { message: "New Prelims topic notes deleted" },
+      { message: "Article Subject deleted" },
       { status: 200 }
     );
   } catch (err) {

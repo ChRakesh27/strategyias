@@ -1,18 +1,22 @@
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
-import topic from "@/models/topic";
-import prelimsNotes from "@/models/prelimsNotes";
+import article from "@/models/article";
 export const revalidate = 0;
 export async function POST(req) {
   try {
     const data = await req.json();
+    const { subject, topic } = data;
+
     await mongoose.connect(process.env.MONGO_URI);
-    await prelimsNotes.findByIdAndDelete(data._id);
-    await topic.findByIdAndDelete(data.topic);
-    return NextResponse.json(
-      { message: "Prelims notes deleted" },
-      { status: 200 }
-    );
+    let note = [];
+    if (topic) {
+      // let slug = `${subject}/${topic}`;
+      note = await article.find({ subject, topic });
+    } else {
+      note = await article.find({ subject });
+    }
+
+    return NextResponse.json({ note }, { status: 200 });
   } catch (err) {
     console.log(err);
     return NextResponse.json(

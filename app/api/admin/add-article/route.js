@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import userActivity from "@/models/userActivity";
 import subject from "@/models/subject";
 import topic from "@/models/topic";
-import prelimsNotes from "@/models/prelimsNotes";
+import article from "@/models/article";
 export const revalidate = 0;
 export async function POST(req) {
   try {
@@ -31,13 +31,13 @@ export async function POST(req) {
       slug = `${subjectName}/${topicName}`;
     }
 
-    let newNotes;
+    let newArticle;
     if (subjectId) {
       let subjectExists = await subject.findById(subjectId);
 
       if (topicId) {
         let topicExists = await topic.findById(topicId);
-        newNotes = new prelimsNotes({
+        newArticle = new article({
           title: title,
           slug: slug,
           content: content,
@@ -54,7 +54,7 @@ export async function POST(req) {
         await newTopic.save();
         subjectExists.topic.push(newTopic._id);
         await subject.findByIdAndUpdate(subjectId, subjectExists);
-        newNotes = new prelimsNotes({
+        newArticle = new article({
           title: title,
           slug: slug,
           content: content,
@@ -77,7 +77,7 @@ export async function POST(req) {
         from,
       });
       await newSubject.save();
-      newNotes = new prelimsNotes({
+      newArticle = new article({
         title: title,
         slug: slug,
         content: content,
@@ -89,11 +89,8 @@ export async function POST(req) {
       });
     }
 
-    await newNotes.save();
-    return NextResponse.json(
-      { message: "New Prelims notes saved" },
-      { status: 200 }
-    );
+    await newArticle.save();
+    return NextResponse.json({ message: "New Article saved" }, { status: 200 });
   } catch (err) {
     console.log(err);
     return NextResponse.json(

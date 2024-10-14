@@ -10,9 +10,11 @@ import subject from "@/models/subject";
 export const revalidate = 0;
 export async function GET(req) {
   try {
+    const fields = req.nextUrl.searchParams;
+    const from = fields.get("from");
     await mongoose.connect(process.env.MONGO_URI);
 
-    const subjects = await subject.find();
+    const subjects = await subject.find({ from: from });
 
     return NextResponse.json({ subjects }, { status: 200 });
   } catch (error) {

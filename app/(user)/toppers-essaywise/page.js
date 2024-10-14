@@ -89,7 +89,6 @@ export default async function Home({ searchParams }) {
     limit,
   });
   const totalPages = Math.ceil(totalCount / limit);
-  // console.log("toppers->",mainToppers)
   const pageNumbers = Array.from({ length: 5 }, (_, index) => page - 2 + index);
   mainToppers = toppers;
   return (

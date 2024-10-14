@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import userActivity from "@/models/userActivity";
 import subject from "@/models/subject";
 import topic from "@/models/topic";
-import prelimsNotes from "@/models/prelimsNotes";
+import article from "@/models/article";
 export const revalidate = 0;
 export async function POST(req) {
   try {
@@ -12,13 +12,13 @@ export async function POST(req) {
 
     await subject.findByIdAndUpdate(delSub._id, delSub);
 
-    const res = await prelimsNotes.find({ topic: topicId });
+    const res = await article.find({ topic: topicId });
     for (let item of res) {
-      await prelimsNotes.findByIdAndDelete(item._id);
+      await article.findByIdAndDelete(item._id);
     }
     await topic.findByIdAndDelete(topicId);
     return NextResponse.json(
-      { message: "New Prelims topic notes deleted" },
+      { message: "Article Topic deleted" },
       { status: 200 }
     );
   } catch (err) {
