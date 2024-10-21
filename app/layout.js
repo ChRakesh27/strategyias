@@ -9,7 +9,7 @@ import { getServerSession } from "next-auth";
 import options from "./api/auth/[...nextauth]/options";
 import { Roboto } from "next/font/google";
 import Modal from "./(components)/modal";
-
+import { FacebookPixel } from "../components/FbPixel";
 const roboto = Roboto({
   weight: "400",
   subsets: ["latin"],
@@ -56,6 +56,7 @@ export default async function RootLayout({ children }) {
             <NavUser />
             <Providers>
               <div className="childrenMainContainer">{children}</div>
+              <FacebookPixel />
             </Providers>
           </AuthProvider>
         </div>
