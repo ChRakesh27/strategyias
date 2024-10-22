@@ -59,6 +59,7 @@ const Navbar = () => {
     "/upsc-answer-writing-ibec-method",
     "/quiz/view-details",
     "/quiz/register",
+    "/upsc-answer-writing-ibec-method/payment",
   ];
   if (noNavbar.includes(pathname)) {
     return <></>;

@@ -1,21 +1,19 @@
 "use client";
 import React, { useState } from "react";
-import styles from "../../(styles)/quizRegister.module.css";
+import styles from "../../../(styles)/quizRegister.module.css";
 import Link from "next/link";
-import axios from "axios";
+// import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-function Register() {
+function Payment() {
   const { data: session } = useSession();
 
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [isPayment, setIsPayment] = useState(false);
   const [formData, setFormData] = useState({
-    registerAt: "",
-    expireAt: "",
     email: session?.user.email,
     userName: session?.user.name,
     phone: "",
@@ -23,15 +21,13 @@ function Register() {
     course: {},
   });
 
-  const targetYearsList = [2024, 2023];
-
   const coursesList = [
-    { id: "TS_BWMP", name: "Book wise MCQ Practice" },
-    { id: "TS_SWMP", name: "Subject wise MCQ Practice" },
-    { id: "TS_TWMP", name: "Topic wise MCQ Practice" },
-    { id: "TS_10QD", name: "10 Questions / day" },
-    { id: "TS_50QD", name: "50 Questions / Day" },
-    { id: "TS_100QD", name: "100 Questions / Day" },
+    { id: "all", name: "ALL" },
+    { id: "essay", name: "ESSAY" },
+    { id: "gs1", name: "GS1" },
+    { id: "gs2", name: "GS2" },
+    { id: "gs3", name: "GS3" },
+    { id: "gs4", name: "GS4" },
   ];
 
   function uploadedImage(e) {
@@ -57,14 +53,14 @@ function Register() {
     const payload = {
       ...formData,
       registerAt: date.toISOString(),
-      expireAt: oneYearLater.toISOString(),
     };
+    console.log("🚀 ~ onSubmitHandler ~ payload:", payload);
 
-    const response = await axios.post("/api/quiz/registerCourse", payload);
+    // const response = await axios.post("/api/quiz/registerCourse", payload);
     setIsLoading(false);
-    if (response.status === 200) {
-      router.push("/quiz");
-    }
+    // if (response.status === 200) {
+    router.push("/upsc-answer-writing-ibec-method");
+    // }
   }
 
   return (
@@ -84,7 +80,7 @@ function Register() {
             </Link>
           </div>
           <div className={styles.quizRegisterForm}>
-            <div className={styles.heading}>Register for the Course</div>
+            <div className={styles.heading}>Buy Toppers Copies</div>
             <form onSubmit={onSubmitHandler}>
               {!isPayment ? (
                 <>
@@ -130,37 +126,7 @@ function Register() {
                     ></input>
                   </div>
                   <div>
-                    <div className={styles.label}>Target Year</div>
-                    <select
-                      className={styles.formControlInput}
-                      onChange={(e) =>
-                        setFormData((val) => {
-                          return {
-                            ...val,
-                            course: {
-                              ...val.course,
-                              targetYear: e.target.value,
-                            },
-                          };
-                        })
-                      }
-                      defaultValue={""}
-                      required
-                    >
-                      <option disabled value={""}>
-                        Select Target Year
-                      </option>
-                      {targetYearsList.map((ele, index) => {
-                        return (
-                          <option value={ele} key={index}>
-                            {ele}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                  <div>
-                    <div className={styles.label}>Course interested</div>
+                    <div className={styles.label}>Toppers Copy</div>
                     <select
                       className={styles.formControlInput}
                       onChange={(e) => {
@@ -181,7 +147,7 @@ function Register() {
                       required
                     >
                       <option disabled value={""}>
-                        Select Course
+                        Select Copy
                       </option>
                       {coursesList.map((ele, index) => {
                         return (
@@ -237,4 +203,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Payment;

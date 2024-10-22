@@ -21,8 +21,8 @@ const UserCard = async ({ data }) => {
               src={data.imageUrl}
               alt={data.firstname + " " + data.lastname + " " + "profile image"}
               fill
-              objectFit="cover"
-              objectPosition="center"
+              sizes="100%"
+              style={{ objectFit: "cover", objectPosition: "center" }}
               className={styles.userProfile}
             ></Image>
             <div className={styles.TopperName}>

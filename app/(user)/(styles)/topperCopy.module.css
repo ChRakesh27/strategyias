@@ -1,0 +1,558 @@
+.container {
+    font-size: 26px;
+    display: flex;
+    justify-content: center;
+    scroll-behavior: smooth;
+}
+
+.landingPageIcon {
+    padding: 0.2em 0em;
+    font-size: 1.8em;
+}
+
+.textColorRed {
+    color: #EA0000;
+
+}
+
+.containerBody {
+    width: 1440px;
+    text-align: center;
+}
+
+.home {
+    padding: 20px;
+    width: 100%;
+    margin-bottom: 30px;
+    background: linear-gradient(180deg, #FDFFDC 0%, #FFFFFF 100%);
+}
+
+
+.heading {
+    font-family: inherit;
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 88px;
+}
+
+.home .rate_price {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home .rateImg {
+    width: 200px !important;
+    height: 60px;
+}
+
+.home .rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home .des {
+    margin: 50px 15%;
+    background: radial-gradient(26.12% 155.17% at 50% 50%, #FEFEFF 0%, #FBF1FF 100%);
+    border: 2px solid #D5D7FF;
+    padding: 30px 20px;
+    border-radius: 20px;
+    font-size: 25px;
+}
+
+.home .del {
+    text-decoration-color: red;
+}
+
+.home .rightArrowImg {
+    width: 30px !important;
+    height: 30px;
+}
+
+.home .details {
+    margin: 20px 10px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    text-align: start;
+    font-size: 26px;
+}
+
+.buynow,
+.checkPrice,
+.tableBuyNow {
+    background: linear-gradient(90deg, #C45B0A 0%, #430C00 100%);
+    padding: 18px 80px;
+    border-radius: 16px;
+    font-family: Product Sans;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    margin: 50px 0px 100px;
+
+}
+
+.checkPrice {
+    padding: 10px 30px;
+    font-size: 20px;
+}
+
+.tableBuyNow {
+    padding: 10px 30px;
+    font-size: 20px;
+    margin: 10px;
+    display: flex;
+}
+
+.iasToppers {
+    width: 100%;
+    background: #FFFBE0;
+    margin: 10px 0px 40px;
+    padding: 50px 20px 80px;
+}
+
+.iasToppers .cardGroup {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 30px;
+    justify-items: center;
+}
+
+.iasToppers .card {
+    background: linear-gradient(180deg, #030053 0%, #00070F 100%);
+    width: 427px;
+    height: 800px;
+    border-radius: 24px;
+    padding: 20px;
+    color: #fff;
+
+}
+
+.iasToppers .card .topperName {
+    border: 2px solid #B2B2B2;
+    background: #424242;
+    font-family: inherit;
+    font-size: 28px;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: -18px;
+    font-family: inherit;
+    line-height: 45px;
+}
+
+
+
+.iasToppers .card .topperImg {
+    width: 300px;
+    height: 300px;
+}
+
+.iasToppers .card .cardBody {
+    margin: 20px 0px;
+    font-size: 24px;
+    text-align: start;
+}
+
+
+
+.ibeclineStyle {
+    height: 8px;
+    border: 3px solid #FF8B1F;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+.ibecRow {
+    display: flex;
+    justify-content: space-between;
+    text-align: start;
+    background: linear-gradient(92.48deg, #FFFFFF 8.36%, #FFEDF4 95.42%);
+    padding: 60px 10px;
+}
+
+.ibecTitle {
+    color: #EA0000;
+    font-weight: bold;
+}
+
+.ibecdes {
+    margin: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.ibecRow:nth-child(even) {
+    flex-direction: row-reverse;
+    background: #fff;
+}
+
+.ambcb,
+.hbcutc {
+    padding: 50px 20px 80px;
+}
+
+.ambcbBody {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.ambcbCard .title {
+    color: #EA0000;
+    font-size: 32px;
+
+}
+
+.ambcbCard .des {
+    color: #5B5B5B;
+    font-size: 20px;
+
+}
+
+.ambcbCard {
+    border-radius: 10px;
+    padding: 10px;
+    background: #fff;
+    height: 312px;
+    border: 1px solid #E5E5E5;
+    align-content: center;
+}
+
+.hbcutcBody .bgImg {
+    width: 90%;
+    height: 70%;
+    margin: 30px 0px;
+}
+
+
+.tagt {
+    padding: 50px 50px;
+    background: #FFFEDD;
+    margin: 10px;
+}
+
+.tagt .tagtDesGroup {
+    margin: 30px 0px 40px;
+    text-align: start;
+}
+
+.tagt .tagtDesGroup .tagtDes {
+    display: flex;
+    gap: 10px;
+    margin: 10px;
+}
+
+.tagt .tagtCard .des {
+    margin: 30px 0px;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.tagt .tagtCard .title {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 10px 0px;
+}
+
+.tagt .tagtCard:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.tagt .tagtCard {
+    width: 100%;
+    margin: 10px 0px;
+    padding: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: start;
+    border: 6px solid #EBEBEB;
+    border-radius: 30px;
+}
+
+.cyp {
+    width: 100%;
+    padding: 50px 20px;
+    background: linear-gradient(131.86deg, #FFFBFE 22.51%, #FFF5CF 93.85%);
+}
+
+.cyp .cpyTableDiv {
+    padding: 100px;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.cyp .cpyTable {
+    border-radius: 20px !important;
+
+}
+
+.stickyColumn {
+    position: sticky;
+    left: 0;
+    background-color: #fff;
+    z-index: 1;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.cyp .cpyTableDiv .cpyTable th:first-child {
+    border-top-left-radius: 20px;
+}
+
+
+.cyp .cpyTableDiv .cpyTable th:last-child {
+    border-top-right-radius: 20px;
+}
+
+.cyp .cpyTableDiv .cpyTable th {
+    background: rgb(255, 139, 189) !important;
+
+}
+
+.cyp .cpyTableDiv .cpyTable th,
+.cyp .cpyTableDiv .cpyTable td {
+    border: 1px solid #d2d2d2;
+    background: #fff;
+}
+
+.cyp .cpyTableDiv .cpyTable thead {
+    border-collapse: initial;
+    border-top-left-radius: 20px;
+    background: rgba(255, 139, 189, 0.697);
+}
+
+.sltb {
+    padding: 50px 20px;
+}
+
+.sltbCardGroup {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.sltbCard {
+    text-align: start;
+    background: #F0FFED;
+    height: 380px;
+    border-radius: 24px;
+    padding: 30px;
+    position: relative;
+    width: 100%;
+    box-shadow: 0px 0px 20px 0px;
+}
+
+.sltbCard .title {
+    font-size: larger;
+    font-weight: 700;
+    padding: 20px 0px;
+}
+
+.sltbCard .sltbCardFooter {
+    width: 90%;
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq {
+    padding: 50px;
+    margin-bottom: 100px;
+}
+
+.faq .title {
+    margin: 50px 20px 100px;
+    font-family: Syne;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 40px;
+}
+
+.faqItem {
+    font-family: Product Sans Medium;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #ccc;
+    text-align: start;
+}
+
+.faqQuestion {
+    width: 100%;
+    border: none;
+    font-size: 18px;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    background-color: #f1f1f1;
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.faqAnswer {
+    padding: 20px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.ibec .ibecCol {
+    width: 100%;
+
+}
+
+.ibec .carousel {
+    width: 100%;
+    height: 400px;
+}
+
+.offerPrice {
+    border-radius: 30px;
+    border: 5px dashed;
+    padding: 10px;
+    margin: 20px !important;
+
+}
+
+@media only screen and (max-width:600px) {
+    .containerBody {
+        width: 100%;
+        text-align: center;
+    }
+
+    .heading {
+        font-size: 2.5rem;
+        line-height: normal;
+    }
+
+    .home .rateImg {
+        width: 100px !important;
+        height: 30px;
+    }
+
+    .home .des {
+        margin: 10px;
+        padding: 20px 10px;
+        font-size: 20px;
+    }
+
+    .home .details {
+        display: flex;
+        text-align: start;
+        font-size: 20px;
+    }
+
+    .iasToppers .cardGroup {
+        display: grid;
+        grid-template-columns: 1fr;
+        row-gap: 30px;
+        justify-items: center;
+    }
+
+    .checkPrice {
+        padding: 10px 12px;
+        font-size: 16px;
+    }
+
+    .iasToppers .card {
+        width: 100%;
+        height: 800px;
+        padding: 20px;
+    }
+
+    .ambcbBody {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .hbcutcBody .bgImg {
+        width: 100%;
+        height: 70vh;
+    }
+
+    .tagt {
+        padding: 30px 20px;
+        background: #FFFEDD;
+    }
+
+    .tagt .tagtCard {
+        width: 100%;
+        margin: 10px 0px;
+        padding: 10px;
+        display: block;
+    }
+
+    .paperImg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .tagt .tagtCard .des {
+        margin: 10px 0px;
+    }
+
+    .ambcb,
+    .hbcutc {
+        padding: 30px 20px;
+    }
+
+    .cyp .cpyTableDiv .cpyTable {
+        overflow: scroll !important;
+    }
+
+    .cyp .cpyTableDiv {
+        padding: 0px;
+        width: 100%;
+        font-size: 20px;
+        margin: 20px 0px;
+    }
+
+    .cyp .charmTick {
+        width: 30px;
+        height: 30px;
+    }
+
+    .sltbCardGroup {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-top: 50px;
+    }
+
+    .sltbCard {
+        height: 500px;
+        box-shadow: 10px 0px 20px 1px;
+    }
+
+    .sltbCard .sltbCardFooter {
+        font-size: large;
+    }
+
+    .ibecRow {
+        display: block;
+    }
+
+    .faq {
+        padding: 30px;
+        margin-bottom: 100px;
+    }
+
+    .faq .title {
+        margin: 30px 20px 100px;
+    }
+
+    .home .rating {
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+        display: block;
+    }
+
+}

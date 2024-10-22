@@ -23,8 +23,7 @@ const ToppersAnswersLinksCard = ({
   }, []);
   const handleLoginPop = (e, link) => {
     e.preventDefault();
-   
-   
+
     toast.error("Please login to proceed");
     router.push("/api/auth/signin");
   };
@@ -67,7 +66,12 @@ const ToppersAnswersLinksCard = ({
           </>
         ) : session && toppers[linkname].length === 0 ? (
           <>
-            <div className={styles.toppersAnswers}>Coming Soon!</div>
+            {/* <div className={styles.toppersAnswers}>Coming Soon!</div> */}
+            <div className={styles.toppersAnswers}>
+              <Link href={"/upsc-answer-writing-ibec-method"}>
+                View Details
+              </Link>
+            </div>
           </>
         ) : (
           <>

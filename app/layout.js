@@ -46,7 +46,7 @@ export default async function RootLayout({ children }) {
       gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');`}
       </Script>
       <body>
-        <Modal />
+        {/* <Modal /> */}
         {/* <div className="">
               <marquee className="marAdv"><a href="https://t.me/strategy_ias" target="_blank">Get GS Wise Toppers answer copy compilation of UPSC 2023 Toppers at Rs. 199/GS Paper. Join at @strategy_ias</a></marquee>
             </div> */}

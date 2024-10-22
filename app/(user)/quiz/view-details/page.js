@@ -209,7 +209,11 @@ async function LandingPage() {
                 Active Recall for All Wrong Questions
               </span>
             </div>
-            <button className={styles.btnEnroll}>ENROLL NOW</button>
+            <div className={styles.btnEnrollDiv}>
+              <Link href={"/quiz/register"} className={styles.btnEnroll}>
+                ENROLL NOW
+              </Link>
+            </div>
           </div>
           <div className={styles.cots}>
             <div className={styles.heading}>COMPONENTS OF OUR TEST SERIES</div>
