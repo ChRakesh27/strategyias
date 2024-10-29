@@ -110,7 +110,7 @@ const ToppersPage = ({ toppers }) => {
                   <div>
                     <div className={styles.meterContainer}>
                       <div
-                        class={styles.meterValue}
+                        className={styles.meterValue}
                         style={{
                           width: (toppers.essayMarks / 250) * 100 + "%",
                         }}
@@ -122,9 +122,9 @@ const ToppersPage = ({ toppers }) => {
                 <div>
                   <p>Gs1:</p>
                   <div>
-                    <div class={styles.meterContainer}>
+                    <div className={styles.meterContainer}>
                       <div
-                        class={styles.meterValue}
+                        className={styles.meterValue}
                         style={{ width: (toppers.gs1marks / 250) * 100 + "%" }}
                       ></div>
                     </div>
@@ -134,9 +134,9 @@ const ToppersPage = ({ toppers }) => {
                 <div>
                   <p>Gs2:</p>
                   <div>
-                    <div class={styles.meterContainer}>
+                    <div className={styles.meterContainer}>
                       <div
-                        class={styles.meterValue}
+                        className={styles.meterValue}
                         style={{ width: (toppers.gs2marks / 250) * 100 + "%" }}
                       ></div>
                     </div>
@@ -146,9 +146,9 @@ const ToppersPage = ({ toppers }) => {
                 <div>
                   <p>Gs3:</p>
                   <div>
-                    <div class={styles.meterContainer}>
+                    <div className={styles.meterContainer}>
                       <div
-                        class={styles.meterValue}
+                        className={styles.meterValue}
                         style={{ width: (toppers.gs3marks / 250) * 100 + "%" }}
                       ></div>
                     </div>
@@ -158,9 +158,9 @@ const ToppersPage = ({ toppers }) => {
                 <div>
                   <p>Gs4:</p>
                   <div>
-                    <div class={styles.meterContainer}>
+                    <div className={styles.meterContainer}>
                       <div
-                        class={styles.meterValue}
+                        className={styles.meterValue}
                         style={{ width: (toppers.gs4marks / 250) * 100 + "%" }}
                       ></div>
                     </div>
@@ -170,9 +170,9 @@ const ToppersPage = ({ toppers }) => {
                 <div>
                   <p>{toppers.optionalSub} 1:</p>
                   <div>
-                    <div class={styles.meterContainer}>
+                    <div className={styles.meterContainer}>
                       <div
-                        class={styles.meterValue}
+                        className={styles.meterValue}
                         style={{
                           width: (toppers.optional1Marks / 250) * 100 + "%",
                         }}
@@ -184,9 +184,9 @@ const ToppersPage = ({ toppers }) => {
                 <div>
                   <p>{toppers.optionalSub} 2:</p>
                   <div>
-                    <div class={styles.meterContainer}>
+                    <div className={styles.meterContainer}>
                       <div
-                        class={styles.meterValue}
+                        className={styles.meterValue}
                         style={{
                           width: (toppers.optional2Marks / 250) * 100 + "%",
                         }}
@@ -198,9 +198,9 @@ const ToppersPage = ({ toppers }) => {
                 <div>
                   <p>WRITTEN TOTAL:</p>
                   <div>
-                    <div class={styles.meterContainer}>
+                    <div className={styles.meterContainer}>
                       <div
-                        class={styles.meterValue}
+                        className={styles.meterValue}
                         style={{ width: (total / 1750) * 100 + "%" }}
                       ></div>
                     </div>
@@ -210,9 +210,9 @@ const ToppersPage = ({ toppers }) => {
                 <div>
                   <p>PERSONALITY TEST :</p>
                   <div>
-                    <div class={styles.meterContainer}>
+                    <div className={styles.meterContainer}>
                       <div
-                        class={styles.meterValue}
+                        className={styles.meterValue}
                         style={{
                           width: (toppers.interviewMarks / 250) * 100 + "%",
                         }}
@@ -224,9 +224,9 @@ const ToppersPage = ({ toppers }) => {
                 <div className={styles.finalMarks}>
                   <p>FINAL TOTAL :</p>
                   <div>
-                    <div class={styles.meterContainer}>
+                    <div className={styles.meterContainer}>
                       <div
-                        class={styles.meterValue}
+                        className={styles.meterValue}
                         style={{
                           width:
                             ((toppers.interviewMarks + total) / 2000) * 100 +

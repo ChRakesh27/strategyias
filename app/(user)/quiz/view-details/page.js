@@ -132,23 +132,13 @@ async function LandingPage() {
     },
   ];
 
-  // const session = await getServerSession(options);
-  // const containerClassName =
-  //   session?.user.role === "admin"
-  //     ? styles.adminLandingPage
-  //     : styles.userLandingPage;
-  // const containerBodyClassName =
-  //   session?.user.role === "admin"
-  //     ? styles.adminLandingPageBody
-  //     : styles.userLandingPageBody;
-
   return (
     <>
-      <div className={styles.landingPageIcon}>
+      {/* <div className={styles.landingPageIcon}>
         <Link href={"/"}>
           <h3>STRATEGY IAS</h3>
         </Link>
-      </div>
+      </div> */}
       <div className={styles.userLandingPage}>
         <div className={styles.userLandingPageBody}>
           <div className={styles.home}>

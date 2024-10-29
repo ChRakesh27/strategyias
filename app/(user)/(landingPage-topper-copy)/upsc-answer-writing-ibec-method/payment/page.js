@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import styles from "../../../(styles)/quizRegister.module.css";
 import Link from "next/link";
-// import axios from "axios";
+import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -13,12 +13,13 @@ function Payment() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [isPayment, setIsPayment] = useState(false);
+  const [createdId, setCreatedId] = useState("");
   const [formData, setFormData] = useState({
     email: session?.user.email,
     userName: session?.user.name,
     phone: "",
     paymentImg: "",
-    course: {},
+    typeOfCopy: "",
   });
 
   const coursesList = [
@@ -50,6 +51,27 @@ function Payment() {
 
   async function onSubmitHandler(e) {
     e.preventDefault();
+    if (!createdId) {
+      return;
+    }
+    setIsLoading(true);
+    const date = new Date();
+    const oneYearLater = new Date(date);
+    oneYearLater.setFullYear(oneYearLater.getFullYear() + 1);
+    const payload = {
+      ...formData,
+      registerAt: date.toISOString(),
+      id: createdId,
+    };
+    const response = await axios.post("/api/ibec/updateUsers", payload);
+    setIsLoading(false);
+    if (response.status === 200) {
+      router.push("/upsc-answer-writing-ibec-method");
+    }
+  }
+
+  async function onNextHandler(e) {
+    e.preventDefault();
     setIsLoading(true);
     const date = new Date();
     const oneYearLater = new Date(date);
@@ -58,13 +80,13 @@ function Payment() {
       ...formData,
       registerAt: date.toISOString(),
     };
-    console.log("🚀 ~ onSubmitHandler ~ payload:", payload);
 
-    // const response = await axios.post("/api/quiz/registerCourse", payload);
+    const response = await axios.post("/api/ibec/createUser", payload);
+    setCreatedId(response.data._id);
+    if (response.status === 200) {
+      setIsPayment(true);
+    }
     setIsLoading(false);
-    // if (response.status === 200) {
-    router.push("/upsc-answer-writing-ibec-method");
-    // }
   }
 
   return (
@@ -78,15 +100,15 @@ function Payment() {
           </div>
         )}
         <div>
-          <div className={styles.landingPageIcon}>
+          {/* <div className={styles.landingPageIcon}>
             <Link href={"/"}>
               <h3>STRATEGY IAS</h3>
             </Link>
-          </div>
+          </div> */}
           <div className={styles.quizRegisterForm}>
             <div className={styles.heading}>Buy Toppers Copies</div>
-            <form onSubmit={onSubmitHandler}>
-              {!isPayment ? (
+            {!isPayment ? (
+              <form onSubmit={onNextHandler}>
                 <>
                   <div>
                     <div className={styles.label}>Name</div>
@@ -120,7 +142,10 @@ function Payment() {
                     <div className={styles.label}>Phone Number</div>
                     <input
                       className={styles.formControlInput}
-                      type="number"
+                      type="text"
+                      maxLength="10"
+                      pattern="\d{10}"
+                      title="Please enter exactly 10 digits"
                       onChange={(e) =>
                         setFormData((val) => {
                           return { ...val, phone: e.target.value };
@@ -137,13 +162,7 @@ function Payment() {
                         setFormData((val) => {
                           return {
                             ...val,
-                            course: {
-                              ...val.course,
-                              id: e.target.value,
-                              name: coursesList.find(
-                                (ele) => ele.id == e.target.value
-                              ).name,
-                            },
+                            typeOfCopy: e.target.value,
                           };
                         });
                       }}
@@ -155,22 +174,20 @@ function Payment() {
                       </option>
                       {coursesList.map((ele, index) => {
                         return (
-                          <option value={ele.id} key={index}>
+                          <option value={ele.name} key={index}>
                             {ele.name}
                           </option>
                         );
                       })}
                     </select>
                   </div>
-                  <button
-                    type="button"
-                    className={styles.submitButton}
-                    onClick={() => setIsPayment(true)}
-                  >
+                  <button type="submit" className={styles.submitButton}>
                     Next
                   </button>
                 </>
-              ) : (
+              </form>
+            ) : (
+              <form onSubmit={onSubmitHandler}>
                 <>
                   <div>
                     <div className={styles.label}>UPI</div>
@@ -197,11 +214,11 @@ function Payment() {
                           width="16"
                           height="16"
                           fill="currentColor"
-                          class="bi bi-copy"
+                          className="bi bi-copy"
                           viewBox="0 0 16 16"
                         >
                           <path
-                            fill-rule="evenodd"
+                            fillRule="evenodd"
                             d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"
                           />
                         </svg>
@@ -225,8 +242,8 @@ function Payment() {
                     Submit
                   </button>
                 </>
-              )}
-            </form>
+              </form>
+            )}
           </div>
         </div>
       </div>

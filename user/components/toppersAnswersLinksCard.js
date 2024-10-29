@@ -37,7 +37,10 @@ const ToppersAnswersLinksCard = ({
         </h3>
       </div>
       <div>
-        {session && toppers[linkname].length !== 0 ? (
+        <div className={styles.toppersAnswers}>
+          <Link href={"/upsc-answer-writing-ibec-method"}>View Details</Link>
+        </div>
+        {/* {session && toppers[linkname].length !== 0 ? (
           <>
             {toppers[linkname].map((data, index) => (
               <Link target="_blank" key={index} href={data} passHref>
@@ -51,33 +54,29 @@ const ToppersAnswersLinksCard = ({
               </Link>
             ))}
           </>
-        ) : !session && toppers[linkname].length !== 0 ? (
-          <>
-            {toppers[linkname].map((data, index) => (
-              <div
-                // onClick={(e) => handleLoginPop(e, data)}
-                onClick={(e) => signIn("google", data)}
-                key={index}
-                className={styles.toppersAnswers}
-              >
-                Login to view!
-              </div>
-            ))}
-          </>
-        ) : session && toppers[linkname].length === 0 ? (
-          <>
-            {/* <div className={styles.toppersAnswers}>Coming Soon!</div> */}
-            <div className={styles.toppersAnswers}>
-              <Link href={"/upsc-answer-writing-ibec-method"}>
-                View Details
-              </Link>
-            </div>
-          </>
         ) : (
-          <>
-            <div className={styles.toppersAnswers}>Login to view!</div>
-          </>
-        )}
+            !session && toppers[linkname].length !== 0 ? (
+            <>
+              {toppers[linkname].map((data, index) => (
+                <div
+                  // onClick={(e) => handleLoginPop(e, data)}
+                  onClick={(e) => signIn("google", data)}
+                  key={index}
+                  className={styles.toppersAnswers}
+                >
+                  Login to view!
+                </div>
+              ))}
+            </>
+          ) : session && toppers[linkname].length === 0 ? (
+            <>
+              <div className={styles.toppersAnswers}>Coming Soon!</div>
+            </>
+          ) : (
+            <>
+              <div className={styles.toppersAnswers}>Login to view!</div>
+            </>
+        )} */}
       </div>
     </>
   );

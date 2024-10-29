@@ -260,9 +260,9 @@ export default function Quiz({ params }) {
       <div className={"quiz " + containerClassName}>
         {isTestEnd && (
           <div className="isSubmit">
-            <div class="subConfirmationBox">
+            <div className="subConfirmationBox">
               <div className="testEnd">Test has been finished...</div>
-              <div class="sub-details">
+              <div className="sub-details">
                 <span>Total Questions</span>
                 <span>{dataSet.length}</span>
               </div>
@@ -401,7 +401,7 @@ export default function Quiz({ params }) {
                         width="30"
                         height="30"
                         fill="currentColor"
-                        class="bi bi-star-fill"
+                        className="bi bi-star-fill"
                         viewBox="0 0 16 16"
                         onClick={() => {
                           markedReview(false);

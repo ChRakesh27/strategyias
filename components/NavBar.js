@@ -12,7 +12,7 @@ const NavBar = () => {
   const [showHamburger, setShowHamburger] = useState(false);
   const pathname = usePathname();
   const session = useSession();
-
+  const [dashboardDropDown, setDashboardDropDown] = useState(false);
   const handleMenu = () => {
     sethiddenNav(!hiddenNav);
   };
@@ -68,8 +68,26 @@ const NavBar = () => {
             <Link href={"/admin/add-prelims-notes"}>Add prelims notes </Link>
           </div>
           <div className={styles.navEle}>
-            <Link href={"/admin/dashboard"}>Dashboard</Link>
+            {/* <Link href={"/admin/dashboard"}>Dashboard</Link> */}
+
+            <div onClick={() => setDashboardDropDown((val) => !val)}>
+              Dashboard
+            </div>
+            {dashboardDropDown && (
+              <div style={{ background: "#0001" }}>
+                <div className={styles.dropDownItem}>
+                  <Link href={"/admin/dashboard"}>Users Login</Link>
+                </div>
+                <div className={styles.dropDownItem}>
+                  <Link href={"/admin/user-permission"}>Quiz Users</Link>
+                </div>
+                <div className={styles.dropDownItem}>
+                  <Link href={"/admin/ibec-Users"}>IBEC Users</Link>
+                </div>
+              </div>
+            )}
           </div>
+
           {session && (
             <Link href={"/api/auth/signout?callbackUrl=/"}>
               <button className={styles.loginBtn}>Logout</button>
@@ -152,7 +170,22 @@ const NavBar = () => {
                     pathname === "/admin/dashboard" ? styles.activeLink : ""
                   }`}
                 >
-                  <Link href={"/admin/dashboard"}>Dashboard</Link>
+                  <div onClick={() => setDashboardDropDown((val) => !val)}>
+                    Dashboard
+                  </div>
+                  {dashboardDropDown && (
+                    <div style={{ background: "#0001" }}>
+                      <div className={styles.dropDownItem}>
+                        <Link href={"/admin/dashboard"}>Users Login</Link>
+                      </div>
+                      <div className={styles.dropDownItem}>
+                        <Link href={"/admin/user-permission"}>Quiz Users</Link>
+                      </div>
+                      <div className={styles.dropDownItem}>
+                        <Link href={"/admin/ibec-Users"}>IBEC Users</Link>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div
                   className={`${styles.navEle} ${

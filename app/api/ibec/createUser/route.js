@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
-import QuizUsers from "@/models/QuizUser";
+import IbecUsers from "@/models/ibecUser";
 import mongoose from "mongoose";
 
 export const revalidate = 0;
@@ -10,8 +10,9 @@ export async function POST(req, context) {
 
     await mongoose.connect(process.env.MONGO_URI);
 
-    const res = await QuizUsers.create(reqBody);
-    // return NextResponse.json({ res }, { status: 200 });
+    const res = await IbecUsers.create(reqBody);
+    //-----------
+    // return NextResponse.json(res, { status: 200 });
 
     const transport = nodemailer.createTransport({
       service: "Gmail",
@@ -20,21 +21,21 @@ export async function POST(req, context) {
         pass: process.env.Quiz_MAILER_PASSWORD,
       },
     });
+
     const mailOptions = {
       from: "skptrulyweb@gmail.com",
       to: "Saurabh.pandeyait@gmail.com",
       // to: "chipparakesh01@gmail.com",
-      subject: "User Create for Register for the Course",
-      text: "Here is the User Create for Register for the Course.",
+      subject: "User Creation for Purchasing IBEC Topper Copies",
+      text: "Here is the User Creation for Purchasing IBEC Topper Copies.",
       html: `<p>
       Name: <b>${reqBody.userName}</b><br>
       Email Id: <b>${reqBody.email}</b><br>
       Phone: <b>${reqBody.phone}</b><br>
-      Target Year: <b>${reqBody.course.targetYear}</b><br>
-      Course Name: <b>${reqBody.course.name}</b><br>
+      Type of Copy: <b>${reqBody.typeOfCopy}</b><br>
       <br>
       <br>
-      Give Permission : <a href="https://strategyias.com/admin/user-permission">Click Here</a>
+      Give Permission : <a href="https://strategyias.com/admin/ibec-Users">Click Here</a>
       </p>`,
       // attachments: [{ path: reqBody.paymentImg }],
     };

@@ -10,6 +10,11 @@
     background-color: #ffffff;
 }
 
+.dropDownItem {
+    padding: 10px 20px;
+
+}
+
 @media only screen and (max-width:600px) {
     .navbarMainContainer {
         position: relative;
@@ -17,6 +22,8 @@
         height: 3em;
     }
 }
+
+
 
 .logo>h1 {
     color: rgb(99, 99, 99);

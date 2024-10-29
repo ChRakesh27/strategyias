@@ -13,6 +13,8 @@ function Register() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [isPayment, setIsPayment] = useState(false);
+  const [registerId, setRegisterId] = useState("");
+
   const [formData, setFormData] = useState({
     registerAt: "",
     expireAt: "",
@@ -50,6 +52,32 @@ function Register() {
 
   async function onSubmitHandler(e) {
     e.preventDefault();
+    if (!registerId) {
+      return;
+    }
+    setIsLoading(true);
+    const date = new Date();
+    const oneYearLater = new Date(date);
+    oneYearLater.setFullYear(oneYearLater.getFullYear() + 1);
+    const payload = {
+      ...formData,
+      registerAt: date.toISOString(),
+      expireAt: oneYearLater.toISOString(),
+      id: registerId,
+    };
+
+    const response = await axios.post(
+      "/api/quiz/updateRegisterCourse",
+      payload
+    );
+    setIsLoading(false);
+    if (response.status === 200) {
+      router.push("/quiz");
+    }
+  }
+
+  async function onNextHandler(e) {
+    e.preventDefault();
     setIsLoading(true);
     const date = new Date();
     const oneYearLater = new Date(date);
@@ -61,11 +89,13 @@ function Register() {
     };
 
     const response = await axios.post("/api/quiz/registerCourse", payload);
-    setIsLoading(false);
+    setRegisterId(response.data._id);
     if (response.status === 200) {
-      router.push("/quiz");
+      setIsPayment(true);
     }
+    setIsLoading(false);
   }
+
   const copyToClipboard = () => {
     navigator.clipboard.writeText("okias@jio");
   };
@@ -81,15 +111,15 @@ function Register() {
           </div>
         )}
         <div>
-          <div className={styles.landingPageIcon}>
+          {/* <div className={styles.landingPageIcon}>
             <Link href={"/"}>
               <h3>STRATEGY IAS</h3>
             </Link>
-          </div>
+          </div> */}
           <div className={styles.quizRegisterForm}>
             <div className={styles.heading}>Register for the Course</div>
-            <form onSubmit={onSubmitHandler}>
-              {!isPayment ? (
+            {!isPayment ? (
+              <form onSubmit={onNextHandler}>
                 <>
                   <div>
                     <div className={styles.label}>Name</div>
@@ -123,7 +153,10 @@ function Register() {
                     <div className={styles.label}>Phone Number</div>
                     <input
                       className={styles.formControlInput}
-                      type="number"
+                      type="text"
+                      maxLength="10"
+                      pattern="\d{10}"
+                      title="Please enter exactly 10 digits"
                       onChange={(e) =>
                         setFormData((val) => {
                           return { ...val, phone: e.target.value };
@@ -195,15 +228,13 @@ function Register() {
                       })}
                     </select>
                   </div>
-                  <button
-                    type="button"
-                    className={styles.submitButton}
-                    onClick={() => setIsPayment(true)}
-                  >
+                  <button type="submit" className={styles.submitButton}>
                     Next
                   </button>
                 </>
-              ) : (
+              </form>
+            ) : (
+              <form onSubmit={onSubmitHandler}>
                 <>
                   <div>
                     <div className={styles.label}>UPI</div>
@@ -230,7 +261,7 @@ function Register() {
                           width="16"
                           height="16"
                           fill="currentColor"
-                          class="bi bi-copy"
+                          className="bi bi-copy"
                           viewBox="0 0 16 16"
                         >
                           <path
@@ -257,8 +288,8 @@ function Register() {
                     Submit
                   </button>
                 </>
-              )}
-            </form>
+              </form>
+            )}
           </div>
         </div>
       </div>

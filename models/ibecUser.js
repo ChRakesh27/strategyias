@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const quizUserSchema = new mongoose.Schema(
+const ibecUserSchema = new mongoose.Schema(
   {
     _id: { type: mongoose.Types.ObjectId, auto: true },
     userName: {
@@ -18,28 +18,21 @@ const quizUserSchema = new mongoose.Schema(
     paymentImg: {
       type: String,
     },
-    course: {
-      type: Object,
+    typeOfCopy: {
+      type: String,
       required: true,
     },
     registerAt: {
       type: Date,
       default: new Date().toISOString(),
     },
-    expireAt: {
-      type: Date,
-    },
     status: {
       type: String,
       default: "pending",
-    },
-    questions: {
-      type: [Object],
-      default: [],
     },
   },
   { timestamps: true }
 );
 mongoose.models = {};
-const QuizUsers = mongoose.model("QuizUser", quizUserSchema);
-export default QuizUsers;
+const IbecUsers = mongoose.model("IbecUser", ibecUserSchema);
+export default IbecUsers;
