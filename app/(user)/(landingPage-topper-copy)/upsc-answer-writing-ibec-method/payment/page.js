@@ -66,7 +66,10 @@ function Payment() {
     const response = await axios.post("/api/ibec/updateUsers", payload);
     setIsLoading(false);
     if (response.status === 200) {
-      router.push("/upsc-answer-writing-ibec-method");
+      const encodedId = btoa(createdId);
+      router.push(
+        "/upsc-answer-writing-ibec-method/payment/success?id=" + encodedId
+      );
     }
   }
 
@@ -225,7 +228,6 @@ function Payment() {
                       </button>
                     </div>
                   </div>
-
                   <div>
                     <div className={styles.label}>
                       Upload Payment Screenshot

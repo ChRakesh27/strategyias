@@ -72,7 +72,7 @@ function Register() {
     );
     setIsLoading(false);
     if (response.status === 200) {
-      router.push("/quiz");
+      router.push("/quiz/register/success?id=" + btoa(registerId));
     }
   }
 

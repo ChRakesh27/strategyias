@@ -72,6 +72,14 @@
     font-size: 20px;
 }
 
+.viewDetailsRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 10px;
+    font-size: 28px;
+    text-align: start;
+}
+
 @media only screen and (max-width:600px) {
     .quizRegisterForm {
         width: 100vw;
