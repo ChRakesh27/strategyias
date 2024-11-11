@@ -23,7 +23,6 @@ export async function POST(req, context) {
     const mailOptions = {
       from: "skptrulyweb@gmail.com",
       to: "Saurabh.pandeyait@gmail.com",
-      // to: "chipparakesh01@gmail.com",
       subject: "User Create for Register for the Course",
       text: "Here is the User Create for Register for the Course.",
       html: `<p>
